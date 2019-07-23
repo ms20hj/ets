@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+
+    <springProperty name="LOG_PATH" source="logging.path" scope="context" defaultValue="./logs/"/>
+    <property name="BASE_PATH" value="${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/"/>
+
+	<logger name="org.springframework" level="INFO" />
+	<logger name="com.linewell.IDaaS" level="DEBUG" />
+    
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+    
+    <springProfile name="prod">
+    
+        <property name="DUBBO_ACCESS_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+        <appender name="FORMCHECK" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                     <!--日志文件输出的文件名-->
+                     <FileNamePattern>${BASE_PATH}/formcheck.log.%d{yyyy-MM-dd}.log</FileNamePattern>
+                     <MaxHistory>30</MaxHistory>
+            </rollingPolicy>
+            <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+                <!-- 日志输出编码 -->
+                <layout class="ch.qos.logback.classic.PatternLayout">
+                    <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+                    <pattern>${DUBBO_ACCESS_LOG_PATTERN}</pattern>
+                </layout>
+            </encoder>
+            <!--日志文件最大的大小-->
+    <!--        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">-->
+    <!--            <MaxFileSize>10MB</MaxFileSize>-->
+    <!--        </triggeringPolicy>-->
+        </appender>
+        <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <encoder>
+                <pattern>${FILE_LOG_PATTERN}</pattern>
+            </encoder>
+            <file>${BASE_PATH}/service.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <fileNamePattern>${BASE_PATH}/service.%d{yyyy-MM-dd-HH}.log</fileNamePattern>
+                <maxHistory>720</maxHistory>
+            </rollingPolicy>
+        </appender>
+
+        <appender name="DUBBO_ACCESS_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <encoder>
+                <pattern>${DUBBO_ACCESS_LOG_PATTERN}</pattern>
+            </encoder>
+            <file>${BASE_PATH}/dubbo.access.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <fileNamePattern>${BASE_PATH}/dubbo.access.%d{yyyy-MM-dd-HH}.log</fileNamePattern>
+                <maxHistory>720</maxHistory>
+            </rollingPolicy>
+        </appender>
+
+        <logger name="dubbo.accesslog" level="INFO" additivity="false">
+            <appender-ref ref="DUBBO_ACCESS_LOG"/>
+        </logger>
+        <logger name="com.linewell.form.server.portal.controller.tenancy.FormDetailController" level="ERROR">
+            <appender-ref ref="FORMCHECK"/>
+        </logger>
+        <logger name="com.linewell.form.server.portal.utils.FormCheckUtils" level="ERROR">
+            <appender-ref ref="FORMCHECK"/>
+        </logger>
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="FILE"/>
+        </root>
+
+    </springProfile>
+    
+</configuration>

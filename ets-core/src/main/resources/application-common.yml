@@ -1,0 +1,43 @@
+# 开启日志文件
+logging:
+  config: classpath:logback-spring.xml
+
+#  shiroConfig中filterChainDefinitionMap过滤器的配置，把可以匿名访问的url，
+shiro:
+  noneFilterUrl: /common/**, /static/**, /swagger-ui.html, /swagger-resources/**, /v2/**, /webjars/**, /userLogin/*, /thirdlogin/**, /appRegister/**
+  #没有登陆的用户只能访问登陆页面
+  unauthorizedUrl: /common/unauth
+
+
+
+---
+#开发环境参数配置
+spring:
+  profiles: dev
+  #服务器上图片存储路径文件上传目录(window是d/e/f盘， linux是/)（注意Linux和Windows上的目录结构不同）
+  #file.uploadFolder：/
+  upload:
+    image:
+      path: D://image//
+      #    path: /home/project/idaas/attachment/ #服务器部署环境地址
+      displayPath: /attachment/
+  unauthorizedUrl: /common/unauth
+---
+#测试环境参数配置
+spring:
+  profiles: test
+  upload:
+    image:
+      path: /home/project/ets/attachment/ #服务器部署环境地址
+      displayPath: /attachment/
+  #没有登陆的用户只能访问登陆页面
+  unauthorizedUrl: /api/common/unauth
+---
+#生产环境参数配置
+spring:
+  profiles: prod
+  # mongo参数配置
+  upload:
+    image:
+      path: /home/project/ets/attachment/ #服务器部署环境地址
+      displayPath: /attachment/
