@@ -6,7 +6,6 @@ import com.cms.ets.common.enums.CodeEnum;
 import com.cms.ets.common.exception.BusinessException;
 import com.cms.ets.common.exception.SystemException;
 import com.cms.ets.common.response.HandleResult;
-import org.apache.shiro.authz.AuthorizationException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -53,8 +52,6 @@ public class GlobalExceptionHandler {
     /**
      * 系统异常处理
      * @return
-     * @author mawei
-     * @date 2019/4/30
      */
     @ExceptionHandler(SystemException.class)
     @ResponseBody
@@ -62,23 +59,11 @@ public class GlobalExceptionHandler {
         log.info(e);
         return HandleResult.error(CodeEnum.SYSTEM_ERROR, e.getMessage());
     }
-    
-
-    /**
-     * shiro权限异常处理
-     * @return
-     */
-    @ExceptionHandler(AuthorizationException.class)
-    public HandleResult authorizationException(AuthorizationException e){
-        log.info(e);
-        return HandleResult.error(CodeEnum.AUTHORIZE_ERROR, e.getMessage());
-    }
 
     /**
      * @Description: 校验参数 失败 返回处理
      * @MethodName:validatorException
      * @param [e]
-     * @return com.linewell.idaas.model.HandleResult
      */
     @ExceptionHandler(value = {MethodArgumentNotValidException.class, BindException.class, ConstraintViolationException.class})
     @ResponseBody

@@ -1,4 +1,4 @@
-package com.cms.ets.core.mybatisplus;
+package com.cms.ets.mybatis.config;
 
 import com.baomidou.mybatisplus.core.injector.ISqlInjector;
 import com.baomidou.mybatisplus.extension.injector.LogicSqlInjector;
@@ -8,9 +8,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * @Author xn-h
- * @Date: 2019/3/22 17
- * @Description:
+ * 开启mybatiesPlus 分页
+ * @date 2019年8月2日09:30:38
  */
 @EnableTransactionManagement
 @Configuration
@@ -27,8 +26,8 @@ public class MybatisPlusConfig {
     /**
      * 开启逻辑删除配置
      */
-    @Bean
-    public ISqlInjector sqlInjector() {
-        return new LogicSqlInjector();
-    }
+//    @Bean
+//    public ISqlInjector sqlInjector() {
+//        return new LogicSqlInjector();
+//    }
 }

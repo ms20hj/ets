@@ -31,6 +31,14 @@ public class HandleResult<T> implements Serializable {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private T data;
 
+    public static <T> HandleResult<T> success(){
+        HandleResult<T> resp = new HandleResult<T>();
+        resp.setCode(CodeEnum.SUCCESS.getCode());
+        resp.setMessage(CodeEnum.SUCCESS.getMessage());
+        resp.setStatus(true);
+        return resp;
+    }
+
     public static <T> HandleResult<T> success(T data){
         HandleResult<T> resp = new HandleResult<T>();
         resp.setCode(CodeEnum.SUCCESS.getCode());
@@ -44,6 +52,14 @@ public class HandleResult<T> implements Serializable {
         HandleResult<T> resp = new HandleResult<T>();
         resp.setCode(CodeEnum.FAILURE.getCode());
         resp.setMessage(CodeEnum.FAILURE.getMessage());
+        resp.setStatus(true);
+        return resp;
+    }
+
+    public static <T> HandleResult<T> error(CodeEnum ce){
+        HandleResult<T> resp = new HandleResult<T>();
+        resp.setCode(ce.getCode());
+        resp.setMessage(ce.getMessage());
         resp.setStatus(true);
         return resp;
     }

@@ -3,14 +3,14 @@ spring:
     name: ets-provider
   profiles:
     active: dev
-    include: common, datasource, mybatis, mongodb, redis, dubbo, web
+    include: common, datasource, mybatis, redis, dubbo
 
 server:
-  port: 53002
+  port: 53001
 
 dubbo:
   application:
     name: ets-provider
 #  protocol:
-#    port: 53012
+#    port: 53011
 #    serialization: kryo

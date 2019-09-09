@@ -75,5 +75,4 @@ public abstract class BaseEntity implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public abstract String getName();
 }

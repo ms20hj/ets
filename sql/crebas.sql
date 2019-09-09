@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2019/7/22 ĞÇÆÚÒ» ÏÂÎç 2:46:47                     */
+/* Created on:     2019/9/9 æ˜ŸæœŸä¸€ ä¸‹åˆ 4:22:55                      */
 /*==============================================================*/
 
 
@@ -66,20 +66,20 @@ drop table if exists t_user_ticket;
 create table t_customer
 (
    id                   char(32) not null,
-   customer_name        varchar(64) comment 'Ãû³Æ',
-   phone                varchar(32) comment 'ÁªÏµ·½Ê½',
-   contact              varchar(32) comment 'ÁªÏµÈË',
-   address              varchar(128) comment 'ÁªÏµµØÖ·',
-   status               int default 0 comment '×´Ì¬ 0£ºÆôÓÃ£¬1£º½ûÓÃ',
-   parent_id            char(32) comment 'ÉÏ¼¶',
+   customer_name        varchar(64) comment 'åç§°',
+   phone                varchar(32) comment 'è”ç³»æ–¹å¼',
+   contact              varchar(32) comment 'è”ç³»äºº',
+   address              varchar(128) comment 'è”ç³»åœ°å€',
+   status               int default 0 comment 'çŠ¶æ€ 0ï¼šå¯ç”¨ï¼Œ1ï¼šç¦ç”¨',
+   parent_id            char(32) comment 'ä¸Šçº§',
    create_id            char(32),
-   create_time          datetime comment '´´½¨Ê±¼ä',
+   create_time          datetime comment 'åˆ›å»ºæ—¶é—´',
    update_id            char(32),
-   update_time          datetime comment '¸üĞÂÊ±¼ä',
+   update_time          datetime comment 'æ›´æ–°æ—¶é—´',
    primary key (id)
 );
 
-alter table t_customer comment '¿Í»§ĞÅÏ¢±í';
+alter table t_customer comment 'å®¢æˆ·ä¿¡æ¯è¡¨';
 
 /*==============================================================*/
 /* Table: t_dictionary                                          */
@@ -87,18 +87,18 @@ alter table t_customer comment '¿Í»§ĞÅÏ¢±í';
 create table t_dictionary
 (
    id                   char(32) not null,
-   dict_name            varchar(64) comment '×ÖµäÃû³Æ',
-   data                 varchar(128) comment '×ÖµäÖµ',
-   parent_id            char(32) comment 'ÉÏ¼¶id',
-   status               int default 0 comment '×´Ì¬£¬0ÆôÓÃ£¬1½ûÓÃ',
-   create_id            char(32) comment '´´½¨ÈËid',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   update_id            char(32) comment '¸üĞÂid',
-   update_time          datetime comment '¸üĞÂÊ±¼ä',
+   dict_name            varchar(64) comment 'å­—å…¸åç§°',
+   data                 varchar(128) comment 'å­—å…¸å€¼',
+   parent_id            char(32) comment 'ä¸Šçº§id',
+   status               int default 0 comment 'çŠ¶æ€ï¼Œ0å¯ç”¨ï¼Œ1ç¦ç”¨',
+   create_id            char(32) comment 'åˆ›å»ºäººid',
+   create_time          datetime comment 'åˆ›å»ºæ—¶é—´',
+   update_id            char(32) comment 'æ›´æ–°id',
+   update_time          datetime comment 'æ›´æ–°æ—¶é—´',
    primary key (id)
 );
 
-alter table t_dictionary comment '×Öµä';
+alter table t_dictionary comment 'å­—å…¸';
 
 /*==============================================================*/
 /* Table: t_discount                                            */
@@ -106,72 +106,72 @@ alter table t_dictionary comment '×Öµä';
 create table t_discount
 (
    id                   char(32) not null,
-   disc_name            varchar(64) comment 'Ãû³Æ',
-   limit_count          tinyint default 0 comment 'ÈËÊıÏŞÖÆ,0±íÊ¾ÎŞÈËÊıÏŞÖÆ',
-   limit_begin          int comment 'ÈËÊıÏŞÖÆÇø¼ä¿ªÊ¼Öµ',
-   limit_end            int comment 'ÈËÊıÏŞÖÆÇø¼ä½áÊøÖµ',
-   discount_way         int default 0 comment '´òÕÛ·½Ê½£¬0£º´òÕÛ£¨Èç£º8ÕÛ¡¢¾ÅÕÛ£©£¬1£º¼õÃâ£¨Èç£º¼õ10/ÈË£¬¼õ15/ÈË£©£¬2£º°´ÕÕÓÅ»İ½ğ¶îÏúÊÛ£¨Èç£ºÖ±½Ó£¤50£©',
-   discount_scale       decimal(10,2) comment 'ÓÅ»İµÄ±ÈÀı',
+   disc_name            varchar(64) comment 'åç§°',
+   limit_count          tinyint default 0 comment 'äººæ•°é™åˆ¶,0è¡¨ç¤ºæ— äººæ•°é™åˆ¶',
+   limit_begin          int comment 'äººæ•°é™åˆ¶åŒºé—´å¼€å§‹å€¼',
+   limit_end            int comment 'äººæ•°é™åˆ¶åŒºé—´ç»“æŸå€¼',
+   discount_way         int default 0 comment 'æ‰“æŠ˜æ–¹å¼ï¼Œ0ï¼šæ‰“æŠ˜ï¼ˆå¦‚ï¼š8æŠ˜ã€ä¹æŠ˜ï¼‰ï¼Œ1ï¼šå‡å…ï¼ˆå¦‚ï¼šå‡10/äººï¼Œå‡15/äººï¼‰ï¼Œ2ï¼šæŒ‰ç…§ä¼˜æƒ é‡‘é¢é”€å”®ï¼ˆå¦‚ï¼šç›´æ¥ï¿¥50ï¼‰',
+   discount_scale       decimal(10,2) comment 'ä¼˜æƒ çš„æ¯”ä¾‹',
    create_id            char(32),
-   create_time          datetime comment '´´½¨Ê±¼ä',
+   create_time          datetime comment 'åˆ›å»ºæ—¶é—´',
    update_id            char(32),
-   update_time          datetime comment '¸üĞÂÊ±¼ä',
+   update_time          datetime comment 'æ›´æ–°æ—¶é—´',
    primary key (id)
 );
 
-alter table t_discount comment 'ÓÅ»İÅäÖÃ±í';
+alter table t_discount comment 'ä¼˜æƒ é…ç½®è¡¨';
 
 /*==============================================================*/
 /* Table: t_discount_customer                                   */
 /*==============================================================*/
 create table t_discount_customer
 (
-   id                   char(32) not null comment 'Ö÷¼ü',
-   discount_id          char(32) comment 'ÓÅ»İÅäÖÃid',
-   customer_id          char(32) comment '¿Í»§id',
+   id                   char(32) not null comment 'ä¸»é”®',
+   discount_id          char(32) comment 'ä¼˜æƒ é…ç½®id',
+   customer_id          char(32) comment 'å®¢æˆ·id',
    primary key (id)
 );
 
-alter table t_discount_customer comment 'ÓÅ»İÅäÖÃ¿Í»§¹ØÁª±í';
+alter table t_discount_customer comment 'ä¼˜æƒ é…ç½®å®¢æˆ·å…³è”è¡¨';
 
 /*==============================================================*/
 /* Table: t_discount_source_area                                */
 /*==============================================================*/
 create table t_discount_source_area
 (
-   id                   char(32) not null comment 'Ö÷¼ü',
-   discount_id          char(32) comment 'ÓÅ»İÅäÖÃid',
-   source_area_id       char(32) comment '¿ÍÔ´µØid',
+   id                   char(32) not null comment 'ä¸»é”®',
+   discount_id          char(32) comment 'ä¼˜æƒ é…ç½®id',
+   source_area_id       char(32) comment 'å®¢æºåœ°id',
    primary key (id)
 );
 
-alter table t_discount_source_area comment 'ÓÅ»İÅäÖÃ¿ÍÔ´µØ¹ØÁª±í';
+alter table t_discount_source_area comment 'ä¼˜æƒ é…ç½®å®¢æºåœ°å…³è”è¡¨';
 
 /*==============================================================*/
 /* Table: t_discount_ticket                                     */
 /*==============================================================*/
 create table t_discount_ticket
 (
-   id                   char(32) not null comment 'Ö÷¼ü',
-   discount_id          char(32) comment 'ÓÅ»İÅäÖÃid',
-   ticket_id            char(32) comment '´°¿Úid',
+   id                   char(32) not null comment 'ä¸»é”®',
+   discount_id          char(32) comment 'ä¼˜æƒ é…ç½®id',
+   ticket_id            char(32) comment 'çª—å£id',
    primary key (id)
 );
 
-alter table t_discount_ticket comment 'ÓÅ»İÅäÖÃÃÅÆ±¹ØÁª±í';
+alter table t_discount_ticket comment 'ä¼˜æƒ é…ç½®é—¨ç¥¨å…³è”è¡¨';
 
 /*==============================================================*/
 /* Table: t_discount_tourist                                    */
 /*==============================================================*/
 create table t_discount_tourist
 (
-   id                   char(32) not null comment 'Ö÷¼ü',
-   discount_id          char(32) comment 'ÓÅ»İÅäÖÃid',
-   tourist_id           char(32) comment 'ÓÎ¿ÍÀàĞÍid',
+   id                   char(32) not null comment 'ä¸»é”®',
+   discount_id          char(32) comment 'ä¼˜æƒ é…ç½®id',
+   tourist_id           char(32) comment 'æ¸¸å®¢ç±»å‹id',
    primary key (id)
 );
 
-alter table t_discount_tourist comment 'ÓÅ»İÅäÖÃÓÎ¿ÍÀàĞÍ¹ØÁª±í';
+alter table t_discount_tourist comment 'ä¼˜æƒ é…ç½®æ¸¸å®¢ç±»å‹å…³è”è¡¨';
 
 /*==============================================================*/
 /* Table: t_inspection                                          */
@@ -179,18 +179,18 @@ alter table t_discount_tourist comment 'ÓÅ»İÅäÖÃÓÎ¿ÍÀàĞÍ¹ØÁª±í';
 create table t_inspection
 (
    id                   char(32) not null,
-   inspect_name         varchar(64) comment 'Éè±¸Ãû³Æ',
-   scenic_spot_id       char(32) comment 'ËùÊô¾°µãid',
-   ip                   varchar(32) comment 'ÏúÊÛ´°¿Úip',
-   description          varchar(512) comment 'ÃèÊö',
+   inspect_name         varchar(64) comment 'è®¾å¤‡åç§°',
+   scenic_spot_id       char(32) comment 'æ‰€å±æ™¯ç‚¹id',
+   ip                   varchar(32) comment 'é”€å”®çª—å£ip',
+   description          varchar(512) comment 'æè¿°',
    create_id            char(32),
-   create_time          datetime comment '´´½¨Ê±¼ä',
+   create_time          datetime comment 'åˆ›å»ºæ—¶é—´',
    update_id            char(32),
-   update_time          datetime comment '¸üĞÂÊ±¼ä',
+   update_time          datetime comment 'æ›´æ–°æ—¶é—´',
    primary key (id)
 );
 
-alter table t_inspection comment '¼ìÆ±Éè±¸ĞÅÏ¢±í';
+alter table t_inspection comment 'æ£€ç¥¨è®¾å¤‡ä¿¡æ¯è¡¨';
 
 /*==============================================================*/
 /* Table: t_menu                                                */
@@ -198,21 +198,21 @@ alter table t_inspection comment '¼ìÆ±Éè±¸ĞÅÏ¢±í';
 create table t_menu
 (
    id                   char(32) not null,
-   menu_name            varchar(64) comment '²Ëµ¥Ãû³Æ',
-   icon                 varchar(128) comment '²Ëµ¥Í¼±ê',
-   url                  varchar(512) comment '²Ëµ¥url',
-   sort                 int default 0 comment 'ÅÅĞò',
-   category             varchar(16) comment '²Ëµ¥ÀàĞÍ',
-   status               int comment '×´Ì¬',
-   parent_id            char(32) comment 'ËùÊô¸¸ÀàID',
-   create_id            char(32) comment '´´½¨Õßid',
-   update_id            char(32) comment '¸üĞÂÕßID',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   update_time          datetime comment '¸üĞÂÊ±¼ä',
+   menu_name            varchar(64) comment 'èœå•åç§°',
+   icon                 varchar(128) comment 'èœå•å›¾æ ‡',
+   url                  varchar(512) comment 'èœå•url',
+   sort                 int default 0 comment 'æ’åº',
+   category             varchar(16) comment 'èœå•ç±»å‹',
+   status               int comment 'çŠ¶æ€',
+   parent_id            char(32) comment 'æ‰€å±çˆ¶ç±»ID',
+   create_id            char(32) comment 'åˆ›å»ºè€…id',
+   update_id            char(32) comment 'æ›´æ–°è€…ID',
+   create_time          datetime comment 'åˆ›å»ºæ—¶é—´',
+   update_time          datetime comment 'æ›´æ–°æ—¶é—´',
    primary key (id)
 );
 
-alter table t_menu comment '²Ëµ¥±í';
+alter table t_menu comment 'èœå•è¡¨';
 
 /*==============================================================*/
 /* Table: t_pay_method                                          */
@@ -220,16 +220,16 @@ alter table t_menu comment '²Ëµ¥±í';
 create table t_pay_method
 (
    id                   char(32) not null,
-   pay_name             varchar(64) comment 'Ãû³Æ',
-   sort                 int default 0 comment 'ÅÅĞò',
+   pay_name             varchar(64) comment 'åç§°',
+   sort                 int default 0 comment 'æ’åº',
    create_id            char(32),
-   create_time          datetime comment '´´½¨Ê±¼ä',
+   create_time          datetime comment 'åˆ›å»ºæ—¶é—´',
    update_id            char(32),
-   update_time          datetime comment '¸üĞÂÊ±¼ä',
+   update_time          datetime comment 'æ›´æ–°æ—¶é—´',
    primary key (id)
 );
 
-alter table t_pay_method comment 'Ö§¸¶·½Ê½±í';
+alter table t_pay_method comment 'æ”¯ä»˜æ–¹å¼è¡¨';
 
 /*==============================================================*/
 /* Table: t_role                                                */
@@ -237,17 +237,17 @@ alter table t_pay_method comment 'Ö§¸¶·½Ê½±í';
 create table t_role
 (
    id                   char(32) not null,
-   role_name            varchar(64) comment '½ÇÉ«Ãû³Æ',
-   description          varchar(256) comment '½ÇÉ«ÃèÊö',
-   status               int default 0 comment '×´Ì¬,0ÆôÓÃ£¬1½ûÓÃ',
-   create_id            char(32) comment '´´½¨ÓÃ»§ID',
-   update_id            char(32) comment '¸üĞÂÓÃ»§id',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   update_time          datetime comment '¸üĞÂÊ±¼ä',
+   role_name            varchar(64) comment 'è§’è‰²åç§°',
+   description          varchar(256) comment 'è§’è‰²æè¿°',
+   status               int default 0 comment 'çŠ¶æ€,0å¯ç”¨ï¼Œ1ç¦ç”¨',
+   create_id            char(32) comment 'åˆ›å»ºç”¨æˆ·ID',
+   update_id            char(32) comment 'æ›´æ–°ç”¨æˆ·id',
+   create_time          datetime comment 'åˆ›å»ºæ—¶é—´',
+   update_time          datetime comment 'æ›´æ–°æ—¶é—´',
    primary key (id)
 );
 
-alter table t_role comment '½ÇÉ«±í';
+alter table t_role comment 'è§’è‰²è¡¨';
 
 /*==============================================================*/
 /* Table: t_role_menu                                           */
@@ -255,41 +255,41 @@ alter table t_role comment '½ÇÉ«±í';
 create table t_role_menu
 (
    id                   char(32) not null,
-   role_id              char(32) comment '½ÇÉ«ID',
-   menu_id              char(32) comment '²Ëµ¥id',
+   role_id              char(32) comment 'è§’è‰²ID',
+   menu_id              char(32) comment 'èœå•id',
    primary key (id)
 );
 
-alter table t_role_menu comment '½ÇÉ«²Ëµ¥¹ØÁª±í';
+alter table t_role_menu comment 'è§’è‰²èœå•å…³è”è¡¨';
 
 /*==============================================================*/
 /* Table: t_sale_order                                          */
 /*==============================================================*/
 create table t_sale_order
 (
-   id                   char(32) not null comment 'Ö÷¼ü',
-   customer_id          char(32) comment '¿Í»§id',
-   customer_name        varchar(64) comment '¿Í»§Ãû³Æ',
-   pay_method           varchar(32) comment 'Ö§¸¶·½Ê½',
-   source_area_id       char(32) comment '¿ÍÔ´µØid',
-   source_area_name     varchar(64) comment '¿ÍÔ´µØÃû³Æ',
-   sale_site_id         char(32) comment 'ÏúÊÛÕ¾µãid',
-   sale_site_name       varchar(64) comment 'ÏúÊÛÕ¾µãÃû³Æ',
-   sale_window_id       char(32) comment 'ÏúÊÛ´°¿Úid',
-   sale_window_name     varchar(64) comment 'ÏúÊÛ´°¿ÚÃû³Æ',
-   create_id            char(32) comment 'ÊÛÆ±Ô±id',
-   create_name          varchar(64) comment 'ÏúÊÛÃû³Æ',
-   create_time          datetime comment 'ÏúÊÛÊ±¼ä',
-   update_id            char(32) comment '¸üĞÂÓÃ»§id',
-   update_time          datetime comment '¸üĞÂÊ±¼ä',
-   state                int comment '¶©µ¥×´Ì¬Ã¶¾Ù',
-   total_amount         decimal(10,2) default 0.00 comment '×Ü½ğ¶î',
-   ticket_count         int default 0 comment '×ÜÆ±Êı',
-   person_count         int default 0 comment '×ÜÈËÊı',
+   id                   char(32) not null comment 'ä¸»é”®',
+   customer_id          char(32) comment 'å®¢æˆ·id',
+   customer_name        varchar(64) comment 'å®¢æˆ·åç§°',
+   pay_method           varchar(32) comment 'æ”¯ä»˜æ–¹å¼',
+   source_area_id       char(32) comment 'å®¢æºåœ°id',
+   source_area_name     varchar(64) comment 'å®¢æºåœ°åç§°',
+   sale_site_id         char(32) comment 'é”€å”®ç«™ç‚¹id',
+   sale_site_name       varchar(64) comment 'é”€å”®ç«™ç‚¹åç§°',
+   sale_window_id       char(32) comment 'é”€å”®çª—å£id',
+   sale_window_name     varchar(64) comment 'é”€å”®çª—å£åç§°',
+   create_id            char(32) comment 'å”®ç¥¨å‘˜id',
+   create_name          varchar(64) comment 'é”€å”®åç§°',
+   create_time          datetime comment 'é”€å”®æ—¶é—´',
+   update_id            char(32) comment 'æ›´æ–°ç”¨æˆ·id',
+   update_time          datetime comment 'æ›´æ–°æ—¶é—´',
+   state                int comment 'è®¢å•çŠ¶æ€æšä¸¾',
+   total_amount         decimal(10,2) default 0.00 comment 'æ€»é‡‘é¢',
+   ticket_count         int default 0 comment 'æ€»ç¥¨æ•°',
+   person_count         int default 0 comment 'æ€»äººæ•°',
    primary key (id)
 );
 
-alter table t_sale_order comment 'ÏúÊÛ¶©±í';
+alter table t_sale_order comment 'é”€å”®è®¢è¡¨';
 
 /*==============================================================*/
 /* Table: t_sale_order_item                                     */
@@ -297,29 +297,29 @@ alter table t_sale_order comment 'ÏúÊÛ¶©±í';
 create table t_sale_order_item
 (
    id                   char(32) not null,
-   sale_order_id        char(32) comment '¹ØÁª¶©µ¥ºÅ',
-   ticket_id            char(32) comment 'Æ±Ààid',
-   ticket_name          varchar(64) comment 'Æ±Ãû³Æ',
-   ticket_print_price   decimal(10,2) comment 'ÃÅÆ±´òÓ¡¼Û¸ñ',
-   tourist_id           char(32) comment 'ÓÎ¿Íid',
-   tourist_name         varchar(64) comment 'ÓÎ¿ÍÃû³Æ',
-   discount_id          char(32) comment 'ÕÛ¿Ûid',
-   discount_name        varchar(64) comment 'ÕÛ¿ÛÃû³Æ',
-   bar_code             varchar(24) comment 'ÌõÂëºÅ',
-   price                decimal(10,2) comment 'µ¥¼Û',
-   person_count         int default 0 comment 'ÈËÊı',
-   ticket_count         int default 1 comment 'Æ±Êı',
-   amount               decimal(10,2) default 0.00 comment '½ğ¶îĞ¡¼Æ',
-   begin_date           date comment 'ÓĞĞ§ÆÚ¿ªÊ¼Ê±¼ä',
-   end_date             date comment 'ÓĞĞ§ÆÚ½áÊøÊ±¼ä',
-   create_id            char(32) comment '´´½¨ÓÃ»§id',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   update_id            datetime comment '¸üĞÂÓÃ»§id',
-   update_time          datetime comment '¸üĞÂÊ±¼ä',
+   sale_order_id        char(32) comment 'å…³è”è®¢å•å·',
+   ticket_id            char(32) comment 'ç¥¨ç±»id',
+   ticket_name          varchar(64) comment 'ç¥¨åç§°',
+   ticket_print_price   decimal(10,2) comment 'é—¨ç¥¨æ‰“å°ä»·æ ¼',
+   tourist_id           char(32) comment 'æ¸¸å®¢id',
+   tourist_name         varchar(64) comment 'æ¸¸å®¢åç§°',
+   discount_id          char(32) comment 'æŠ˜æ‰£id',
+   discount_name        varchar(64) comment 'æŠ˜æ‰£åç§°',
+   bar_code             varchar(24) comment 'æ¡ç å·',
+   price                decimal(10,2) comment 'å•ä»·',
+   person_count         int default 0 comment 'äººæ•°',
+   ticket_count         int default 1 comment 'ç¥¨æ•°',
+   amount               decimal(10,2) default 0.00 comment 'é‡‘é¢å°è®¡',
+   begin_date           date comment 'æœ‰æ•ˆæœŸå¼€å§‹æ—¶é—´',
+   end_date             date comment 'æœ‰æ•ˆæœŸç»“æŸæ—¶é—´',
+   create_id            char(32) comment 'åˆ›å»ºç”¨æˆ·id',
+   create_time          datetime comment 'åˆ›å»ºæ—¶é—´',
+   update_id            datetime comment 'æ›´æ–°ç”¨æˆ·id',
+   update_time          datetime comment 'æ›´æ–°æ—¶é—´',
    primary key (id)
 );
 
-alter table t_sale_order_item comment 'ÏúÊÛ¶©µ¥Ã÷Ï¸Ïî±í';
+alter table t_sale_order_item comment 'é”€å”®è®¢å•æ˜ç»†é¡¹è¡¨';
 
 /*==============================================================*/
 /* Table: t_sale_order_type                                     */
@@ -327,28 +327,28 @@ alter table t_sale_order_item comment 'ÏúÊÛ¶©µ¥Ã÷Ï¸Ïî±í';
 create table t_sale_order_type
 (
    id                   char(32) not null,
-   ticket_id            char(32) comment 'Æ±Ààid',
-   ticket_name          varchar(64) comment 'Æ±Ãû³Æ',
-   ticket_physical      int default 0 comment 'ÃÅÆ±½éÖÊ£¬0£º´òÓ¡ÌõÂëÆ±£¬1£ºic¿¨Æ±£¬2£ºÉí·İÖ¤Æ±',
-   ticket_print_price   decimal(10,2) comment 'Æ±Ãæ´òÓ¡¼Û',
-   tourist_id           char(32) comment 'ÓÎ¿Íid',
-   tourist_name         varchar(64) comment 'ÓÎ¿ÍÃû³Æ',
-   discount_id          char(32) comment 'ÕÛ¿Ûid',
-   discount_name        varchar(64) comment 'ÕÛ¿ÛÃû³Æ',
-   price                decimal(10,2) comment 'µ¥¼Û',
-   person_count         int default 0 comment 'ÈËÊı',
-   ticket_count         int default 0 comment 'Æ±Êı',
-   amount               decimal(10,2) default 0.00 comment '½ğ¶îĞ¡¼Æ',
-   begin_date           date comment 'ÓĞĞ§ÆÚ¿ªÊ¼Ê±¼ä',
-   end_date             date comment 'ÓĞĞ§ÆÚ½áÊøÊ±¼ä',
-   create_id            char(32) comment '´´½¨ÓÃ»§id',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   update_id            char(32) comment '¸üĞÂÓÃ»§id',
-   update_time          datetime comment '¸üĞÂÊ±¼ä',
+   ticket_id            char(32) comment 'ç¥¨ç±»id',
+   ticket_name          varchar(64) comment 'ç¥¨åç§°',
+   ticket_physical      int default 0 comment 'é—¨ç¥¨ä»‹è´¨ï¼Œ0ï¼šæ‰“å°æ¡ç ç¥¨ï¼Œ1ï¼šicå¡ç¥¨ï¼Œ2ï¼šèº«ä»½è¯ç¥¨',
+   ticket_print_price   decimal(10,2) comment 'ç¥¨é¢æ‰“å°ä»·',
+   tourist_id           char(32) comment 'æ¸¸å®¢id',
+   tourist_name         varchar(64) comment 'æ¸¸å®¢åç§°',
+   discount_id          char(32) comment 'æŠ˜æ‰£id',
+   discount_name        varchar(64) comment 'æŠ˜æ‰£åç§°',
+   price                decimal(10,2) comment 'å•ä»·',
+   person_count         int default 0 comment 'äººæ•°',
+   ticket_count         int default 0 comment 'ç¥¨æ•°',
+   amount               decimal(10,2) default 0.00 comment 'é‡‘é¢å°è®¡',
+   begin_date           date comment 'æœ‰æ•ˆæœŸå¼€å§‹æ—¶é—´',
+   end_date             date comment 'æœ‰æ•ˆæœŸç»“æŸæ—¶é—´',
+   create_id            char(32) comment 'åˆ›å»ºç”¨æˆ·id',
+   create_time          datetime comment 'åˆ›å»ºæ—¶é—´',
+   update_id            char(32) comment 'æ›´æ–°ç”¨æˆ·id',
+   update_time          datetime comment 'æ›´æ–°æ—¶é—´',
    primary key (id)
 );
 
-alter table t_sale_order_type comment 'ÏúÊÛ¶©µ¥ÀàĞÍ';
+alter table t_sale_order_type comment 'é”€å”®è®¢å•ç±»å‹';
 
 /*==============================================================*/
 /* Table: t_sale_site                                           */
@@ -356,17 +356,17 @@ alter table t_sale_order_type comment 'ÏúÊÛ¶©µ¥ÀàĞÍ';
 create table t_sale_site
 (
    id                   char(32) not null,
-   site_name            varchar(64) comment 'Õ¾µãÃû³Æ',
-   scenic_spot_id       char(32) comment 'ËùÊô¾°Çøid',
-   description          varchar(512) comment 'ÃèÊö',
+   site_name            varchar(64) comment 'ç«™ç‚¹åç§°',
+   scenic_spot_id       char(32) comment 'æ‰€å±æ™¯åŒºid',
+   description          varchar(512) comment 'æè¿°',
    create_id            char(32),
-   create_time          datetime comment '´´½¨Ê±¼ä',
+   create_time          datetime comment 'åˆ›å»ºæ—¶é—´',
    update_id            char(32),
-   update_time          datetime comment '¸üĞÂÊ±¼ä',
+   update_time          datetime comment 'æ›´æ–°æ—¶é—´',
    primary key (id)
 );
 
-alter table t_sale_site comment 'ÏúÊÛÕ¾µãĞÅÏ¢±í';
+alter table t_sale_site comment 'é”€å”®ç«™ç‚¹ä¿¡æ¯è¡¨';
 
 /*==============================================================*/
 /* Table: t_sale_window                                         */
@@ -374,30 +374,30 @@ alter table t_sale_site comment 'ÏúÊÛÕ¾µãĞÅÏ¢±í';
 create table t_sale_window
 (
    id                   char(32) not null,
-   window_name          varchar(64) comment '´°¿ÚÃû³Æ',
-   sale_site_id         char(32) comment 'ËùÊôÏúÊÛÕ¾µãid',
-   window_ip            varchar(32) comment 'ÏúÊÛ´°¿Úip',
+   window_name          varchar(64) comment 'çª—å£åç§°',
+   sale_site_id         char(32) comment 'æ‰€å±é”€å”®ç«™ç‚¹id',
+   window_ip            varchar(32) comment 'é”€å”®çª—å£ip',
    create_id            char(32),
-   create_time          datetime comment '´´½¨Ê±¼ä',
+   create_time          datetime comment 'åˆ›å»ºæ—¶é—´',
    update_id            char(32),
-   update_time          datetime comment '¸üĞÂÊ±¼ä',
+   update_time          datetime comment 'æ›´æ–°æ—¶é—´',
    primary key (id)
 );
 
-alter table t_sale_window comment 'ÏúÊÛ´°¿ÚĞÅÏ¢±í';
+alter table t_sale_window comment 'é”€å”®çª—å£ä¿¡æ¯è¡¨';
 
 /*==============================================================*/
 /* Table: t_sale_window_ticket                                  */
 /*==============================================================*/
 create table t_sale_window_ticket
 (
-   id                   char(32) not null comment 'Ö÷¼ü',
-   sale_window_id       char(32) comment 'ÏúÊÛ´°¿Úid',
-   ticket_id            char(32) comment '´°¿Úid',
+   id                   char(32) not null comment 'ä¸»é”®',
+   sale_window_id       char(32) comment 'é”€å”®çª—å£id',
+   ticket_id            char(32) comment 'çª—å£id',
    primary key (id)
 );
 
-alter table t_sale_window_ticket comment 'ÏúÊÛ´°¿ÚÃÅÆ±¹ØÁª±í';
+alter table t_sale_window_ticket comment 'é”€å”®çª—å£é—¨ç¥¨å…³è”è¡¨';
 
 /*==============================================================*/
 /* Table: t_scape                                               */
@@ -405,17 +405,17 @@ alter table t_sale_window_ticket comment 'ÏúÊÛ´°¿ÚÃÅÆ±¹ØÁª±í';
 create table t_scape
 (
    id                   char(32) not null,
-   scape_name           varchar(64) comment '¾°µãÃû³Æ',
-   scenic_spot_id       char(32) comment 'ËùÊô¾°Çø',
-   description          varchar(512) comment 'ÃèÊö',
+   scape_name           varchar(64) comment 'æ™¯ç‚¹åç§°',
+   scenic_spot_id       char(32) comment 'æ‰€å±æ™¯åŒº',
+   description          varchar(512) comment 'æè¿°',
    create_id            char(32),
-   create_time          datetime comment '´´½¨Ê±¼ä',
+   create_time          datetime comment 'åˆ›å»ºæ—¶é—´',
    update_id            char(32),
-   update_time          datetime comment '¸üĞÂÊ±¼ä',
+   update_time          datetime comment 'æ›´æ–°æ—¶é—´',
    primary key (id)
 );
 
-alter table t_scape comment '¾°µãĞÅÏ¢±í';
+alter table t_scape comment 'æ™¯ç‚¹ä¿¡æ¯è¡¨';
 
 /*==============================================================*/
 /* Table: t_scenic_spot                                         */
@@ -423,16 +423,16 @@ alter table t_scape comment '¾°µãĞÅÏ¢±í';
 create table t_scenic_spot
 (
    id                   char(32) not null,
-   spot_name            varchar(64) comment '¾°ÇøÃû³Æ',
-   description          varchar(512) comment 'ÃèÊö',
+   spot_name            varchar(64) comment 'æ™¯åŒºåç§°',
+   description          varchar(512) comment 'æè¿°',
    create_id            char(32),
-   create_time          datetime comment '´´½¨Ê±¼ä',
+   create_time          datetime comment 'åˆ›å»ºæ—¶é—´',
    update_id            char(32),
-   update_time          datetime comment '¸üĞÂÊ±¼ä',
+   update_time          datetime comment 'æ›´æ–°æ—¶é—´',
    primary key (id)
 );
 
-alter table t_scenic_spot comment '¾°ÇøĞÅÏ¢±í';
+alter table t_scenic_spot comment 'æ™¯åŒºä¿¡æ¯è¡¨';
 
 /*==============================================================*/
 /* Table: t_source_area                                         */
@@ -440,16 +440,16 @@ alter table t_scenic_spot comment '¾°ÇøĞÅÏ¢±í';
 create table t_source_area
 (
    id                   char(32) not null,
-   name                 varchar(64) comment 'Ãû³Æ',
-   parent_id            char(32) comment 'ÉÏ¼¶',
+   name                 varchar(64) comment 'åç§°',
+   parent_id            char(32) comment 'ä¸Šçº§',
    create_id            char(32),
-   create_time          datetime comment '´´½¨Ê±¼ä',
+   create_time          datetime comment 'åˆ›å»ºæ—¶é—´',
    update_id            char(32),
-   update_time          datetime comment '¸üĞÂÊ±¼ä',
+   update_time          datetime comment 'æ›´æ–°æ—¶é—´',
    primary key (id)
 );
 
-alter table t_source_area comment '¿ÍÔ´µØ±í';
+alter table t_source_area comment 'å®¢æºåœ°è¡¨';
 
 /*==============================================================*/
 /* Table: t_ticket                                              */
@@ -457,30 +457,30 @@ alter table t_source_area comment '¿ÍÔ´µØ±í';
 create table t_ticket
 (
    id                   char(32) not null,
-   ticket_name          varchar(64) comment 'Æ±Ãû³Æ',
-   scenic_spot_id       char(32) comment 'ËùÊô¾°Çø',
-   ticket_gategory_id   char(32) comment 'ÃÅÆ±ÀàĞÍid',
-   sale_price           decimal(10,2) default 0.00 comment 'ÏßÏÂ´°¿ÚÊÛ¼Û',
-   print_price          decimal(10,2) default 0.00 comment 'Æ±Ãæ´òÓ¡¼Û',
-   network_price        decimal(10,2) comment 'ÍøÂçÊÛ¼Û',
-   physical             int default 0 comment 'ÃÅÆ±½éÖÊ£¬0£º´òÓ¡ÌõÂëÆ±£¬1£ºic¿¨Æ±£¬2£ºÉí·İÖ¤Æ±',
-   deadline             int default 1 comment 'ÃÅÆ±ÓĞĞ§ÆÚÏŞ',
-   deadline_unid        varchar(4) comment 'ÆÚÏŞµ¥Î»£ºÌì¡¢ÔÂ¡¢Äê',
-   print_method         int default 0 comment '³öÆ±·½Ê½; 0£ºÒ»ÈËÒ»Æ±£¬1£ºÒ»Æ±¶àÈË',
-   begin_date           date comment '²ÎÊÛ¿ªÊ¼ÈÕÆÚ',
-   end_date             date comment '²ÎÊÛ½áÊøÈÕÆÚ',
-   status               int default 0 comment '×´Ì¬£¬0ÆôÓÃ£¬1½ûÓÃ',
-   print_template       varchar(128) comment '´òÓ¡Ä£°å',
-   sort                 int default 0 comment 'ÅÅĞò',
-   description          varchar(512) comment 'ÃèÊö',
+   ticket_name          varchar(64) comment 'ç¥¨åç§°',
+   scenic_spot_id       char(32) comment 'æ‰€å±æ™¯åŒº',
+   ticket_gategory_id   char(32) comment 'é—¨ç¥¨ç±»å‹id',
+   sale_price           decimal(10,2) default 0.00 comment 'çº¿ä¸‹çª—å£å”®ä»·',
+   print_price          decimal(10,2) default 0.00 comment 'ç¥¨é¢æ‰“å°ä»·',
+   network_price        decimal(10,2) comment 'ç½‘ç»œå”®ä»·',
+   physical             int default 0 comment 'é—¨ç¥¨ä»‹è´¨ï¼Œ0ï¼šæ‰“å°æ¡ç ç¥¨ï¼Œ1ï¼šicå¡ç¥¨ï¼Œ2ï¼šèº«ä»½è¯ç¥¨',
+   deadline             int default 1 comment 'é—¨ç¥¨æœ‰æ•ˆæœŸé™',
+   deadline_unid        varchar(4) comment 'æœŸé™å•ä½ï¼šå¤©ã€æœˆã€å¹´',
+   print_method         int default 0 comment 'å‡ºç¥¨æ–¹å¼; 0ï¼šä¸€äººä¸€ç¥¨ï¼Œ1ï¼šä¸€ç¥¨å¤šäºº',
+   begin_date           date comment 'å‚å”®å¼€å§‹æ—¥æœŸ',
+   end_date             date comment 'å‚å”®ç»“æŸæ—¥æœŸ',
+   status               int default 0 comment 'çŠ¶æ€ï¼Œ0å¯ç”¨ï¼Œ1ç¦ç”¨',
+   print_template       varchar(128) comment 'æ‰“å°æ¨¡æ¿',
+   sort                 int default 0 comment 'æ’åº',
+   description          varchar(512) comment 'æè¿°',
    create_id            char(32),
-   create_time          datetime comment '´´½¨Ê±¼ä',
+   create_time          datetime comment 'åˆ›å»ºæ—¶é—´',
    update_id            char(32),
-   update_time          datetime comment '¸üĞÂÊ±¼ä',
+   update_time          datetime comment 'æ›´æ–°æ—¶é—´',
    primary key (id)
 );
 
-alter table t_ticket comment 'ÃÅÆ±ĞÅÏ¢±í';
+alter table t_ticket comment 'é—¨ç¥¨ä¿¡æ¯è¡¨';
 
 /*==============================================================*/
 /* Table: t_ticket_category                                     */
@@ -488,17 +488,17 @@ alter table t_ticket comment 'ÃÅÆ±ĞÅÏ¢±í';
 create table t_ticket_category
 (
    id                   char(32) not null,
-   category_name        varchar(64) comment 'Ãû³Æ',
-   description          varchar(512) comment 'ÃèÊö',
-   sort                 int default 0 comment 'ÅÅĞò',
+   category_name        varchar(64) comment 'åç§°',
+   description          varchar(512) comment 'æè¿°',
+   sort                 int default 0 comment 'æ’åº',
    create_id            char(32),
-   create_time          datetime comment '´´½¨Ê±¼ä',
+   create_time          datetime comment 'åˆ›å»ºæ—¶é—´',
    update_id            char(32),
-   update_time          datetime comment '¸üĞÂÊ±¼ä',
+   update_time          datetime comment 'æ›´æ–°æ—¶é—´',
    primary key (id)
 );
 
-alter table t_ticket_category comment 'ÃÅÆ±·ÖÀà±í';
+alter table t_ticket_category comment 'é—¨ç¥¨åˆ†ç±»è¡¨';
 
 /*==============================================================*/
 /* Table: t_ticket_code                                         */
@@ -506,24 +506,24 @@ alter table t_ticket_category comment 'ÃÅÆ±·ÖÀà±í';
 create table t_ticket_code
 (
    id                   char(32) not null,
-   sale_order_id        char(32) comment 'ÏúÊÛ¶©µ¥id',
-   ticket_id            char(32) comment 'Æ±Ààid',
-   ticket_name          varchar(64) comment 'Æ±ÀàÃû³Æ',
-   bar_code             varchar(24) comment 'ÌõÂëºÅ',
-   person_count         int default 0 comment 'ÈËÊı',
-   tourist_name         varchar(64) comment 'ÓÎ¿ÍÀàĞÍÃû³Æ',
-   customer_name        varchar(64) comment '¿Í»§Ãû³Æ',
-   begin_date           date comment 'ÓĞĞ§ÆÚÆğÊ¼ÈÕÆÚ',
-   end_date             date comment 'ÓĞĞ§ÆÚ½ØÖ¹ÈÕÆÚ',
-   state                int default 0 comment '×´Ì¬Ã¶¾Ù',
-   create_id            char(32) comment '´´½¨ÓÃ»§id',
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   update_id            char(32) comment '¸üĞÂÓÃ»§id',
-   update_time          datetime comment '¸üĞÂÊ±¼ä',
+   sale_order_id        char(32) comment 'é”€å”®è®¢å•id',
+   ticket_id            char(32) comment 'ç¥¨ç±»id',
+   ticket_name          varchar(64) comment 'ç¥¨ç±»åç§°',
+   bar_code             varchar(24) comment 'æ¡ç å·',
+   person_count         int default 0 comment 'äººæ•°',
+   tourist_name         varchar(64) comment 'æ¸¸å®¢ç±»å‹åç§°',
+   customer_name        varchar(64) comment 'å®¢æˆ·åç§°',
+   begin_date           date comment 'æœ‰æ•ˆæœŸèµ·å§‹æ—¥æœŸ',
+   end_date             date comment 'æœ‰æ•ˆæœŸæˆªæ­¢æ—¥æœŸ',
+   state                int default 0 comment 'çŠ¶æ€æšä¸¾',
+   create_id            char(32) comment 'åˆ›å»ºç”¨æˆ·id',
+   create_time          datetime comment 'åˆ›å»ºæ—¶é—´',
+   update_id            char(32) comment 'æ›´æ–°ç”¨æˆ·id',
+   update_time          datetime comment 'æ›´æ–°æ—¶é—´',
    primary key (id)
 );
 
-alter table t_ticket_code comment 'Æ±Âë±í';
+alter table t_ticket_code comment 'ç¥¨ç è¡¨';
 
 /*==============================================================*/
 /* Table: t_ticket_scape                                        */
@@ -531,18 +531,18 @@ alter table t_ticket_code comment 'Æ±Âë±í';
 create table t_ticket_scape
 (
    id                   char(32) not null,
-   ticket_id            char(32) comment 'Æ±Ààid',
-   scape_id             char(32) comment '¾°µãid',
-   all_in               int comment '×Ü¿É½ø´ÎÊı',
-   day_in               int comment 'ÈÕ¿É½ø´ÎÊı',
-   create_id            char(32) comment '´´½¨ÈËid',
+   ticket_id            char(32) comment 'ç¥¨ç±»id',
+   scape_id             char(32) comment 'æ™¯ç‚¹id',
+   all_in               int comment 'æ€»å¯è¿›æ¬¡æ•°',
+   day_in               int comment 'æ—¥å¯è¿›æ¬¡æ•°',
+   create_id            char(32) comment 'åˆ›å»ºäººid',
    create_time          datetime,
-   update_id            char(32) comment '¸üĞÂÓÃ»§id',
-   update_time          datetime comment '¸üĞÂÊ±¼ä',
+   update_id            char(32) comment 'æ›´æ–°ç”¨æˆ·id',
+   update_time          datetime comment 'æ›´æ–°æ—¶é—´',
    primary key (id)
 );
 
-alter table t_ticket_scape comment 'ÃÅÆ±¾°µã¿É½ø´ÎÊıÅäÖÃ';
+alter table t_ticket_scape comment 'é—¨ç¥¨æ™¯ç‚¹å¯è¿›æ¬¡æ•°é…ç½®';
 
 /*==============================================================*/
 /* Table: t_tourist                                             */
@@ -550,48 +550,48 @@ alter table t_ticket_scape comment 'ÃÅÆ±¾°µã¿É½ø´ÎÊıÅäÖÃ';
 create table t_tourist
 (
    id                   char(32) not null,
-   tourist_name         varchar(64) comment 'Ãû³Æ',
-   sort                 int default 0 comment 'ÅÅĞò',
+   tourist_name         varchar(64) comment 'åç§°',
+   sort                 int default 0 comment 'æ’åº',
    create_id            char(32),
-   create_time          datetime comment '´´½¨Ê±¼ä',
+   create_time          datetime comment 'åˆ›å»ºæ—¶é—´',
    update_id            char(32),
-   update_time          datetime comment '¸üĞÂÊ±¼ä',
+   update_time          datetime comment 'æ›´æ–°æ—¶é—´',
    primary key (id)
 );
 
-alter table t_tourist comment 'ÓÎ¿ÍÀàĞÍ±í';
+alter table t_tourist comment 'æ¸¸å®¢ç±»å‹è¡¨';
 
 /*==============================================================*/
 /* Table: t_user                                                */
 /*==============================================================*/
 create table t_user
 (
-   id                   char(32) not null comment 'Ö÷¼ü',
-   user_name            varchar(64) comment 'ÓÃ»§Ãû',
-   real_name            varchar(64) comment 'ÕæÊµĞÕÃû',
-   password             varchar(32) comment 'ÃÜÂë',
-   phone                varchar(16) comment 'ÊÖ»úºÅÂë',
-   address              varchar(128) comment 'µØÖ·',
-   status               int default 0 comment '×´Ì¬£»0ÆôÓÃ£¬1½ûÓÃ',
+   id                   char(32) not null comment 'ä¸»é”®',
+   user_name            varchar(64) comment 'ç”¨æˆ·å',
+   real_name            varchar(64) comment 'çœŸå®å§“å',
+   password             varchar(32) comment 'å¯†ç ',
+   phone                varchar(16) comment 'æ‰‹æœºå·ç ',
+   address              varchar(128) comment 'åœ°å€',
+   status               int default 0 comment 'çŠ¶æ€ï¼›0å¯ç”¨ï¼Œ1ç¦ç”¨',
    create_id            char(32),
-   create_time          datetime comment '´´½¨Ê±¼ä',
-   update_id            char(32) comment '¸üĞÂÕË»§id',
-   update_time          datetime comment '¸üĞÂÊ±¼ä',
+   create_time          datetime comment 'åˆ›å»ºæ—¶é—´',
+   update_id            char(32) comment 'æ›´æ–°è´¦æˆ·id',
+   update_time          datetime comment 'æ›´æ–°æ—¶é—´',
    primary key (id)
 );
 
-alter table t_user comment 'ÕË»§±í';
+alter table t_user comment 'è´¦æˆ·è¡¨';
 
 /*==============================================================*/
 /* Table: t_user_ticket                                         */
 /*==============================================================*/
 create table t_user_ticket
 (
-   id                   char(32) not null comment 'Ö÷¼ü',
-   user_id              char(32) comment 'ÏúÊÛ´°¿Úid',
-   ticket_id            char(32) comment '´°¿Úid',
+   id                   char(32) not null comment 'ä¸»é”®',
+   user_id              char(32) comment 'é”€å”®çª—å£id',
+   ticket_id            char(32) comment 'çª—å£id',
    primary key (id)
 );
 
-alter table t_user_ticket comment 'ÕË»§ÃÅÆ±¹ØÁª±í';
+alter table t_user_ticket comment 'è´¦æˆ·é—¨ç¥¨å…³è”è¡¨';
 

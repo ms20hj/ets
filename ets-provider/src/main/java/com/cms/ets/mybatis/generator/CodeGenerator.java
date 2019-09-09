@@ -1,4 +1,4 @@
-package com.cms.ets.core.generator;
+package com.cms.ets.mybatis.generator;
 
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;

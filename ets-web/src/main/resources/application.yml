@@ -1,0 +1,18 @@
+#auth-server: http://127.0.0.1:53004
+spring:
+  application:
+    name: IDaaS-management
+  profiles:
+    active: dev
+    include: common, redis, dubbo, web
+#  main:
+#    allow-bean-definition-overriding: true
+
+server:
+  port: 53002
+
+dubbo:
+  application:
+    name: ets-web
+#  protocol:
+#    port: 53013

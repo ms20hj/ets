@@ -38,12 +38,12 @@
         <mybatisplus.springboot.version>3.1.0</mybatisplus.springboot.version>
         <mysql.connector.version>5.1.45</mysql.connector.version>
         <p6spy.version>3.8.0</p6spy.version>
-        <shiro.version>1.4.0</shiro.version>
-        <shiro.redis.version>2.4.2.1-RELEASE</shiro.redis.version>
         <okhttp.version>3.14.0</okhttp.version>
         <commons-lang.version>2.6</commons-lang.version>
         <guava.version>27.0.1-jre</guava.version>
         <mongodb-plus.version>1.0.0.RELEASE</mongodb-plus.version>
+        <shiro.version>1.4.0</shiro.version>
+        <shiro.redis.version>2.4.2.1-RELEASE</shiro.redis.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
@@ -159,27 +159,6 @@
                 <version>${p6spy.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>org.apache.shiro</groupId>
-                <artifactId>shiro-core</artifactId>
-                <version>${shiro.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.shiro</groupId>
-                <artifactId>shiro-spring</artifactId>
-                <version>${shiro.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.shiro</groupId>
-                <artifactId>shiro-ehcache</artifactId>
-                <version>${shiro.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.crazycake</groupId>
-                <artifactId>shiro-redis</artifactId>
-                <version>${shiro.redis.version}</version>
-            </dependency>
-
             <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
             <dependency>
                 <groupId>commons-lang</groupId>
@@ -200,6 +179,27 @@
                 <groupId>com.spring4all</groupId>
                 <artifactId>mongodb-plus-spring-boot-starter</artifactId>
                 <version>${mongodb-plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-core</artifactId>
+                <version>${shiro.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-spring</artifactId>
+                <version>${shiro.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-ehcache</artifactId>
+                <version>${shiro.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.crazycake</groupId>
+                <artifactId>shiro-redis</artifactId>
+                <version>${shiro.redis.version}</version>
             </dependency>
 
         </dependencies>
