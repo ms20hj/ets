@@ -36,9 +36,9 @@ public class UserController extends BaseController {
      */
     @GetMapping("page")
     @ApiOperation("分页查询")
-    public HandleResult<IPage<User>> page(Page<User> page, String name) {
+    public HandleResult page(Page<User> page, String name) {
         IPage<User> iPage = userService.page(page, name);
-        return respSuccess(iPage);
+        return seccess(iPage);
     }
 
 }

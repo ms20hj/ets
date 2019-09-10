@@ -21,11 +21,11 @@ public class BaseController {
      * @MethodName:success
      * @param [data]
      */
-    protected <T> HandleResult<T> respSuccess(T data){
+    protected HandleResult seccess(Object data){
         return HandleResult.success(data);
     }
 
-    protected <T> HandleResult<T> respSuccess(){
+    protected HandleResult success(){
         return HandleResult.success();
     }
 
@@ -34,7 +34,7 @@ public class BaseController {
      * @MethodName:respError
      * @param []
      */
-    protected <T> HandleResult<T> respError(){
+    protected HandleResult error(){
         return HandleResult.error();
     }
 
@@ -43,12 +43,12 @@ public class BaseController {
      * @MethodName:respError
      * @param [codeEnum]
      */
-    protected <T> HandleResult<T> respError(CodeEnum codeEnum){
+    protected HandleResult error(CodeEnum codeEnum){
         return HandleResult.error(codeEnum);
     }
     
     
-    public static <T> HandleResult<T> respError(CodeEnum codeEnum,T data){
+    public static HandleResult error(CodeEnum codeEnum, Object data){
     	return HandleResult.error(codeEnum, data);
     }
 
@@ -60,7 +60,7 @@ public class BaseController {
      * @date 2019年9月9日15:48:12
      * @author cms
      */
-    protected <T> HandleResult<T> verifyResp(boolean flag){
+    protected HandleResult verifyResp(boolean flag){
         if (flag) {
             return HandleResult.success();
         } else {

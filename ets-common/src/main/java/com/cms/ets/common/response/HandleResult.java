@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @date 2019年7月22日16:53:50
  * @author cms
  */
-public class HandleResult<T> implements Serializable {
+public class HandleResult implements Serializable {
     private static final long serialVersionUID = 5223691994103445436L;
 
     /**
@@ -29,18 +29,18 @@ public class HandleResult<T> implements Serializable {
      * 数据内容
      */
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private T data;
+    private Object data;
 
-    public static <T> HandleResult<T> success(){
-        HandleResult<T> resp = new HandleResult<T>();
+    public static HandleResult success(){
+        HandleResult resp = new HandleResult();
         resp.setCode(CodeEnum.SUCCESS.getCode());
         resp.setMessage(CodeEnum.SUCCESS.getMessage());
         resp.setStatus(true);
         return resp;
     }
 
-    public static <T> HandleResult<T> success(T data){
-        HandleResult<T> resp = new HandleResult<T>();
+    public static HandleResult success(Object data){
+        HandleResult resp = new HandleResult();
         resp.setCode(CodeEnum.SUCCESS.getCode());
         resp.setMessage(CodeEnum.SUCCESS.getMessage());
         resp.setData(data);
@@ -48,24 +48,24 @@ public class HandleResult<T> implements Serializable {
         return resp;
     }
 
-    public static <T> HandleResult<T> error(){
-        HandleResult<T> resp = new HandleResult<T>();
+    public static HandleResult error(){
+        HandleResult resp = new HandleResult();
         resp.setCode(CodeEnum.FAILURE.getCode());
         resp.setMessage(CodeEnum.FAILURE.getMessage());
         resp.setStatus(true);
         return resp;
     }
 
-    public static <T> HandleResult<T> error(CodeEnum ce){
-        HandleResult<T> resp = new HandleResult<T>();
+    public static HandleResult error(CodeEnum ce){
+        HandleResult resp = new HandleResult();
         resp.setCode(ce.getCode());
         resp.setMessage(ce.getMessage());
         resp.setStatus(true);
         return resp;
     }
 
-    public static <T> HandleResult<T> error(CodeEnum ce, T data){
-        HandleResult<T> resp = new HandleResult<T>();
+    public static HandleResult error(CodeEnum ce, Object data){
+        HandleResult resp = new HandleResult();
         resp.setCode(ce.getCode());
         resp.setMessage(ce.getMessage());
         resp.setData(data);
@@ -98,11 +98,11 @@ public class HandleResult<T> implements Serializable {
         this.message = message;
     }
 
-    public T getData() {
+    public Object getData() {
         return data;
     }
 
-    public void setData(T data) {
+    public void setData(Object data) {
         this.data = data;
     }
 }
