@@ -35,7 +35,8 @@
         <kryo.version>4.0.2</kryo.version>
         <swagger2.version>2.9.2</swagger2.version>
         <druid.springboot.version>1.1.10</druid.springboot.version>
-        <mybatisplus.springboot.version>3.1.0</mybatisplus.springboot.version>
+        <mybatisplus.springboot.version>3.2.0</mybatisplus.springboot.version>
+        <mybatisplus.generator.version>3.2.0</mybatisplus.generator.version>
         <mysql.connector.version>5.1.45</mysql.connector.version>
         <p6spy.version>3.8.0</p6spy.version>
         <okhttp.version>3.14.0</okhttp.version>
@@ -145,6 +146,12 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatisplus.springboot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>${mybatisplus.generator.version}</version>
             </dependency>
 
             <dependency>

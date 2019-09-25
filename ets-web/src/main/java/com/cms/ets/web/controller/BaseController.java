@@ -1,6 +1,4 @@
-package com.cms.web.controller;
-
-
+package com.cms.ets.web.controller;
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
 import com.cms.ets.common.enums.CodeEnum;
@@ -12,7 +10,7 @@ import org.apache.shiro.subject.Subject;
 /**
  * 基础controller
  */
-public class BaseController {
+public abstract class BaseController {
 	
 	protected Log logger = LogFactory.get();
 

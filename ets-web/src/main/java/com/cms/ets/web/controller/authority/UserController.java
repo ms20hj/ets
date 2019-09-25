@@ -1,4 +1,4 @@
-package com.cms.web.controller.authority;
+package com.cms.ets.web.controller.authority;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -6,21 +6,14 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cms.ets.api.authority.IUserService;
 import com.cms.ets.common.response.HandleResult;
 import com.cms.ets.model.mysql.system.User;
-import com.cms.web.controller.BaseController;
-import io.swagger.annotations.Api;
+import com.cms.ets.web.controller.BaseController;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 权限管理-用户管理
- * controller
- * @date 2019年9月9日16:06:36
- * @author ChenMingsen
+ * 用户controller
+ * date 2019年9月25日11:39:49
  */
-@RestController
-@RequestMapping("user")
 public class UserController extends BaseController {
 
     @Reference
@@ -31,7 +24,6 @@ public class UserController extends BaseController {
      * @param page 分页参数
      * @param name 名称
      * @return HandleResult
-     * @date 2019年9月9日16:11:48
      * @author ChenMingsen
      */
     @GetMapping("page")
@@ -40,5 +32,4 @@ public class UserController extends BaseController {
         IPage<User> iPage = userService.page(page, name);
         return seccess(iPage);
     }
-
 }
