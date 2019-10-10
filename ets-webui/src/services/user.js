@@ -8,3 +8,7 @@ export async function queryCurrent() {
 export async function queryNotices() {
   return request('/api/notices');
 }
+
+export async function page(param) {
+  return request(`/server/api/user/page?current=${param.current}&size=${param.size}&name=${param.name ? param.name: ''}`);
+}

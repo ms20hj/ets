@@ -9,11 +9,15 @@ import com.cms.ets.model.mysql.system.User;
 import com.cms.ets.web.controller.BaseController;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 用户controller
  * date 2019年9月25日11:39:49
  */
+@RestController
+@RequestMapping("user")
 public class UserController extends BaseController {
 
     @Reference

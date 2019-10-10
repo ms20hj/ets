@@ -85,12 +85,12 @@ export default {
   routes: [
     {
       path: '/user',
-      component: '../layouts/UserLayout',
+      component: '../layouts/BasicLayout',
       routes: [
         {
-          name: 'login',
-          path: '/user/login',
-          component: './user/login',
+          name: '用户列表',
+          path: '/user/index',
+          component: './system/user',
         },
       ],
     },
@@ -169,13 +169,11 @@ export default {
     basePath: '/',
   },
   chainWebpack: webpackPlugin,
-  /*
   proxy: {
     '/server/api/': {
-      target: 'https://preview.pro.ant.design/',
+      target: 'http://192.168.5.65:54002',
       changeOrigin: true,
-      pathRewrite: { '^/server': '' },
+      pathRewrite: { '^/server/api': '' },
     },
   },
-  */
 };
