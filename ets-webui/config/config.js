@@ -73,8 +73,8 @@ export default {
   plugins,
   block: {
     // 国内用户可以使用码云
-    defaultGitUrl: 'https://gitee.com/ant-design/pro-blocks',
-    // defaultGitUrl: 'https://github.com/ant-design/pro-blocks',
+    // defaultGitUrl: 'https://gitee.com/ant-design/pro-blocks',
+    defaultGitUrl: 'https://github.com/ant-design/pro-blocks',
   },
   hash: true,
   targets: {
@@ -83,17 +83,6 @@ export default {
   devtool: isAntDesignProPreview ? 'source-map' : false,
   // umi routes: https://umijs.org/zh/guide/router.html
   routes: [
-    {
-      path: '/user',
-      component: '../layouts/BasicLayout',
-      routes: [
-        {
-          name: '用户列表',
-          path: '/user/index',
-          component: './system/user',
-        },
-      ],
-    },
     {
       path: '/',
       component: '../layouts/SecurityLayout',
@@ -114,10 +103,24 @@ export default {
               component: './Welcome',
             },
             {
+              path: '/system',
+              icon: 'team',
+              name: 'system',
+              routes: [
+                {
+                  name: 'user',
+                  path: '/system/user',
+                  component: './system/user',
+                  exact: true,
+                },
+              ],
+            },
+            {
               component: './404',
             },
           ],
         },
+
         {
           component: './404',
         },

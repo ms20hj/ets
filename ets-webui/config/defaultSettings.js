@@ -10,7 +10,7 @@ export default {
   menu: {
     locale: true,
   },
-  title: 'ets后台管理',
+  title: 'ets 管理平台',
   pwa: false,
   iconfontUrl: '',
 };
