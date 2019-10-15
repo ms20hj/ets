@@ -71,6 +71,7 @@ create table t_customer
    contact              varchar(32) comment '联系人',
    address              varchar(128) comment '联系地址',
    status               int default 0 comment '状态 0：启用，1：禁用',
+   gender               varchar(4) comment '性别',
    parent_id            char(32) comment '上级',
    create_id            char(32),
    create_time          datetime comment '创建时间',

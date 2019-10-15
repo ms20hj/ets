@@ -116,11 +116,16 @@ export default {
               ],
             },
             {
+              name: '查询表格',
+              icon: 'smile',
+              path: '/listtablelist',
+              component: './ListTableList',
+            },
+            {
               component: './404',
             },
           ],
         },
-
         {
           component: './404',
         },
@@ -174,9 +179,11 @@ export default {
   chainWebpack: webpackPlugin,
   proxy: {
     '/server/api/': {
-      target: 'http://192.168.5.65:54002',
+      target: 'http://192.168.5.165:54002',
       changeOrigin: true,
-      pathRewrite: { '^/server/api': '' },
+      pathRewrite: {
+        '^/server/api': '',
+      },
     },
   },
 };

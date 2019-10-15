@@ -1,27 +1,35 @@
 import React, { Component } from 'react';
-import { Form, Input } from 'antd';
-import Select from 'antd/es/select';
-import Radio from 'antd/lib/radio';
+import { Form, Input, Modal, Radio } from 'antd';
 
-@Form.create()
-export default class UserForm extends Component {
-  // 表单提交
-  handleSubmit = () => {};
+const formItemLayout = {
+  labelCol: {
+    span: 5,
+  },
+  wrapperCol: {
+    span: 15,
+  },
+};
 
-  render() {
-    const formItemLayout = {
-      labelCol: {
-        xs: { span: 24 },
-        sm: { span: 8 },
-      },
-      wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 16 },
-      },
-    };
-    const { getFieldDecorator } = this.props.form;
-    return (
-      <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+const EditForm = props => {
+  const { editVisible, title, form, handleSave, changeEidtVisible } = props;
+  const { getFieldDecorator } = form;
+
+  const okHandle = () => {
+    form.validateFields((err, fieldsValue) => {
+      if (err) return;
+      form.resetFields();
+      handleSave(fieldsValue);
+    });
+  };
+  return (
+    <Modal
+      destroyOnClose
+      title={title}
+      visible={editVisible}
+      onOk={okHandle}
+      onCancel={() => changeEidtVisible('', false)}
+    >
+      <Form {...formItemLayout}>
         <Form.Item label="用户名">
           {getFieldDecorator('userName', {
             rules: [
@@ -38,7 +46,7 @@ export default class UserForm extends Component {
           })(<Input placeholder="请输入用户名" />)}
         </Form.Item>
         <Form.Item label="姓名">
-          {getFieldDecorator('real_name', {
+          {getFieldDecorator('realName', {
             rules: [
               {
                 required: true,
@@ -55,10 +63,10 @@ export default class UserForm extends Component {
                 required: true,
                 message: '请输入密码',
               },
-              { max: 6, message: '密码不能少于6位' },
+              { min: 6, message: '密码不能少于6位' },
               { max: 32, message: '用户名不能超过8个字符' },
             ],
-          })(<Input placeholder="请输入密码" />)}
+          })(<Input placeholder="请输入密码" type="password" />)}
         </Form.Item>
         <Form.Item label="性别">
           {getFieldDecorator('gender', {
@@ -90,6 +98,8 @@ export default class UserForm extends Component {
           })(<Input placeholder="请输入手机号" />)}
         </Form.Item>
       </Form>
-    );
-  }
-}
+    </Modal>
+  );
+};
+
+export default Form.create()(EditForm);

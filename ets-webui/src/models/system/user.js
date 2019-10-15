@@ -1,17 +1,18 @@
-import { queryCurrent, query as queryUsers, page } from '@/services/user';
+import { queryCurrent, query as queryUsers, page, save } from '@/services/user';
 const UserModel = {
   namespace: 'user',
   state: {
     currentUser: {},
     pageData: {
-      list:[],
+      list: [],
       pagination: {
         current: 1,
         size: 10,
         total: 0,
-      }
+      },
     },
-
+    handleResult: null,
+    tempUser: null,
   },
   effects: {
     *fetch(_, { call, put }) {
@@ -30,15 +31,22 @@ const UserModel = {
       });
     },
 
-    *page({payload}, {call, put}) {
+    *page({ payload }, { call, put }) {
       const response = yield call(page, payload);
       yield put({
         type: 'putTableData',
         payload: response,
       });
     },
-  },
 
+    *save({ payload }, { call, put }) {
+      const response = yield call(save, payload);
+      yield put({
+        type: 'putHandleResult',
+        payload: response,
+      });
+    },
+  },
 
   reducers: {
     saveCurrentUser(state, action) {
@@ -72,6 +80,23 @@ const UserModel = {
             total: payload.data.total,
           },
         },
+      };
+    },
+
+    putHandleResult(state, { payload }) {
+      return {
+        ...state,
+        handleResult: {
+          ...payload,
+        },
+      };
+    },
+
+    clearData(state, { _ }) {
+      return {
+        ...state,
+        handleResult: null,
+        tempUser: null,
       };
     },
   },

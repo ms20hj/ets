@@ -1,14 +1,25 @@
 import React, { Component } from 'react';
-import { Table, Pagination, Divider, Row, Col } from 'antd';
+import { Button, Table, Pagination, Divider, Row, Col, message } from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect } from 'dva';
-import Button from 'antd/es/button';
+import EditForm from './components/EditForm';
 
 @connect(({ user, loading }) => ({
   user,
   pageData: user.pageData,
+  handleResult: user.handleResult,
+  tempUser: user.tempUser,
 }))
 export default class User extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  state = {
+    editVisible: false,
+    editTitle: '新增',
+  };
+
   componentDidMount() {
     const { pageData } = this.props;
     const param = {
@@ -44,9 +55,52 @@ export default class User extends Component {
     return `共 ${total} 条`;
   }
 
+  changeEidtVisible = (title, flag) => {
+    this.setState({
+      editVisible: flag,
+      editTitle: title,
+    });
+  };
+  /**
+   * 清理model 那边的临时数据
+   */
+  clearModelsData = () => {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'user/clearData',
+    });
+  };
+
+  handleSave = user => {
+    const { tempUser, dispatch } = this.props;
+    const action = tempUser === null ? 'user/save' : 'user/update';
+    dispatch({
+      type: action,
+      payload: {
+        ...user,
+      },
+    }).then(() => {
+      const { handleResult, pageData } = this.props;
+      if (handleResult.status) {
+        this.changeEidtVisible('', false);
+        const param = {
+          current: 1,
+          size: pageData.pagination.size,
+        };
+        this.queryPage(param);
+        message.success('保存成功').then(() => {
+          this.clearModelsData();
+        });
+      } else {
+        message.error('保存失败');
+      }
+    });
+  };
+
   render() {
     const { pageData, loading } = this.props;
     const { list, pagination } = pageData;
+    const { editVisible, editTitle } = this.state;
     const columns = [
       {
         title: '序号',
@@ -69,12 +123,7 @@ export default class User extends Component {
         title: '状态',
         key: 'status',
         dataIndex: 'status',
-        render: status => (
-          <span>
-            return (<span>{status === 0 ? '启用' : '禁用'}</span>
-            );
-          </span>
-        ),
+        render: status => <span>{status === 0 ? '启用' : '禁用'}</span>,
       },
       {
         title: '操作',
@@ -87,17 +136,22 @@ export default class User extends Component {
         ),
       },
     ];
+    const editMethods = {
+      handleSave: this.handleSave,
+      changeEidtVisible: this.changeEidtVisible,
+    };
     return (
       <PageHeaderWrapper>
         <Row>
           <Col>
-            <Button type="primary">新增</Button>
+            <Button type="primary" onClick={() => this.changeEidtVisible('新增', true)}>
+              新增
+            </Button>
           </Col>
         </Row>
-        <Row>
+        <Row style={{ marginTop: 15 }}>
           <Col>
             <Table loading={loading} columns={columns} dataSource={list}></Table>
-
             <Pagination
               defaultCurrent={1}
               showSizeChanger
@@ -109,6 +163,7 @@ export default class User extends Component {
             />
           </Col>
         </Row>
+        <EditForm editVisible={editVisible} title={editTitle} {...editMethods} />
       </PageHeaderWrapper>
     );
   }
