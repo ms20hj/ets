@@ -9,6 +9,8 @@ import com.cms.ets.model.mysql.system.User;
 import com.cms.ets.provider.mapper.system.UserMapper;
 import org.apache.commons.lang.StringUtils;
 
+import java.util.List;
+
 /**
  * <p>
  * 用户表 服务实现类
@@ -28,5 +30,27 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         }
         wrapper.orderByDesc("create_time");
         return page(page, wrapper);
+    }
+
+    @Override
+    public User getByUserName(String userName) {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_name", userName);
+        List<User> list = list(wrapper);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
+    }
+
+    @Override
+    public boolean checkNameExist(String userName, String id) {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_name", userName);
+        if (StringUtils.isNotEmpty(id)) {
+            wrapper.ne("id", id);
+        }
+        List<User> list = list(wrapper);
+        return !list.isEmpty();
     }
 }

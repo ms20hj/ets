@@ -11,7 +11,7 @@ import org.apache.shiro.subject.Subject;
  * 基础controller
  */
 public abstract class BaseController {
-	
+
 	protected Log logger = LogFactory.get();
 
     /**
@@ -19,7 +19,7 @@ public abstract class BaseController {
      * @MethodName:success
      * @param [data]
      */
-    protected HandleResult seccess(Object data){
+    protected HandleResult success(Object data){
         return HandleResult.success(data);
     }
 
@@ -44,8 +44,8 @@ public abstract class BaseController {
     protected HandleResult error(CodeEnum codeEnum){
         return HandleResult.error(codeEnum);
     }
-    
-    
+
+
     public static HandleResult error(CodeEnum codeEnum, Object data){
     	return HandleResult.error(codeEnum, data);
     }

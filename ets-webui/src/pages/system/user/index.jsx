@@ -71,32 +71,6 @@ export default class User extends Component {
     });
   };
 
-  handleSave = user => {
-    const { tempUser, dispatch } = this.props;
-    const action = tempUser === null ? 'user/save' : 'user/update';
-    dispatch({
-      type: action,
-      payload: {
-        ...user,
-      },
-    }).then(() => {
-      const { handleResult, pageData } = this.props;
-      if (handleResult.status) {
-        this.changeEidtVisible('', false);
-        const param = {
-          current: 1,
-          size: pageData.pagination.size,
-        };
-        this.queryPage(param);
-        message.success('保存成功').then(() => {
-          this.clearModelsData();
-        });
-      } else {
-        message.error('保存失败');
-      }
-    });
-  };
-
   render() {
     const { pageData, loading } = this.props;
     const { list, pagination } = pageData;
@@ -104,9 +78,8 @@ export default class User extends Component {
     const columns = [
       {
         title: '序号',
-        dataIndex: '',
+        dataIndex: 'id',
         width: '6%',
-        key: '',
         render: (text, record, index) => <span>{index + 1}</span>,
       },
       {
@@ -118,6 +91,16 @@ export default class User extends Component {
         title: '真实姓名',
         dataIndex: 'realName',
         key: 'realName',
+      },
+      {
+        title: '手机号码',
+        dataIndex: 'phone',
+        key: 'phone',
+      },
+      {
+        title: '性别',
+        dataIndex: 'gender',
+        key: 'gender',
       },
       {
         title: '状态',
@@ -137,7 +120,8 @@ export default class User extends Component {
       },
     ];
     const editMethods = {
-      handleSave: this.handleSave,
+      queryPage: this.queryPage,
+      clearModelsData: this.clearModelsData,
       changeEidtVisible: this.changeEidtVisible,
     };
     return (
@@ -151,7 +135,7 @@ export default class User extends Component {
         </Row>
         <Row style={{ marginTop: 15 }}>
           <Col>
-            <Table loading={loading} columns={columns} dataSource={list}></Table>
+            <Table loading={loading} columns={columns} dataSource={list} pagination={false}></Table>
             <Pagination
               defaultCurrent={1}
               showSizeChanger

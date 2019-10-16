@@ -52,7 +52,7 @@ public class HandleResult implements Serializable {
         HandleResult resp = new HandleResult();
         resp.setCode(CodeEnum.FAILURE.getCode());
         resp.setMessage(CodeEnum.FAILURE.getMessage());
-        resp.setStatus(true);
+        resp.setStatus(false);
         return resp;
     }
 
@@ -60,7 +60,7 @@ public class HandleResult implements Serializable {
         HandleResult resp = new HandleResult();
         resp.setCode(ce.getCode());
         resp.setMessage(ce.getMessage());
-        resp.setStatus(true);
+        resp.setStatus(false);
         return resp;
     }
 
@@ -69,7 +69,7 @@ public class HandleResult implements Serializable {
         resp.setCode(ce.getCode());
         resp.setMessage(ce.getMessage());
         resp.setData(data);
-        resp.setStatus(true);
+        resp.setStatus(false);
         return resp;
     }
 

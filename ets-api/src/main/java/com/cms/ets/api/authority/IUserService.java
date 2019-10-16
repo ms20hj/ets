@@ -20,4 +20,20 @@ public interface IUserService extends IService<User> {
      * @return IPage<User>
      */
     IPage<User> page(IPage<User> page, String name);
+
+    /**
+     * 根据名称查询
+     * @param name 名称
+     * @return User
+     * @date 2019年10月16日09:54:17
+     */
+    User getByUserName(String userName);
+
+    /**
+     * 判断名称是否已存在
+     * @param userName 用户名
+     * @param id 主键
+     * @return boolean 存在true，不存在false
+     */
+    boolean checkNameExist(String userName, String id);
 }

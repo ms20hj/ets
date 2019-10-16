@@ -1,4 +1,4 @@
-import { queryCurrent, query as queryUsers, page, save } from '@/services/user';
+import { queryCurrent, query as queryUsers, page, save, checkNameExist } from '@/services/user';
 const UserModel = {
   namespace: 'user',
   state: {
@@ -12,7 +12,14 @@ const UserModel = {
       },
     },
     handleResult: null,
-    tempUser: null,
+    tempUser: {
+      userName: '',
+      realName: '',
+      password: '',
+      gender: '男',
+      phone: '',
+      status: 0,
+    },
   },
   effects: {
     *fetch(_, { call, put }) {
@@ -41,6 +48,14 @@ const UserModel = {
 
     *save({ payload }, { call, put }) {
       const response = yield call(save, payload);
+      yield put({
+        type: 'putHandleResult',
+        payload: response,
+      });
+    },
+
+    *checkNameExist({ payload }, { call, put }){
+      const response = yield call(checkNameExist, payload);
       yield put({
         type: 'putHandleResult',
         payload: response,
@@ -96,7 +111,14 @@ const UserModel = {
       return {
         ...state,
         handleResult: null,
-        tempUser: null,
+        tempUser: {
+          userName: '',
+          realName: '',
+          password: '',
+          gender: '男',
+          phone: '',
+          status: 0,
+        },
       };
     },
   },

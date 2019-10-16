@@ -35,3 +35,12 @@ export async function save(user) {
     },
   });
 }
+
+/**
+ * 校验名称是否已存在
+ * @param param
+ * @returns {Promise<void>}
+ */
+export async function checkNameExist(param) {
+  return request(`/server/api/user/checkNameExist?userName=${param.userName}&id=${param.id ? param.id: ''}`);
+}

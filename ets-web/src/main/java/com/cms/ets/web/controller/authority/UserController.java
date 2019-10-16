@@ -8,9 +8,7 @@ import com.cms.ets.common.response.HandleResult;
 import com.cms.ets.model.mysql.system.User;
 import com.cms.ets.web.controller.BaseController;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 用户controller
@@ -34,6 +32,27 @@ public class UserController extends BaseController {
     @ApiOperation("分页查询")
     public HandleResult page(Page<User> page, String name) {
         IPage<User> iPage = userService.page(page, name);
-        return seccess(iPage);
+        return success(iPage);
+    }
+
+    @PostMapping("save")
+    @ApiOperation("保存")
+    public HandleResult save(@RequestBody User user) {
+        boolean result = userService.save(user);
+        return verifyResp(result);
+    }
+
+    @PostMapping("update")
+    @ApiOperation("更新")
+    public HandleResult update(@RequestBody User user) {
+        boolean result = userService.updateById(user);
+        return verifyResp(result);
+    }
+
+    @GetMapping("checkNameExist")
+    @ApiOperation("检验用户名是否存在")
+    public HandleResult checkNameExist(String userName, String id){
+        boolean flag = userService.checkNameExist(userName, id);
+        return success(flag);
     }
 }
