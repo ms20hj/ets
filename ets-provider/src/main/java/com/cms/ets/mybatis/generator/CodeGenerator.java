@@ -34,7 +34,7 @@ public class CodeGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/idaas?useUnicode=true&useSSL=false&characterEncoding=utf8");
+        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/ets?useUnicode=true&useSSL=false&characterEncoding=utf8");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
@@ -92,12 +92,12 @@ public class CodeGenerator {
         strategy.setTablePrefix("t_");
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
-        strategy.setSuperEntityClass("com.cms.ets.model.BaseEntity");
+        strategy.setSuperEntityClass("com.cms.ets.model.mysql.BaseEntity");
 //        strategy.setEntityLombokModel(true);
 //        strategy.setRestControllerStyle(true);
 //        strategy.setSuperControllerClass("com.baomidou.ant.common.BaseController");
         //需要生成表名
-        strategy.setInclude("t_user");
+        strategy.setInclude("t_role");
         strategy.setSuperEntityColumns("id","create_id","update_id","create_time","update_time");
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setEntityTableFieldAnnotationEnable(true);

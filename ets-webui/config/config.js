@@ -103,14 +103,14 @@ export default {
               component: './Welcome',
             },
             {
-              path: '/system',
+              path: '/authority',
               icon: 'team',
               name: 'system',
               routes: [
                 {
                   name: 'user',
-                  path: '/system/user',
-                  component: './system/user',
+                  path: '/authority/user',
+                  component: './authority/user',
                   exact: true,
                 },
               ],

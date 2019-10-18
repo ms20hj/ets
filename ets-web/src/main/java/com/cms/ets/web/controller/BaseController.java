@@ -3,7 +3,7 @@ import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
 import com.cms.ets.common.enums.CodeEnum;
 import com.cms.ets.common.response.HandleResult;
-import com.cms.ets.model.mysql.system.User;
+import com.cms.ets.model.mysql.authority.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 

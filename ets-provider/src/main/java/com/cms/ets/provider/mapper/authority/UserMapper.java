@@ -1,6 +1,6 @@
-package com.cms.ets.provider.mapper.system;
+package com.cms.ets.provider.mapper.authority;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.cms.ets.model.mysql.system.User;
+import com.cms.ets.model.mysql.authority.User;
 
 /**
  * <p>

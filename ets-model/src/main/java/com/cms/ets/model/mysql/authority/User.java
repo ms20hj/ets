@@ -1,4 +1,4 @@
-package com.cms.ets.model.mysql.system;
+package com.cms.ets.model.mysql.authority;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.TableField;

@@ -2,7 +2,7 @@ package com.cms.ets.api.authority;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.cms.ets.model.mysql.system.User;
+import com.cms.ets.model.mysql.authority.User;
 
 /**
  * <p>

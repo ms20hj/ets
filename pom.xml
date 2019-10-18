@@ -47,6 +47,7 @@
         <shiro.redis.version>2.4.2.1-RELEASE</shiro.redis.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <freemarker.version>2.3.28</freemarker.version>
     </properties>
 
     <dependencyManagement>
@@ -207,6 +208,11 @@
                 <groupId>org.crazycake</groupId>
                 <artifactId>shiro-redis</artifactId>
                 <version>${shiro.redis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>${freemarker.version}</version>
             </dependency>
 
         </dependencies>

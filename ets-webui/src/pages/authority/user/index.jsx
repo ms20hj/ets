@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Button, Table, Pagination, Divider, Row, Col, message } from 'antd';
+import {Button, Table, Pagination, Divider, Row, Col, message, Input, Spin} from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect } from 'dva';
 import EditForm from './components/EditForm';
 
 @connect(({ user, loading }) => ({
   user,
+  loading: loading.models.user,
   pageData: user.pageData,
   handleResult: user.handleResult,
   tempUser: user.tempUser,
@@ -41,6 +42,19 @@ export default class User extends Component {
         ...param,
       },
     });
+  };
+  /**
+   * 搜索
+   * @param value
+   */
+  handleSearch = value => {
+    const { pageData } = this.props;
+    const param = {
+      current: 1,
+      size: pageData.pagination.size,
+      name: value,
+    };
+    this.queryPage(param);
   };
 
   handleTableChange = (current, size) => {
@@ -190,6 +204,9 @@ export default class User extends Component {
             <Button type="primary" onClick={() => this.changeEidtVisible('新增', true)}>
               新增
             </Button>
+            <Input.Search placeholder="请输入用账号/姓名"
+                          onSearch={this.handleSearch}
+                          style={{ width: 200, float: "right" }} />
           </Col>
         </Row>
         <Row style={{ marginTop: 15 }}>

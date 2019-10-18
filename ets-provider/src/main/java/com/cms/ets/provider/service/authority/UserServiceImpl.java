@@ -1,12 +1,12 @@
-package com.cms.ets.provider.service.system;
+package com.cms.ets.provider.service.authority;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cms.ets.api.authority.IUserService;
-import com.cms.ets.model.mysql.system.User;
-import com.cms.ets.provider.mapper.system.UserMapper;
+import com.cms.ets.model.mysql.authority.User;
+import com.cms.ets.provider.mapper.authority.UserMapper;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.List;
