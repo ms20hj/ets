@@ -1,14 +1,34 @@
 package com.cms.ets.common.enums;
 
 public enum CodeEnum {
-
+    /**
+     * 通用请求成功
+     */
     SUCCESS("request success", 0),
+    /**
+     * 通用请求失败
+     */
     FAILURE("request failure", 1),
+    /**
+     * 业务处理异常
+     */
     BUSINESS_ERROR("业务处理异常", 10001),
+    /**
+     * 系统bug
+     */
     SYSTEM_ERROR("系统异常", 10002),
+    /**
+     * 无权限
+     */
     AUTHORIZE_ERROR("没有权限", 10003),
-    VALIDATOR_ERROR("校验失败", 10004);
-
+    /**
+     * 校验失败
+     */
+    VALIDATOR_ERROR("校验失败", 10004),
+    /**
+     * 查无数据
+     */
+    QUERY_NO_DATA("无对应数据", 10005);
 
 
 

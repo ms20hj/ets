@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {Form, Input, message, Modal, Radio} from 'antd';
-import {connect} from "dva";
+import { Form, Input, message, Modal, Radio } from 'antd';
+import { connect } from 'dva';
 
 const formItemLayout = {
   labelCol: {
@@ -15,27 +15,17 @@ const formItemLayout = {
   user,
   handleResult: user.handleResult,
   tempUser: user.tempUser,
-  pageData: user.pageData
+  pageData: user.pageData,
 }))
-class EditForm extends Component{
-
-  constructor(props){
+class EditForm extends Component {
+  constructor(props) {
     super(props);
-  }
-
-  componentDidMount() {
-    const {tempUser, form} = this.props;
-    if (tempUser.unid) {
-      form.setFieldsValue({
-        gender: tempUser.gender,
-      })
-    }
   }
 
   validateUserName = (rule, value, callback) => {
     try {
       if (value) {
-        const {dispatch, tempUser} = this.props;
+        const { dispatch, tempUser } = this.props;
         const param = {
           userName: value,
         };
@@ -45,12 +35,12 @@ class EditForm extends Component{
         dispatch({
           type: 'user/checkNameExist',
           payload: {
-            ...param
-          }
+            ...param,
+          },
         }).then(() => {
-          const {handleResult} = this.props;
+          const { handleResult } = this.props;
           if (handleResult.data) {
-            callback("用户名已存在");
+            callback('用户名已存在');
           } else {
             callback();
           }
@@ -63,11 +53,11 @@ class EditForm extends Component{
   };
 
   compareToPassword = (rule, value, callback) => {
-    if (value){
-      const {form} = this.props;
-      const password = form.getFieldValue("password");
+    if (value) {
+      const { form } = this.props;
+      const password = form.getFieldValue('password');
       if (value !== password) {
-        callback("密码和确认密码不一致");
+        callback('密码和确认密码不一致');
       } else {
         callback();
       }
@@ -77,19 +67,19 @@ class EditForm extends Component{
 
   compareToCfmPassword = (rule, value, callback) => {
     if (value) {
-      const {form} = this.props;
-        form.validateFields(['cfmPassword'], { force: true });
+      const { form } = this.props;
+      form.validateFields(['cfmPassword'], { force: true });
     }
     callback();
   };
 
-
   handleSubmit = () => {
-    const {form} = this.props;
+    const { form } = this.props;
     form.validateFieldsAndScroll((err, fieldsValue) => {
       if (err) return;
-      const { tempUser, dispatch , queryPage, clearModelsData, changeEidtVisible} = this.props;
+      const { tempUser, dispatch, queryPage, clearModelsData, changeEidtVisible } = this.props;
       const action = tempUser.id ? 'user/update' : 'user/save';
+      tempUser.id ? (fieldsValue.id = tempUser.id) : '';
       dispatch({
         type: action,
         payload: {
@@ -98,15 +88,14 @@ class EditForm extends Component{
       }).then(() => {
         const { handleResult, pageData } = this.props;
         if (handleResult.status) {
-          message.success('保存成功').then(() => {
-            clearModelsData();
-            const param = {
-              current: 1,
-              size: pageData.pagination.size,
-            };
-            queryPage(param);
-            changeEidtVisible('', false);
-          });
+          clearModelsData();
+          const param = {
+            current: 1,
+            size: pageData.pagination.size,
+          };
+          queryPage(param);
+          changeEidtVisible('', false);
+          message.success('保存成功');
         } else {
           message.error('保存失败');
         }
@@ -131,10 +120,10 @@ class EditForm extends Component{
             {getFieldDecorator('userName', {
               initialValue: tempUser.userName,
               rules: [
-                {required: true, message: '请输入用户名'},
-                {pattern: /^[a-zA-Z\s]*$/, message: '用户名只能英文！'},
-                {max: 20, message: '用户名不能超过20个字符' },
-                {validator: this.validateUserName}
+                { required: true, message: '请输入用户名' },
+                { pattern: /^[a-zA-Z\s]*$/, message: '用户名只能英文！' },
+                { max: 20, message: '用户名不能超过20个字符' },
+                { validator: this.validateUserName },
               ],
               validateTrigger: 'onBlur',
             })(<Input placeholder="请输入用户名" />)}
@@ -143,8 +132,8 @@ class EditForm extends Component{
             {getFieldDecorator('realName', {
               initialValue: tempUser.realName,
               rules: [
-                {required: true,message: '请输入姓名'},
-                {max: 8, message: '用户名不能超过8个字符' },
+                { required: true, message: '请输入姓名' },
+                { max: 8, message: '用户名不能超过8个字符' },
               ],
               validateTrigger: 'onBlur',
             })(<Input placeholder="请输入姓名" />)}
@@ -153,10 +142,10 @@ class EditForm extends Component{
             {getFieldDecorator('password', {
               initialValue: tempUser.password,
               rules: [
-                {required: true,message: '请输入密码'},
-                {min: 6, message: '密码不能少于6位' },
-                {max: 32, message: '密码不能超过32个字符' },
-                {validator: this.compareToCfmPassword}
+                { required: true, message: '请输入密码' },
+                { min: 6, message: '密码不能少于6位' },
+                { max: 32, message: '密码不能超过32个字符' },
+                { validator: this.compareToCfmPassword },
               ],
               validateTrigger: 'onBlur',
             })(<Input placeholder="请输入密码" type="password" />)}
@@ -164,11 +153,12 @@ class EditForm extends Component{
 
           <Form.Item label="确认密码">
             {getFieldDecorator('cfmPassword', {
+              initialValue: tempUser.password,
               rules: [
-                {required: true,message: '请输入确认密码'},
-                {min: 6, message: '确认密码不能少于6位' },
-                {max: 32, message: '确认密码不能超过32个字符' },
-                {validator: this.compareToPassword }
+                { required: true, message: '请输入确认密码' },
+                { min: 6, message: '确认密码不能少于6位' },
+                { max: 32, message: '确认密码不能超过32个字符' },
+                { validator: this.compareToPassword },
               ],
               validateTrigger: 'onBlur',
             })(<Input placeholder="请输入确认密码" type="password" />)}
@@ -178,8 +168,8 @@ class EditForm extends Component{
             {getFieldDecorator('phone', {
               initialValue: tempUser.phone,
               rules: [
-                {required: true,message: '请输入手机号'},
-                {pattern: /^1(3|4|5|7|8)\d{9}$/,message: '手机号格式错误'},
+                { required: true, message: '请输入手机号' },
+                { pattern: /^1(3|4|5|7|8)\d{9}$/, message: '手机号格式错误' },
               ],
               validateTrigger: 'onBlur',
             })(<Input placeholder="请输入手机号" />)}
@@ -188,9 +178,7 @@ class EditForm extends Component{
           <Form.Item label="性别">
             {getFieldDecorator('gender', {
               initialValue: tempUser.gender,
-              rules: [
-                {required: true,message: '请选择性别'},
-              ],
+              rules: [{ required: true, message: '请选择性别' }],
               validateTrigger: 'onBlur',
             })(
               <Radio.Group>

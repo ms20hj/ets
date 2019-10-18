@@ -70,6 +70,61 @@ export default class User extends Component {
       type: 'user/clearData',
     });
   };
+  /**
+   * 删除
+   * @param id
+   */
+  handleRemove = id => {
+    let ids = new Array();
+    ids.push(id);
+    this.remove(ids);
+  };
+
+  remove = ids => {
+    console.log(ids);
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'user/remove',
+      payload: ids,
+    }).then(() => {
+      const { handleResult, pageData } = this.props;
+      if (handleResult.status) {
+        message.success('删除成功').then(() => {
+          this.clearModelsData();
+          const param = {
+            current: 1,
+            size: pageData.pagination.size,
+          };
+          this.queryPage(param);
+        });
+      } else {
+        message.error('删除失败');
+      }
+    });
+  };
+  /**
+   * 编辑
+   * @param id
+   */
+  handlePreEdit = id => {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'user/getById',
+      payload: id,
+    }).then(() => {
+      const { handleResult, tempUser, pageData } = this.props;
+      if (handleResult.status && tempUser !== null) {
+        this.changeEidtVisible('编辑', true);
+      } else {
+        const param = {
+          current: 1,
+          size: pageData.pagination.size,
+        };
+        this.queryPage(param);
+        message.error('数据不存在');
+      }
+    });
+  };
 
   render() {
     const { pageData, loading } = this.props;
@@ -112,9 +167,13 @@ export default class User extends Component {
         title: '操作',
         render: (text, record) => (
           <span>
-            <a size="small">编辑</a>
+            <a size="small" onClick={this.handlePreEdit.bind(this, `${record.id}`)}>
+              编辑
+            </a>
             <Divider type="vertical" />
-            <a size="small">删除</a>
+            <a size="small" onClick={this.handleRemove.bind(this, `${record.id}`)}>
+              删除
+            </a>
           </span>
         ),
       },
