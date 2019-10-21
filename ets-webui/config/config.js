@@ -113,6 +113,12 @@ export default {
                   component: './authority/user',
                   exact: true,
                 },
+                {
+                  name: 'role',
+                  path: '/authority/role',
+                  component: './authority/role',
+                  exact: true,
+                },
               ],
             },
             {

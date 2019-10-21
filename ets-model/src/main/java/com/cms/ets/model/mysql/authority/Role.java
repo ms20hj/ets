@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.cms.ets.model.mysql.BaseEntity;
 
+import java.util.List;
+
 /**
  * <p>
  * 角色表
@@ -34,6 +36,11 @@ public class Role extends BaseEntity {
      */
     @TableField("status")
     private Integer status;
+    /**
+     * 授权关联的用户id集合
+     */
+    @TableField(exist = false)
+    private List<String> userIdList;
 
     public String getRoleName() {
         return roleName;
@@ -55,6 +62,14 @@ public class Role extends BaseEntity {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public List<String> getUserIdList() {
+        return userIdList;
+    }
+
+    public void setUserIdList(List<String> userIdList) {
+        this.userIdList = userIdList;
     }
 
     @Override

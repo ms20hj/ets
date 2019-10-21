@@ -1,17 +1,18 @@
-import React, { Component } from 'react';
-import {Button, Table, Pagination, Divider, Row, Col, message, Input, Modal } from 'antd';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import React, {Component} from "react";
 import { connect } from 'dva';
-import EditForm from './components/EditForm';
+import {Button, Col, Divider, Input, message, Modal, Pagination, Row, Table} from "antd";
+import {PageHeaderWrapper} from "@ant-design/pro-layout";
+import EditForm from "../role/components/EditForm";
 
-@connect(({ user, loading }) => ({
-  user,
-  loading: loading.models.user,
-  pageData: user.pageData,
-  handleResult: user.handleResult,
-  tempUser: user.tempUser,
+@connect(({role, loading}) => ({
+  role,
+  loading: loading.models.role,
+  pageData: role.pageData,
+  handleResult: role.handleResult,
+  tempRole: role.tempRole,
 }))
-export default class User extends Component {
+export default class Role extends Component{
+
   constructor(props) {
     super(props);
   }
@@ -39,7 +40,7 @@ export default class User extends Component {
   queryPage = param => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'user/page',
+      type: 'role/page',
       payload: {
         ...param,
       },
@@ -88,7 +89,7 @@ export default class User extends Component {
   clearModelsData = () => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'user/clearData',
+      type: 'role/clearData',
     });
   };
   /**
@@ -125,7 +126,7 @@ export default class User extends Component {
     console.log(ids);
     const { dispatch } = this.props;
     dispatch({
-      type: 'user/remove',
+      type: 'role/remove',
       payload: ids,
     }).then(() => {
       const { handleResult, pageData } = this.props;
@@ -149,11 +150,11 @@ export default class User extends Component {
   handlePreEdit = id => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'user/getById',
+      type: 'role/getById',
       payload: id,
     }).then(() => {
-      const { handleResult, tempUser, pageData } = this.props;
-      if (handleResult.status && tempUser !== null) {
+      const { handleResult, tempRole, pageData } = this.props;
+      if (handleResult.status && tempRole !== null) {
         this.changeEidtVisible('编辑', true);
       } else {
         const param = {
@@ -187,24 +188,9 @@ export default class User extends Component {
         render: (text, record, index) => <span>{index + 1}</span>,
       },
       {
-        title: '账号',
-        dataIndex: 'userName',
-        key: 'userName',
-      },
-      {
-        title: '真实姓名',
-        dataIndex: 'realName',
-        key: 'realName',
-      },
-      {
-        title: '手机号码',
-        dataIndex: 'phone',
-        key: 'phone',
-      },
-      {
-        title: '性别',
-        dataIndex: 'gender',
-        key: 'gender',
+        title: '角色名称',
+        dataIndex: 'roleName',
+        key: 'roleName',
       },
       {
         title: '状态',
@@ -246,7 +232,7 @@ export default class User extends Component {
             <Button onClick={() => this.handleBatchRemove()} disabled={selectedRowKeys.length === 0} style={{marginLeft: 10}}>
               删除
             </Button>
-            <Input.Search placeholder="请输入用账号/姓名"
+            <Input.Search placeholder="请输入角色名称"
                           onSearch={this.handleSearch}
                           style={{ width: 200, float: "right" }} />
           </Col>
