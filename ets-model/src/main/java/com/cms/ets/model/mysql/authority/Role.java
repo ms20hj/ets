@@ -41,6 +41,11 @@ public class Role extends BaseEntity {
      */
     @TableField(exist = false)
     private List<String> userIdList;
+    /**
+     * 授权关联的菜单id集合
+     */
+    @TableField(exist = false)
+    private List<String> menuIdList;
 
     public String getRoleName() {
         return roleName;
@@ -70,6 +75,14 @@ public class Role extends BaseEntity {
 
     public void setUserIdList(List<String> userIdList) {
         this.userIdList = userIdList;
+    }
+
+    public List<String> getMenuIdList() {
+        return menuIdList;
+    }
+
+    public void setMenuIdList(List<String> menuIdList) {
+        this.menuIdList = menuIdList;
     }
 
     @Override

@@ -30,4 +30,11 @@ public interface IRoleService extends IService<Role> {
      * @return 存在true, 不存在false
      */
     boolean checkNameExist(String roleName, String id);
+
+    /**
+     * 获取角色，初始化授权是管理数据集合
+     * @param id
+     * @return
+     */
+    Role getByIdInitAuthData(String id);
 }

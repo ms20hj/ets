@@ -53,4 +53,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         List<User> list = list(wrapper);
         return !list.isEmpty();
     }
+
+    @Override
+    public List<User> getSimpleUserList() {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.select("id", "user_name");
+        return list(wrapper);
+    }
 }

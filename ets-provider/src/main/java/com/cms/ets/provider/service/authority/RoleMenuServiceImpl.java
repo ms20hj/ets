@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class RoleMenuServiceImpl extends ServiceImpl<RoleMenuMapper, RoleMenu> implements IRoleMenuService {
 
     @Override
-    public List<String> getAuthUserIdByRoleId(String roleId) {
+    public List<String> getAuthMenuIdByRoleId(String roleId) {
         List<RoleMenu> list = getByRoleId(roleId);
         List<String> menuIdList = list.stream().map(RoleMenu::getId).collect(Collectors.toList());
         return menuIdList;

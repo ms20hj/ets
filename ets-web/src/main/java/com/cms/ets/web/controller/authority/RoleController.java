@@ -4,8 +4,11 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cms.ets.api.authority.IRoleService;
+import com.cms.ets.api.authority.IRoleUserService;
+import com.cms.ets.api.authority.IUserService;
 import com.cms.ets.common.response.HandleResult;
 import com.cms.ets.model.mysql.authority.Role;
+import com.cms.ets.model.mysql.authority.User;
 import com.cms.ets.web.controller.BaseController;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +21,10 @@ public class RoleController extends BaseController {
 
     @Reference
     private IRoleService roleService;
+    @Reference
+    private IUserService userService;
+    @Reference
+    private IRoleUserService roleUserService;
     /**
      * 分页查询
      * @param page 分页参数
@@ -61,9 +68,16 @@ public class RoleController extends BaseController {
     }
 
     @GetMapping("getById")
-    @ApiOperation("根据id查询")
+    @ApiOperation("根据id查询,不会初始化关联的用户和菜单主键集合")
     public HandleResult getById(String id) {
         Role role = roleService.getById(id);
+        return success(role);
+    }
+
+    @GetMapping("getAuthDataById")
+    @ApiOperation("根据id查询,初始化关联的用户和菜单主键集合")
+    public HandleResult getAuthDataById(String id) {
+        Role role = roleService.getByIdInitAuthData(id);
         return success(role);
     }
 }

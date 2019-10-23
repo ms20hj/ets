@@ -48,7 +48,7 @@ export async function update(user) {
  */
 export async function checkNameExist(param) {
   return request(
-    `/server/api/role/checkNameExist?userName=${param.userName}&id=${param.id ? param.id : ''}`,
+    `/server/api/role/checkNameExist?roleName=${param.roleName}&id=${param.id ? param.id : ''}`,
   );
 }
 
@@ -61,4 +61,16 @@ export async function remove(param) {
 
 export async function getById(id) {
   return request(`/server/api/role/getById?id=${id}`);
+}
+
+/**
+ * 获取用户集合
+ * @returns {Promise<void>}
+ */
+export async function getUsers() {
+  return request('/server/api/user/getSimpleList')
+}
+
+export async function getAuthDataById(id) {
+  return request(`/server/api/role/getAuthDataById?id=${id}`)
 }

@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.cms.ets.model.mysql.authority.User;
 
+import java.util.List;
+
 /**
  * <p>
  * 用户表 服务类
@@ -36,4 +38,11 @@ public interface IUserService extends IService<User> {
      * @return boolean 存在true，不存在false
      */
     boolean checkNameExist(String userName, String id);
+
+    /**
+     * 查询用户集合，用户对象只初始化id，userName
+     * @return List<User>
+     * @date 2019年10月22日11:37:05
+     */
+    List<User> getSimpleUserList();
 }

@@ -5,6 +5,8 @@ import {
   checkNameExist,
   remove,
   getById,
+  getUsers,
+  getAuthDataById,
 } from '@/services/role';
 
 const RoleModel= {
@@ -73,8 +75,24 @@ const RoleModel= {
     *getById({ payload }, { call, put }) {
       const response = yield call(getById, payload);
       yield put({
-        type: 'putTempUser',
+        type: 'putTempRole',
         payload: response,
+      });
+    },
+
+    *getUsers(_, { call, put }){
+      const resp = yield call(getUsers);
+      yield put ({
+        type: 'putUserList',
+        payload: resp,
+      });
+    },
+
+    *getAuthRole({payload}, {call, put}) {
+      const resp = yield call(getAuthDataById, payload);
+      yield put({
+        type: 'putTempRole',
+        payload: resp,
       });
     },
   },
@@ -108,18 +126,15 @@ const RoleModel= {
       return {
         ...state,
         handleResult: null,
-        tempUser: {
-          userName: '',
-          realName: '',
-          password: '',
-          gender: '男',
-          phone: '',
+        tempRole: {
+          roleName: '',
           status: 0,
+          userIdList: [],
         },
       };
     },
 
-    putTempUser(state, { payload }) {
+    putTempRole(state, { payload }) {
       return {
         ...state,
         handleResult: {
@@ -130,6 +145,24 @@ const RoleModel= {
         },
       };
     },
+
+    putUserList(state, {payload}) {
+      return {
+        ...state,
+        userList: payload.data
+      };
+    },
+
+    changeRoleUserIds(state, {payload}) {
+      console.log(payload);
+      return {
+        ...state,
+        tempRole: {
+          userIdList: payload
+        }
+      };
+    },
+
   },
 };
 export default RoleModel;

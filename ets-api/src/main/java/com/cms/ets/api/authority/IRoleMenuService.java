@@ -12,7 +12,7 @@ public interface IRoleMenuService extends IService<RoleMenu> {
      * @return List<String>
      * @date 2019年10月21日17:34:54
      */
-    List<String> getAuthUserIdByRoleId(String roleId);
+    List<String> getAuthMenuIdByRoleId(String roleId);
 
     /**
      * 根据角色id查询

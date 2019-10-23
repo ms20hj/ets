@@ -253,7 +253,7 @@ export default class User extends Component {
         </Row>
         <Row style={{ marginTop: 15 }}>
           <Col>
-            <Table loading={loading} columns={columns} dataSource={list} pagination={false} rowSelection={rowSelection}></Table>
+            <Table loading={loading} columns={columns} dataSource={list} rowKey={item => item.id} pagination={false} rowSelection={rowSelection}></Table>
             <Pagination
               defaultCurrent={1}
               showSizeChanger

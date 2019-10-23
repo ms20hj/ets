@@ -22,7 +22,7 @@ class EditForm extends Component {
     super(props);
   }
 
-  validateUserName = (rule, value, callback) => {
+  validateUserName = async(rule, value, callback) => {
     try {
       if (value) {
         const { dispatch, tempUser } = this.props;
@@ -40,15 +40,15 @@ class EditForm extends Component {
         }).then(() => {
           const { handleResult } = this.props;
           if (handleResult.data) {
-            callback('用户名已存在');
+            return Promise.reject(new Error('用户名已存在'));
           } else {
-            callback();
+            return Promise.resolve();
           }
         });
       }
-      callback();
+      return Promise.resolve();
     } catch (e) {
-      callback(e);
+      return Promise.reject(e);
     }
   };
 

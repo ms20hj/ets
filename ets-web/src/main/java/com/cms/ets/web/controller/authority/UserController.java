@@ -71,4 +71,10 @@ public class UserController extends BaseController {
         User user = userService.getById(id);
         return success(user);
     }
+
+    @GetMapping("getSimpleList")
+    @ApiOperation("查询轻便对象集合")
+    public HandleResult getSimpleList(){
+        return success(userService.getSimpleUserList());
+    }
 }

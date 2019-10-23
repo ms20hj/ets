@@ -1,9 +1,10 @@
 import React, {Component} from "react";
 import { connect } from 'dva';
-import {Button, Col, Divider, Input, message, Modal, Pagination, Row, Table} from "antd";
+import {Button, Col, Divider, Input, message, Modal, Pagination, Row, Table, Form} from "antd";
 import {PageHeaderWrapper} from "@ant-design/pro-layout";
-import EditForm from "../role/components/EditForm";
+import RoleForm from "./components/RoleForm";
 
+@Form.create()
 @connect(({role, loading}) => ({
   role,
   loading: loading.models.role,
@@ -77,7 +78,13 @@ export default class Role extends Component{
     return `共 ${total} 条`;
   }
 
-  changeEidtVisible = (title, flag) => {
+  changeEditVisible = (title, flag) => {
+    if (flag) {
+      const {dispatch} = this.props;
+      dispatch({
+        type: 'role/getUsers'
+      });
+    }
     this.setState({
       editVisible: flag,
       editTitle: title,
@@ -150,12 +157,12 @@ export default class Role extends Component{
   handlePreEdit = id => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'role/getById',
+      type: 'role/getAuthRole',
       payload: id,
     }).then(() => {
       const { handleResult, tempRole, pageData } = this.props;
       if (handleResult.status && tempRole !== null) {
-        this.changeEidtVisible('编辑', true);
+        this.changeEditVisible('编辑', true);
       } else {
         const param = {
           current: 1,
@@ -220,13 +227,13 @@ export default class Role extends Component{
     const editMethods = {
       queryPage: this.queryPage,
       clearModelsData: this.clearModelsData,
-      changeEidtVisible: this.changeEidtVisible,
+      changeEditVisible: this.changeEditVisible,
     };
     return (
       <PageHeaderWrapper>
         <Row>
           <Col>
-            <Button type="primary" onClick={() => this.changeEidtVisible('新增', true)} >
+            <Button type="primary" onClick={() => this.changeEditVisible('新增', true)} >
               新增
             </Button>
             <Button onClick={() => this.handleBatchRemove()} disabled={selectedRowKeys.length === 0} style={{marginLeft: 10}}>
@@ -239,7 +246,7 @@ export default class Role extends Component{
         </Row>
         <Row style={{ marginTop: 15 }}>
           <Col>
-            <Table loading={loading} columns={columns} dataSource={list} pagination={false} rowSelection={rowSelection}></Table>
+            <Table loading={loading} columns={columns} dataSource={list} rowKey={item => item.id} pagination={false} rowSelection={rowSelection}></Table>
             <Pagination
               defaultCurrent={1}
               showSizeChanger
@@ -251,7 +258,7 @@ export default class Role extends Component{
             />
           </Col>
         </Row>
-        <EditForm editVisible={editVisible} title={editTitle} {...editMethods} />
+        <RoleForm editVisible={editVisible} title={editTitle} {...editMethods} />
       </PageHeaderWrapper>
     );
   }

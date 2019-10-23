@@ -18,53 +18,51 @@ const formItemLayout = {
   pageData: role.pageData,
   userList: role.userList,
 }))
-class EditForm extends Component {
+class RoleForm extends Component {
 
   constructor(props) {
     super(props);
   }
 
-  state= {
-
-  };
-
-  validateUserName = (rule, value, callback) => {
+  validateName = async(rule, value, callback) => {
     try {
       if (value) {
         const { dispatch, tempRole } = this.props;
         const param = {
-          userName: value,
+          roleName: value,
         };
         if (tempRole.id) {
           param.id = tempRole.id;
         }
-        dispatch({
-          type: 'user/checkNameExist',
+        return dispatch({
+          type: 'role/checkNameExist',
           payload: {
             ...param,
           },
         }).then(() => {
           const { handleResult } = this.props;
           if (handleResult.data) {
-            callback('用户名已存在');
+            return Promise.reject(new Error('角色名已存在'));
           } else {
-            callback();
+            return Promise.resolve();
           }
         });
       }
-      callback();
+      return Promise.resolve();
     } catch (e) {
-      callback(e);
+      return Promise.reject(e);
     }
   };
 
   handleSubmit = () => {
     const { form } = this.props;
-    form.validateFieldsAndScroll((err, fieldsValue) => {
+    form.validateFieldsAndScroll(['roleName',],(err, fieldsValue) => {
       if (err) return;
-      const { tempRole, dispatch, queryPage, clearModelsData, changeEidtVisible } = this.props;
+      const { tempRole, dispatch, queryPage, clearModelsData, changeEditVisible } = this.props;
       const action = tempRole.id ? 'role/update' : 'role/save';
       tempRole.id ? (fieldsValue.id = tempRole.id) : '';
+      fieldsValue.userIdList = tempRole.userIdList;
+      fieldsValue.menuIdList = tempRole.menuIdList;
       dispatch({
         type: action,
         payload: {
@@ -79,7 +77,7 @@ class EditForm extends Component {
             size: pageData.pagination.size,
           };
           queryPage(param);
-          changeEidtVisible('', false);
+          changeEditVisible('', false);
           message.success('保存成功');
         } else {
           message.error('保存失败');
@@ -88,17 +86,34 @@ class EditForm extends Component {
     });
   };
 
+  handleUserSelectChange = (targetKeys, direction, moveKeys) => {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'role/changeRoleUserIds',
+      payload: targetKeys,
+    });
+  };
+
+  handleCancel = () => {
+    const {changeEditVisible, dispatch} = this.props;
+    dispatch({
+      type: 'role/clearData',
+    });
+    changeEditVisible('', false);
+  };
+
+
   render() {
-    const { editVisible, title, form, changeEidtVisible, tempRole, userList } = this.props;
+    const { editVisible, title, form, tempRole, userList } = this.props;
     const { getFieldDecorator } = form;
 
     return (
       <Modal
-        destroyOnClose
+        destroyOnClose={true}
         title={title}
         visible={editVisible}
         onOk={this.handleSubmit}
-        onCancel={() => changeEidtVisible('', false)}
+        onCancel={this.handleCancel}
         width={700}
       >
         <Form {...formItemLayout}>
@@ -107,8 +122,8 @@ class EditForm extends Component {
               initialValue: tempRole.roleName,
               rules: [
                 { required: true, message: '请输入角色名称' },
-                { max: 20, message: '用户名不能超过20个字符' },
-                // { validator: this.validateUserName },
+                { max: 10, message: '角色名称不能超过10个字符' },
+                { validator: this.validateName },
               ],
               validateTrigger: 'onBlur',
             })(<Input placeholder="请输入角色名称" />)}
@@ -118,7 +133,9 @@ class EditForm extends Component {
               dataSource={userList}
               targetKeys={tempRole.userIdList}
               showSearch
+              onChange={this.handleUserSelectChange}
               render={item => item.userName}
+              rowKey={item => item.id}
               titles=	{['未授权用户', '已授权用户']}
               listStyle={{
                 width: 180,
@@ -132,4 +149,4 @@ class EditForm extends Component {
   }
 }
 
-export default Form.create()(EditForm);
+export default Form.create()(RoleForm);
