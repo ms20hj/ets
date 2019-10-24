@@ -7,10 +7,12 @@ import com.cms.ets.api.authority.IUserService;
 import com.cms.ets.common.response.HandleResult;
 import com.cms.ets.model.mysql.authority.User;
 import com.cms.ets.web.controller.BaseController;
+import com.google.common.collect.ImmutableMap;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 用户controller
@@ -76,5 +78,13 @@ public class UserController extends BaseController {
     @ApiOperation("查询轻便对象集合")
     public HandleResult getSimpleList(){
         return success(userService.getSimpleUserList());
+    }
+
+    @GetMapping("queryUser")
+    @ApiOperation("用户登录，数据写死，模拟而已")
+    public HandleResult queryUser(){
+        Map<String, String> map = ImmutableMap.of("userid", "00000001", "avatar", "https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png",
+                "name", "admin");
+        return success(map);
     }
 }
