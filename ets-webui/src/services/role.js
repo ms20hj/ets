@@ -64,13 +64,13 @@ export async function getById(id) {
 }
 
 /**
- * 获取用户集合
+ * 获取用户和菜单集合
  * @returns {Promise<void>}
  */
-export async function getUsers() {
-  return request('/server/api/user/getSimpleList')
+export async function getUserAndMenu() {
+  return request('/server/api/role/getUserAndMenu');
 }
 
 export async function getAuthDataById(id) {
-  return request(`/server/api/role/getAuthDataById?id=${id}`)
+  return request(`/server/api/role/getAuthDataById?id=${id}`);
 }

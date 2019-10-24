@@ -5,11 +5,11 @@ import {
   checkNameExist,
   remove,
   getById,
-  getUsers,
+  getUserAndMenu,
   getAuthDataById,
 } from '@/services/role';
 
-const RoleModel= {
+const RoleModel = {
   namespace: 'role',
   state: {
     pageData: {
@@ -25,13 +25,13 @@ const RoleModel= {
       roleName: '',
       status: 0,
       userIdList: [],
+      menuIdList: [],
     },
     userList: [],
-
+    menuList: [],
   },
 
   effects: {
-
     *page({ payload }, { call, put }) {
       const response = yield call(page, payload);
       yield put({
@@ -80,16 +80,17 @@ const RoleModel= {
       });
     },
 
-    *getUsers(_, { call, put }){
-      const resp = yield call(getUsers);
-      yield put ({
-        type: 'putUserList',
+    *getUserAndMenu(_, { call, put }) {
+      const resp = yield call(getUserAndMenu);
+      yield put({
+        type: 'putUserAndMenuList',
         payload: resp,
       });
     },
 
-    *getAuthRole({payload}, {call, put}) {
+    *getAuthRole({ payload }, { call, put }) {
       const resp = yield call(getAuthDataById, payload);
+      console.log('resp', resp);
       yield put({
         type: 'putTempRole',
         payload: resp,
@@ -98,7 +99,6 @@ const RoleModel= {
   },
 
   reducers: {
-
     putTableData(state, { payload }) {
       return {
         ...state,
@@ -130,6 +130,7 @@ const RoleModel= {
           roleName: '',
           status: 0,
           userIdList: [],
+          menuIdList: [],
         },
       };
     },
@@ -137,32 +138,29 @@ const RoleModel= {
     putTempRole(state, { payload }) {
       return {
         ...state,
+        tempRole: {
+          ...payload.data,
+        },
         handleResult: {
           ...payload,
         },
-        tempUser: {
-          ...payload.data,
-        },
       };
     },
 
-    putUserList(state, {payload}) {
+    putUserAndMenuList(state, { payload }) {
       return {
         ...state,
-        userList: payload.data
+        userList: payload.data.userList,
+        menuList: payload.data.menuList,
       };
     },
 
-    changeRoleUserIds(state, {payload}) {
-      console.log(payload);
+    changeAuthRole(state, { payload }) {
       return {
         ...state,
-        tempRole: {
-          userIdList: payload
-        }
+        tempRole: payload,
       };
     },
-
   },
 };
 export default RoleModel;

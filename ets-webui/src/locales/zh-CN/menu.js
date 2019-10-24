@@ -1,8 +1,8 @@
 export default {
   'menu.welcome': '欢迎',
-  'menu.system': '用户权限',
-  'menu.system.user': '用户管理',
-  'menu.system.role': '角色管理',
+  'menu.authority': '用户权限',
+  'menu.authority.user': '用户管理',
+  'menu.authority.role': '角色管理',
   'menu.more-blocks': '更多区块',
   'menu.home': '首页',
   'menu.login': '登录',

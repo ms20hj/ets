@@ -17,14 +17,14 @@ const formItemLayout = {
   tempRole: role.tempRole,
   pageData: role.pageData,
   userList: role.userList,
+  menuList: role.menuList,
 }))
 class RoleForm extends Component {
-
   constructor(props) {
     super(props);
   }
 
-  validateName = async(rule, value, callback) => {
+  validateName = async (rule, value, callback) => {
     try {
       if (value) {
         const { dispatch, tempRole } = this.props;
@@ -56,7 +56,7 @@ class RoleForm extends Component {
 
   handleSubmit = () => {
     const { form } = this.props;
-    form.validateFieldsAndScroll(['roleName',],(err, fieldsValue) => {
+    form.validateFieldsAndScroll(['roleName'], (err, fieldsValue) => {
       if (err) return;
       const { tempRole, dispatch, queryPage, clearModelsData, changeEditVisible } = this.props;
       const action = tempRole.id ? 'role/update' : 'role/save';
@@ -87,26 +87,35 @@ class RoleForm extends Component {
   };
 
   handleUserSelectChange = (targetKeys, direction, moveKeys) => {
-    const { dispatch } = this.props;
+    const { dispatch, tempRole } = this.props;
+    tempRole.userIdList = targetKeys;
     dispatch({
-      type: 'role/changeRoleUserIds',
-      payload: targetKeys,
+      type: 'role/changeAuthRole',
+      payload: tempRole,
+    });
+  };
+
+  handleMenuSelectChange = (targetKeys, direction, moveKeys) => {
+    const { dispatch, tempRole } = this.props;
+    tempRole.menuIdList = targetKeys;
+    dispatch({
+      type: 'role/changeAuthRole',
+      payload: tempRole,
     });
   };
 
   handleCancel = () => {
-    const {changeEditVisible, dispatch} = this.props;
+    const { changeEditVisible, dispatch } = this.props;
     dispatch({
       type: 'role/clearData',
     });
     changeEditVisible('', false);
   };
 
-
   render() {
-    const { editVisible, title, form, tempRole, userList } = this.props;
+    const { editVisible, title, form, tempRole, userList, menuList } = this.props;
+    console.log(tempRole);
     const { getFieldDecorator } = form;
-
     return (
       <Modal
         destroyOnClose={true}
@@ -114,36 +123,57 @@ class RoleForm extends Component {
         visible={editVisible}
         onOk={this.handleSubmit}
         onCancel={this.handleCancel}
-        width={700}
+        width={740}
       >
-        <Form {...formItemLayout}>
-          <Form.Item label="角色名称">
-            {getFieldDecorator('roleName', {
-              initialValue: tempRole.roleName,
-              rules: [
-                { required: true, message: '请输入角色名称' },
-                { max: 10, message: '角色名称不能超过10个字符' },
-                { validator: this.validateName },
-              ],
-              validateTrigger: 'onBlur',
-            })(<Input placeholder="请输入角色名称" />)}
-          </Form.Item>
-          <Form.Item label="授权用户">
-            {(<Transfer
-              dataSource={userList}
-              targetKeys={tempRole.userIdList}
-              showSearch
-              onChange={this.handleUserSelectChange}
-              render={item => item.userName}
-              rowKey={item => item.id}
-              titles=	{['未授权用户', '已授权用户']}
-              listStyle={{
-                width: 180,
-                height: 400,
-              }}
-            />)}
-          </Form.Item>
-        </Form>
+        <div style={{ height: 500, overflowY: 'auto' }}>
+          <Form {...formItemLayout}>
+            <Form.Item label="角色名称">
+              {getFieldDecorator('roleName', {
+                initialValue: tempRole.roleName,
+                rules: [
+                  { required: true, message: '请输入角色名称' },
+                  { max: 10, message: '角色名称不能超过10个字符' },
+                  { validator: this.validateName },
+                ],
+                validateTrigger: 'onBlur',
+              })(<Input placeholder="请输入角色名称" />)}
+            </Form.Item>
+            <Form.Item label="授权用户">
+              {
+                <Transfer
+                  dataSource={userList}
+                  targetKeys={tempRole.userIdList}
+                  showSearch
+                  onChange={this.handleUserSelectChange}
+                  render={item => item.userName}
+                  rowKey={item => item.id}
+                  titles={['未授权用户', '已授权用户']}
+                  listStyle={{
+                    width: 180,
+                    height: 300,
+                  }}
+                />
+              }
+            </Form.Item>
+            <Form.Item label="授权菜单">
+              {
+                <Transfer
+                  dataSource={menuList}
+                  targetKeys={tempRole.menuIdList}
+                  showSearch
+                  onChange={this.handleMenuSelectChange}
+                  render={item => item.menuName}
+                  rowKey={item => item.id}
+                  titles={['未授权菜单', '已授权菜单']}
+                  listStyle={{
+                    width: 180,
+                    height: 300,
+                  }}
+                />
+              }
+            </Form.Item>
+          </Form>
+        </div>
       </Modal>
     );
   }

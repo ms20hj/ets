@@ -37,4 +37,11 @@ public interface IRoleService extends IService<Role> {
      * @return
      */
     Role getByIdInitAuthData(String id);
+
+    /**
+     * 保存或者更新对象，同时更新授权信息
+     * @param role 角色对象
+     * @date 2019年10月23日16:44:13
+     */
+    void saveOrUpdateAuth(Role role);
 }

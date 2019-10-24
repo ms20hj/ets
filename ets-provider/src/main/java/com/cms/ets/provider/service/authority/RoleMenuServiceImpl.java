@@ -16,7 +16,7 @@ public class RoleMenuServiceImpl extends ServiceImpl<RoleMenuMapper, RoleMenu> i
     @Override
     public List<String> getAuthMenuIdByRoleId(String roleId) {
         List<RoleMenu> list = getByRoleId(roleId);
-        List<String> menuIdList = list.stream().map(RoleMenu::getId).collect(Collectors.toList());
+        List<String> menuIdList = list.stream().map(RoleMenu::getMenuId).collect(Collectors.toList());
         return menuIdList;
     }
 
@@ -32,5 +32,12 @@ public class RoleMenuServiceImpl extends ServiceImpl<RoleMenuMapper, RoleMenu> i
         QueryWrapper<RoleMenu> wrapper = new QueryWrapper<>();
         wrapper.eq("role_id", roleId);
         remove(wrapper);
+    }
+
+    @Override
+    public void saveAuth(String roleId, List<String> menuIdList) {
+        this.removeByRoleId(roleId);
+        List<RoleMenu> list = menuIdList.stream().map(menuId -> new RoleMenu(roleId, menuId)).collect(Collectors.toList());
+        saveBatch(list);
     }
 }

@@ -105,7 +105,7 @@ export default {
             {
               path: '/authority',
               icon: 'team',
-              name: 'system',
+              name: 'authority',
               routes: [
                 {
                   name: 'user',

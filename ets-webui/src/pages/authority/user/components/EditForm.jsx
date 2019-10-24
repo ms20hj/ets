@@ -22,7 +22,7 @@ class EditForm extends Component {
     super(props);
   }
 
-  validateUserName = async(rule, value, callback) => {
+  validateName = async (rule, value, callback) => {
     try {
       if (value) {
         const { dispatch, tempUser } = this.props;
@@ -32,7 +32,7 @@ class EditForm extends Component {
         if (tempUser.id) {
           param.id = tempUser.id;
         }
-        dispatch({
+        return dispatch({
           type: 'user/checkNameExist',
           payload: {
             ...param,
@@ -123,7 +123,7 @@ class EditForm extends Component {
                 { required: true, message: '请输入用户名' },
                 { pattern: /^[a-zA-Z\s]*$/, message: '用户名只能英文！' },
                 { max: 20, message: '用户名不能超过20个字符' },
-                { validator: this.validateUserName },
+                { validator: this.validateName },
               ],
               validateTrigger: 'onBlur',
             })(<Input placeholder="请输入用户名" />)}

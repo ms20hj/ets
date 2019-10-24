@@ -12,6 +12,7 @@ import com.cms.ets.model.mysql.authority.Role;
 import com.cms.ets.provider.mapper.authority.RoleMapper;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -61,5 +62,17 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
         role.setUserIdList(userIds);
         role.setMenuIdList(menuIds);
         return role;
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void saveOrUpdateAuth(Role role) {
+        if (StringUtils.isNotEmpty(role.getId())) {
+            updateById(role);
+        } else {
+            save(role);
+        }
+        roleUserService.saveAuth(role.getId(), role.getUserIdList());
+        roleMenuService.saveAuth(role.getId(), role.getMenuIdList());
     }
 }

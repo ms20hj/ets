@@ -16,7 +16,7 @@ public class RoleUserServiceImpl extends ServiceImpl<RoleUserMapper, RoleUser> i
     @Override
     public List<String> getAuthUserIdByRoleId(String roleId) {
         List<RoleUser> list = getByRoleId(roleId);
-        List<String> userIdList = list.stream().map(RoleUser::getId).collect(Collectors.toList());
+        List<String> userIdList = list.stream().map(RoleUser::getUserId).collect(Collectors.toList());
         return userIdList;
     }
 
@@ -32,5 +32,12 @@ public class RoleUserServiceImpl extends ServiceImpl<RoleUserMapper, RoleUser> i
         QueryWrapper<RoleUser> wrapper = new QueryWrapper<>();
         wrapper.eq("role_id", roleId);
         remove(wrapper);
+    }
+
+    @Override
+    public void saveAuth(String roleId, List<String> userIdList) {
+        this.removeByRoleId(roleId);
+        List<RoleUser> list = userIdList.stream().map(userId -> new RoleUser(roleId, userId)).collect(Collectors.toList());
+        saveBatch(list);
     }
 }

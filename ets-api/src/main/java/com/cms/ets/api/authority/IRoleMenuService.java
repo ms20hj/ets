@@ -28,4 +28,11 @@ public interface IRoleMenuService extends IService<RoleMenu> {
      * @date 2019年10月21日17:36:18
      */
     void removeByRoleId(String roleId);
+
+    /**
+     *
+     * @param roleId
+     * @param menuIdList
+     */
+    void saveAuth(String roleId, List<String> menuIdList);
 }

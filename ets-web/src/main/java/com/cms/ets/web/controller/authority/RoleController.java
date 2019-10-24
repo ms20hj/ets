@@ -3,13 +3,16 @@ package com.cms.ets.web.controller.authority;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.cms.ets.api.authority.IMenuService;
 import com.cms.ets.api.authority.IRoleService;
 import com.cms.ets.api.authority.IRoleUserService;
 import com.cms.ets.api.authority.IUserService;
 import com.cms.ets.common.response.HandleResult;
+import com.cms.ets.model.mysql.authority.Menu;
 import com.cms.ets.model.mysql.authority.Role;
 import com.cms.ets.model.mysql.authority.User;
 import com.cms.ets.web.controller.BaseController;
+import com.google.common.collect.ImmutableMap;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +28,8 @@ public class RoleController extends BaseController {
     private IUserService userService;
     @Reference
     private IRoleUserService roleUserService;
+    @Reference
+    private IMenuService menuService;
     /**
      * 分页查询
      * @param page 分页参数
@@ -42,15 +47,15 @@ public class RoleController extends BaseController {
     @PostMapping("save")
     @ApiOperation("保存")
     public HandleResult save(@RequestBody Role role) {
-        boolean result = roleService.save(role);
-        return verifyResp(result);
+        roleService.saveOrUpdateAuth(role);
+        return success();
     }
 
     @PostMapping("update")
     @ApiOperation("更新")
     public HandleResult update(@RequestBody Role role) {
-        boolean result = roleService.updateById(role);
-        return verifyResp(result);
+        roleService.saveOrUpdateAuth(role);
+        return success();
     }
 
     @GetMapping("checkNameExist")
@@ -79,5 +84,13 @@ public class RoleController extends BaseController {
     public HandleResult getAuthDataById(String id) {
         Role role = roleService.getByIdInitAuthData(id);
         return success(role);
+    }
+
+    @GetMapping("getUserAndMenu")
+    @ApiOperation("查询系统里面可授权的用户和菜单")
+    public HandleResult getUserAndMenu(){
+        List<User> userList = userService.getSimpleUserList();
+        List<Menu> menuList = menuService.getByCatogory(Menu.CATEGORY_SECOND);
+        return success(ImmutableMap.of("userList", userList, "menuList", menuList));
     }
 }

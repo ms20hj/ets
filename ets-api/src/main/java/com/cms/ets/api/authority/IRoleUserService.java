@@ -29,4 +29,12 @@ public interface IRoleUserService extends IService<RoleUser> {
      * @date 2019年10月21日17:36:18
      */
     void removeByRoleId(String roleId);
+
+    /**
+     * 保存授权
+     * @param roleId 角色id
+     * @param userIdList 授权用户id集合
+     * @date 2019年10月23日16:46:32
+     */
+    void saveAuth(String roleId, List<String> userIdList);
 }

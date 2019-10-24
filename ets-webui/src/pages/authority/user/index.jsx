@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import {Button, Table, Pagination, Divider, Row, Col, message, Input, Modal } from 'antd';
+import { Button, Table, Pagination, Divider, Row, Col, message, Input, Modal, Form } from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect } from 'dva';
 import EditForm from './components/EditForm';
 
+@Form.create()
 @connect(({ user, loading }) => ({
   user,
   loading: loading.models.user,
@@ -111,14 +112,13 @@ export default class User extends Component {
       okText: '确定',
       cancelText: '取消',
       onOk: () => {
-        const {selectedRows} = this.state;
+        const { selectedRows } = this.state;
         const ids = selectedRows.map(row => {
           return row.id;
         });
         this.remove(ids);
-      }
+      },
     });
-
   };
 
   remove = ids => {
@@ -240,20 +240,33 @@ export default class User extends Component {
       <PageHeaderWrapper>
         <Row>
           <Col>
-            <Button type="primary" onClick={() => this.changeEidtVisible('新增', true)} >
+            <Button type="primary" onClick={() => this.changeEidtVisible('新增', true)}>
               新增
             </Button>
-            <Button onClick={() => this.handleBatchRemove()} disabled={selectedRowKeys.length === 0} style={{marginLeft: 10}}>
+            <Button
+              onClick={() => this.handleBatchRemove()}
+              disabled={selectedRowKeys.length === 0}
+              style={{ marginLeft: 10 }}
+            >
               删除
             </Button>
-            <Input.Search placeholder="请输入用账号/姓名"
-                          onSearch={this.handleSearch}
-                          style={{ width: 200, float: "right" }} />
+            <Input.Search
+              placeholder="请输入用账号/姓名"
+              onSearch={this.handleSearch}
+              style={{ width: 200, float: 'right' }}
+            />
           </Col>
         </Row>
         <Row style={{ marginTop: 15 }}>
           <Col>
-            <Table loading={loading} columns={columns} dataSource={list} rowKey={item => item.id} pagination={false} rowSelection={rowSelection}></Table>
+            <Table
+              loading={loading}
+              columns={columns}
+              dataSource={list}
+              rowKey={item => item.id}
+              pagination={false}
+              rowSelection={rowSelection}
+            ></Table>
             <Pagination
               defaultCurrent={1}
               showSizeChanger

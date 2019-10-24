@@ -1,19 +1,18 @@
-import React, {Component} from "react";
+import React, { Component } from 'react';
 import { connect } from 'dva';
-import {Button, Col, Divider, Input, message, Modal, Pagination, Row, Table, Form} from "antd";
-import {PageHeaderWrapper} from "@ant-design/pro-layout";
-import RoleForm from "./components/RoleForm";
+import { Button, Col, Divider, Input, message, Modal, Pagination, Row, Table, Form } from 'antd';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import RoleForm from './components/RoleForm';
 
 @Form.create()
-@connect(({role, loading}) => ({
+@connect(({ role, loading }) => ({
   role,
   loading: loading.models.role,
   pageData: role.pageData,
   handleResult: role.handleResult,
   tempRole: role.tempRole,
 }))
-export default class Role extends Component{
-
+export default class Role extends Component {
   constructor(props) {
     super(props);
   }
@@ -80,9 +79,9 @@ export default class Role extends Component{
 
   changeEditVisible = (title, flag) => {
     if (flag) {
-      const {dispatch} = this.props;
+      const { dispatch } = this.props;
       dispatch({
-        type: 'role/getUsers'
+        type: 'role/getUserAndMenu',
       });
     }
     this.setState({
@@ -119,14 +118,13 @@ export default class Role extends Component{
       okText: '确定',
       cancelText: '取消',
       onOk: () => {
-        const {selectedRows} = this.state;
+        const { selectedRows } = this.state;
         const ids = selectedRows.map(row => {
           return row.id;
         });
         this.remove(ids);
-      }
+      },
     });
-
   };
 
   remove = ids => {
@@ -161,6 +159,8 @@ export default class Role extends Component{
       payload: id,
     }).then(() => {
       const { handleResult, tempRole, pageData } = this.props;
+      console.log('handlePreEdit', tempRole);
+      console.log('handlePreEdit', handleResult);
       if (handleResult.status && tempRole !== null) {
         this.changeEditVisible('编辑', true);
       } else {
@@ -233,20 +233,33 @@ export default class Role extends Component{
       <PageHeaderWrapper>
         <Row>
           <Col>
-            <Button type="primary" onClick={() => this.changeEditVisible('新增', true)} >
+            <Button type="primary" onClick={() => this.changeEditVisible('新增', true)}>
               新增
             </Button>
-            <Button onClick={() => this.handleBatchRemove()} disabled={selectedRowKeys.length === 0} style={{marginLeft: 10}}>
+            <Button
+              onClick={() => this.handleBatchRemove()}
+              disabled={selectedRowKeys.length === 0}
+              style={{ marginLeft: 10 }}
+            >
               删除
             </Button>
-            <Input.Search placeholder="请输入角色名称"
-                          onSearch={this.handleSearch}
-                          style={{ width: 200, float: "right" }} />
+            <Input.Search
+              placeholder="请输入角色名称"
+              onSearch={this.handleSearch}
+              style={{ width: 200, float: 'right' }}
+            />
           </Col>
         </Row>
         <Row style={{ marginTop: 15 }}>
           <Col>
-            <Table loading={loading} columns={columns} dataSource={list} rowKey={item => item.id} pagination={false} rowSelection={rowSelection}></Table>
+            <Table
+              loading={loading}
+              columns={columns}
+              dataSource={list}
+              rowKey={item => item.id}
+              pagination={false}
+              rowSelection={rowSelection}
+            ></Table>
             <Pagination
               defaultCurrent={1}
               showSizeChanger
