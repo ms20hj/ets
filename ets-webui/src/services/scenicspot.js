@@ -7,7 +7,7 @@ import request from '@/utils/request';
  */
 export async function page(param) {
   return request(
-    `/server/api/role/page?current=${param.current}&size=${param.size}&name=${
+    `/server/api/scenicSpot/page?current=${param.current}&size=${param.size}&name=${
       param.name ? param.name : ''
     }`,
   );
@@ -19,7 +19,7 @@ export async function page(param) {
  * @returns {Promise<void>}
  */
 export async function save(obj) {
-  return request('/server/api/role/save', {
+  return request('/server/api/scenicSpot/save', {
     method: 'POST',
     data: {
       ...obj,
@@ -33,7 +33,7 @@ export async function save(obj) {
  * @returns {Promise<void>}
  */
 export async function update(obj) {
-  return request('/server/api/role/update', {
+  return request('/server/api/scenicSpot/update', {
     method: 'POST',
     data: {
       ...obj,
@@ -48,29 +48,17 @@ export async function update(obj) {
  */
 export async function checkNameExist(param) {
   return request(
-    `/server/api/role/checkNameExist?roleName=${param.roleName}&id=${param.id ? param.id : ''}`,
+    `/server/api/scenicSpot/checkNameExist?name=${param.name}&id=${param.id ? param.id : ''}`,
   );
 }
 
 export async function remove(param) {
-  return request('/server/api/role/remove', {
+  return request('/server/api/scenicSpot/remove', {
     method: 'DELETE',
     data: param,
   });
 }
 
 export async function getById(id) {
-  return request(`/server/api/role/getById?id=${id}`);
-}
-
-/**
- * 获取用户和菜单集合
- * @returns {Promise<void>}
- */
-export async function getUserAndMenu() {
-  return request('/server/api/role/getUserAndMenu');
-}
-
-export async function getAuthDataById(id) {
-  return request(`/server/api/role/getAuthDataById?id=${id}`);
+  return request(`/server/api/scenicSpot/getById?id=${id}`);
 }

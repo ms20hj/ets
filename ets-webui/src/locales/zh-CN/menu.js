@@ -3,6 +3,9 @@ export default {
   'menu.authority': '用户权限',
   'menu.authority.user': '用户管理',
   'menu.authority.role': '角色管理',
+  'menu.park': '园区管理',
+  'menu.park.scenicspot': '景区管理',
+
   'menu.more-blocks': '更多区块',
   'menu.home': '首页',
   'menu.login': '登录',

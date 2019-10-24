@@ -121,6 +121,20 @@ export default {
                 },
               ],
             },
+
+            {
+              path: '/park',
+              icon: 'team',
+              name: 'park',
+              routes: [
+                {
+                  name: 'scenicspot',
+                  path: '/park/scenicspot',
+                  component: './park/scenicspot',
+                  exact: true,
+                },
+              ],
+            },
             {
               component: './404',
             },
