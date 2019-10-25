@@ -40,4 +40,11 @@ public class SaleSiteServiceImpl extends ServiceImpl<SaleSiteMapper, SaleSite> i
         List<SaleSite> list = list(wrapper);
         return !list.isEmpty();
     }
+
+    @Override
+    public List<SaleSite> getSimpleList() {
+        QueryWrapper<SaleSite> wrapper = new QueryWrapper<>();
+        wrapper.select("id", "site_name");
+        return list(wrapper);
+    }
 }

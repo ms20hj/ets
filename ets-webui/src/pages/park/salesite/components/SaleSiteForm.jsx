@@ -41,7 +41,7 @@ class SaleSiteForm extends Component {
         }).then(() => {
           const { handleResult } = this.props;
           if (handleResult.data) {
-            return Promise.reject(new Error('景点名称已存在'));
+            return Promise.reject(new Error('站点名称已存在'));
           } else {
             return Promise.resolve();
           }

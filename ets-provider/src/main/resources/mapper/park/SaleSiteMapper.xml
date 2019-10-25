@@ -3,7 +3,7 @@
 <mapper namespace="com.cms.ets.provider.mapper.park.SaleSiteMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.cms.ets.model.mysql.park.SaleSite">
+    <resultMap id="SaleSiteResultMap" type="com.cms.ets.model.mysql.park.SaleSite">
         <result column="id" property="id" />
         <result column="site_name" property="siteName" />
         <result column="scenic_spot_id" property="scenicSpotId" />
@@ -14,7 +14,7 @@
         </association>
     </resultMap>
 
-    <select id="pageQuery" parameterType="string" resultMap="BaseResultMap">
+    <select id="pageQuery" parameterType="string" resultMap="SaleSiteResultMap">
         SELECT s.id, s.site_name, s.description, s.scenic_spot_id, sp.id AS ssid, sp.spot_name
         FROM t_sale_site s LEFT JOIN t_scenic_spot sp ON s.scenic_spot_id = sp.id
         <if test="name != null and name != '' ">

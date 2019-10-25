@@ -145,6 +145,12 @@ export default {
                   component: './park/salesite',
                   exact: true,
                 },
+                {
+                  name: 'salewindow',
+                  path: '/park/salewindow',
+                  component: './park/salewindow',
+                  exact: true,
+                },
               ],
             },
             {
