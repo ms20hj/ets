@@ -43,4 +43,12 @@ public class ScenicSpotServiceImpl extends ServiceImpl<ScenicSpotMapper, ScenicS
         List<ScenicSpot> list = list(wrapper);
         return !list.isEmpty();
     }
+
+    @Override
+    public List<ScenicSpot> getSimpleList() {
+        QueryWrapper<ScenicSpot> wrapper = new QueryWrapper<>();
+        wrapper.select("id", "spot_name");
+        wrapper.orderByDesc("create_time");
+        return list(wrapper);
+    }
 }

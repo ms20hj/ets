@@ -2,16 +2,15 @@ import React, { Component } from 'react';
 import { Button, Table, Pagination, Divider, Row, Col, message, Input, Modal, Form } from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect } from 'dva';
-import ScenicSpotForm from './components/ScenicSpotForm';
-import {getContentHeight} from "../../../utils/utils";
+import ScapeForm from './components/ScapeForm';
 
 @Form.create()
-@connect(({ scenicSpot, loading }) => ({
-  scenicSpot,
-  loading: loading.models.scenicSpot,
-  pageData: scenicSpot.pageData,
-  handleResult: scenicSpot.handleResult,
-  tempScenicSpot: scenicSpot.tempScenicSpot,
+@connect(({ scape, loading }) => ({
+  scape,
+  loading: loading.models.scape,
+  pageData: scape.pageData,
+  handleResult: scape.handleResult,
+  tempScape: scape.tempScape,
 }))
 export default class ScenicSpot extends Component {
   constructor(props) {
@@ -23,8 +22,6 @@ export default class ScenicSpot extends Component {
     editTitle: '新增',
     selectedRowKeys: [],
     selectedRows: [],
-    tableScroll: {},
-    contentHeight: getContentHeight(),
   };
 
   componentDidMount() {
@@ -43,7 +40,7 @@ export default class ScenicSpot extends Component {
   queryPage = param => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'scenicSpot/page',
+      type: 'scape/page',
       payload: {
         ...param,
       },
@@ -53,25 +50,6 @@ export default class ScenicSpot extends Component {
         selectedRowKeys: [],
         selectedRows: [],
       });
-    });
-  };
-
-  /**
-   * 根据table数据量计算table高度和滚动
-   */
-  calculateTableHeight = () => {
-    const {pageData} = this.props;
-    let tableScroll;
-    const recordHeight = pageData.list.length * 57;
-    const {contentHeight} = this.state;
-    const tableHeight = contentHeight- 80;
-    if(recordHeight > tableHeight){
-      tableScroll = {x:false,y:tableHeight-50};
-    }else{
-      tableScroll = {x:false,y:false};
-    }
-    this.setState({
-      tableScroll,
     });
   };
 
@@ -102,6 +80,12 @@ export default class ScenicSpot extends Component {
   }
 
   changeEidtVisible = (title, flag) => {
+    if (flag) {
+      const {dispatch} = this.props;
+      dispatch({
+        type: 'scape/getScenicSpotList'
+      });
+    }
     this.setState({
       editVisible: flag,
       editTitle: title,
@@ -113,7 +97,7 @@ export default class ScenicSpot extends Component {
   clearModelsData = () => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'scenicSpot/clearData',
+      type: 'scape/clearData',
     });
   };
   /**
@@ -154,10 +138,9 @@ export default class ScenicSpot extends Component {
   };
 
   remove = ids => {
-    console.log(ids);
     const { dispatch } = this.props;
     dispatch({
-      type: 'scenicSpot/remove',
+      type: 'scape/remove',
       payload: ids,
     }).then(() => {
       const { handleResult, pageData } = this.props;
@@ -181,11 +164,11 @@ export default class ScenicSpot extends Component {
   handlePreEdit = id => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'scenicSpot/getById',
+      type: 'scape/getById',
       payload: id,
     }).then(() => {
-      const { handleResult, tempScenicSpot, pageData } = this.props;
-      if (handleResult.status && tempScenicSpot !== null) {
+      const { handleResult, tempScape, pageData } = this.props;
+      if (handleResult.status && tempScape !== null) {
         this.changeEidtVisible('编辑', true);
       } else {
         const param = {
@@ -219,9 +202,14 @@ export default class ScenicSpot extends Component {
         render: (text, record, index) => <span>{index + 1}</span>,
       },
       {
-        title: '景区名称',
-        dataIndex: 'spotName',
-        key: 'spotName',
+        title: '景点名称',
+        dataIndex: 'scapeName',
+        key: 'scapeName',
+      },
+      {
+        title: '所属景区',
+        dataIndex: 'scenicSpot.scapeName',
+        key: 'scenicSpot.scapeName',
       },
       {
         title: '描述',
@@ -267,7 +255,7 @@ export default class ScenicSpot extends Component {
               删除
             </Button>
             <Input.Search
-              placeholder="请输入景区名称"
+              placeholder="请输入景点名称"
               onSearch={this.handleSearch}
               style={{ width: 200, float: 'right' }}
             />
@@ -295,7 +283,7 @@ export default class ScenicSpot extends Component {
             />
           </Col>
         </Row>
-        <ScenicSpotForm editVisible={editVisible} title={editTitle} {...editMethods} />
+        <ScapeForm editVisible={editVisible} title={editTitle} {...editMethods} />
       </PageHeaderWrapper>
     );
   }

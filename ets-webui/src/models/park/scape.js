@@ -1,7 +1,7 @@
-import { page, save, update, checkNameExist, remove, getById } from '@/services/scenicSpot';
+import { page, save, update, checkNameExist, remove, getById, getScenicSpotList } from '@/services/scape';
 
-const ScenicSpotModel = {
-  namespace: 'scenicSpot',
+const ScapeModel = {
+  namespace: 'scape',
   state: {
     pageData: {
       list: [],
@@ -12,10 +12,12 @@ const ScenicSpotModel = {
       },
     },
     handleResult: null,
-    tempScenicSpot: {
-      spotName: '',
+    tempScape: {
+      scapeName: '',
       description: '',
+      scenicSpotId: '',
     },
+    scenicSpotList: [],
   },
 
   effects: {
@@ -62,10 +64,19 @@ const ScenicSpotModel = {
     *getById({ payload }, { call, put }) {
       const response = yield call(getById, payload);
       yield put({
-        type: 'putTempScenicSpot',
+        type: 'putTempScape',
         payload: response,
       });
     },
+
+    *getScenicSpotList(_, { call, put }) {
+      const response = yield call(getScenicSpotList);
+      yield put({
+        type: 'putScenicSpotList',
+        payload: response
+      });
+    },
+
   },
 
   reducers: {
@@ -96,17 +107,18 @@ const ScenicSpotModel = {
       return {
         ...state,
         handleResult: null,
-        tempScenicSpot: {
-          spotName: '',
+        tempScape: {
+          scapeName: '',
           description: '',
+          scenicSpotId: '',
         },
       };
     },
 
-    putTempScenicSpot(state, { payload }) {
+    putTempScape(state, { payload }) {
       return {
         ...state,
-        tempScenicSpot: {
+        tempScape: {
           ...payload.data,
         },
         handleResult: {
@@ -114,6 +126,14 @@ const ScenicSpotModel = {
         },
       };
     },
+
+    putScenicSpotList(state, { payload }){
+      return {
+        ...state,
+        scenicSpotList: payload.data,
+      };
+    },
+
   },
 };
-export default ScenicSpotModel;
+export default ScapeModel;

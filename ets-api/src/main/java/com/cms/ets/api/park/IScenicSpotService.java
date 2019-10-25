@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.cms.ets.model.mysql.park.ScenicSpot;
 
+import java.util.List;
+
 /**
  * <p>
  * 景区信息表 服务类
@@ -30,4 +32,11 @@ public interface IScenicSpotService extends IService<ScenicSpot> {
      * @return 存在true, 不存在false
      */
     boolean checkNameExist(String name, String id);
+
+    /**
+     * 简易查询，只查询id、spotName
+     * @return List<ScenicSpot>
+     * @date 2019年10月25日11:45:21
+     */
+    List<ScenicSpot> getSimpleList();
 }

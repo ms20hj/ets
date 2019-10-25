@@ -28,7 +28,11 @@ public class Scape extends BaseEntity {
      */
     @TableField("scenic_spot_id")
     private String scenicSpotId;
-
+    /**
+     * 所属景区关联对象
+     */
+    @TableField(exist = false)
+    private ScenicSpot scenicSpot;
     /**
      * 描述
      */
@@ -55,6 +59,14 @@ public class Scape extends BaseEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public ScenicSpot getScenicSpot() {
+        return scenicSpot;
+    }
+
+    public void setScenicSpot(ScenicSpot scenicSpot) {
+        this.scenicSpot = scenicSpot;
     }
 
     @Override

@@ -103,9 +103,17 @@ export default class Role extends Component {
    * @param id
    */
   handleRemove = id => {
-    let ids = new Array();
-    ids.push(id);
-    this.remove(ids);
+    Modal.confirm({
+      title: '提示',
+      content: '确定删除此数据？',
+      okText: '确定',
+      cancelText: '取消',
+      onOk: () => {
+        let ids = new Array();
+        ids.push(id);
+        this.remove(ids);
+      },
+    });
   };
 
   /**

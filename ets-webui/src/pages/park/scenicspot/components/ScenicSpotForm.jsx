@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Form, Input, message, Modal, Radio } from 'antd';
-import { connect } from 'dva';
+import React, {Component} from 'react';
+import {Form, Input, message, Modal} from 'antd';
+import {connect} from 'dva';
 
 const formItemLayout = {
   labelCol: {

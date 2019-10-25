@@ -76,4 +76,11 @@ public class ScenicSpotController extends BaseController {
         ScenicSpot scenicSpot = scenicSpotService.getById(id);
         return success(scenicSpot);
     }
+
+    @GetMapping("getSimpleList")
+    @ApiOperation("查询全部数据，返回的对象集合只有id、spotName有值")
+    public HandleResult getSimpleList() {
+        List<ScenicSpot> list = scenicSpotService.getSimpleList();
+        return success(list);
+    }
 }

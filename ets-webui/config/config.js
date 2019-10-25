@@ -133,6 +133,12 @@ export default {
                   component: './park/scenicspot',
                   exact: true,
                 },
+                {
+                  name: 'scape',
+                  path: '/park/scape',
+                  component: './park/scape',
+                  exact: true,
+                },
               ],
             },
             {
