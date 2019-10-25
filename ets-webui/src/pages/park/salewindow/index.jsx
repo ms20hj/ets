@@ -255,7 +255,7 @@ export default class SaleWindow extends Component {
               删除
             </Button>
             <Input.Search
-              placeholder="请输入站点名称"
+              placeholder="请输入窗口名称"
               onSearch={this.handleSearch}
               style={{ width: 200, float: 'right' }}
             />
