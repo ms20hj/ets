@@ -21,3 +21,9 @@ export const isAntDesignProOrDev = () => {
   return isAntDesignPro();
 };
 export const getPageQuery = () => parse(window.location.href.split('?')[1]);
+
+export function getContentHeight(){
+  const topNavHeight = 100;
+  const pageHeaderHeight = 100;
+  return document.documentElement.clientHeight - topNavHeight - pageHeaderHeight - 40;
+}

@@ -37,6 +37,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
         if (StringUtils.isNotBlank(name)) {
             wrapper.like("role_name", name);
         }
+        wrapper.orderByDesc("create_time");
         return page(page, wrapper);
     }
 

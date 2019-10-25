@@ -124,7 +124,7 @@ export default {
 
             {
               path: '/park',
-              icon: 'team',
+              icon: 'slack',
               name: 'park',
               routes: [
                 {

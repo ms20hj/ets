@@ -29,6 +29,7 @@ public class ScenicSpotServiceImpl extends ServiceImpl<ScenicSpotMapper, ScenicS
         if (StringUtils.isNotBlank(name)) {
             wrapper.like("spot_name", name);
         }
+        wrapper.orderByDesc("create_time");
         return page(page, wrapper);
     }
 

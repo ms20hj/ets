@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Button, Table, Pagination, Divider, Row, Col, message, Input, Modal, Form } from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect } from 'dva';
-// import EditForm from './components/EditForm';
+import ScenicSpotForm from './components/ScenicSpotForm';
+import {getContentHeight} from "../../../utils/utils";
 
 @Form.create()
 @connect(({ scenicSpot, loading }) => ({
@@ -22,6 +23,8 @@ export default class ScenicSpot extends Component {
     editTitle: '新增',
     selectedRowKeys: [],
     selectedRows: [],
+    tableScroll: {},
+    contentHeight: getContentHeight(),
   };
 
   componentDidMount() {
@@ -45,12 +48,33 @@ export default class ScenicSpot extends Component {
         ...param,
       },
     }).then(() => {
+      // this.calculateTableHeight();
       this.setState({
         selectedRowKeys: [],
         selectedRows: [],
       });
     });
   };
+
+  /**
+   * 根据table数据量计算table高度和滚动
+   */
+  calculateTableHeight = () => {
+    const {pageData} = this.props;
+    let tableScroll;
+    const recordHeight = pageData.list.length * 57;
+    const {contentHeight} = this.state;
+    const tableHeight = contentHeight- 80;
+    if(recordHeight > tableHeight){
+      tableScroll = {x:false,y:tableHeight-50};
+    }else{
+      tableScroll = {x:false,y:false};
+    }
+    this.setState({
+      tableScroll,
+    });
+  };
+
   /**
    * 搜索
    * @param value
@@ -187,30 +211,14 @@ export default class ScenicSpot extends Component {
         render: (text, record, index) => <span>{index + 1}</span>,
       },
       {
-        title: '账号',
-        dataIndex: 'userName',
-        key: 'userName',
+        title: '景区名称',
+        dataIndex: 'spotName',
+        key: 'spotName',
       },
       {
-        title: '真实姓名',
-        dataIndex: 'realName',
-        key: 'realName',
-      },
-      {
-        title: '手机号码',
-        dataIndex: 'phone',
-        key: 'phone',
-      },
-      {
-        title: '性别',
-        dataIndex: 'gender',
-        key: 'gender',
-      },
-      {
-        title: '状态',
-        key: 'status',
-        dataIndex: 'status',
-        render: status => <span>{status === 0 ? '启用' : '禁用'}</span>,
+        title: '描述',
+        dataIndex: 'description',
+        key: 'description',
       },
       {
         title: '操作',
@@ -251,7 +259,7 @@ export default class ScenicSpot extends Component {
               删除
             </Button>
             <Input.Search
-              placeholder="请输入用账号/姓名"
+              placeholder="请输入景区名称"
               onSearch={this.handleSearch}
               style={{ width: 200, float: 'right' }}
             />
@@ -266,7 +274,8 @@ export default class ScenicSpot extends Component {
               rowKey={item => item.id}
               pagination={false}
               rowSelection={rowSelection}
-            ></Table>
+            >
+            </Table>
             <Pagination
               defaultCurrent={1}
               showSizeChanger
@@ -278,7 +287,7 @@ export default class ScenicSpot extends Component {
             />
           </Col>
         </Row>
-        {/*<EditForm editVisible={editVisible} title={editTitle} {...editMethods} />*/}
+        <ScenicSpotForm editVisible={editVisible} title={editTitle} {...editMethods} />
       </PageHeaderWrapper>
     );
   }
