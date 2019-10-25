@@ -19,7 +19,7 @@ public interface IScapeService extends IService<Scape> {
      * 分页查询
      * @param page 分页参数
      * @param name 名称
-     * @return Role
+     * @return IPage
      */
     IPage<Scape> page(Page<Scape> page, String name);
 

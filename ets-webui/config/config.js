@@ -139,6 +139,12 @@ export default {
                   component: './park/scape',
                   exact: true,
                 },
+                {
+                  name: 'salesite',
+                  path: '/park/salesite',
+                  component: './park/salesite',
+                  exact: true,
+                },
               ],
             },
             {

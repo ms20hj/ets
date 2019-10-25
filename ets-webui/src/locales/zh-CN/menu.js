@@ -6,6 +6,7 @@ export default {
   'menu.park': '园区管理',
   'menu.park.scenicspot': '景区管理',
   'menu.park.scape': '景点管理',
+  'menu.park.salesite': '销售站点管理',
 
   'menu.more-blocks': '更多区块',
   'menu.home': '首页',

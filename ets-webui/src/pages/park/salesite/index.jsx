@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import { Button, Table, Pagination, Divider, Row, Col, message, Input, Modal, Form } from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect } from 'dva';
-import ScapeForm from './components/ScapeForm';
+import SaleSiteForm from './components/SaleSiteForm';
 
 @Form.create()
-@connect(({ scape, loading }) => ({
-  scape,
-  loading: loading.models.scape,
-  pageData: scape.pageData,
-  handleResult: scape.handleResult,
-  tempScape: scape.tempScape,
+@connect(({ saleSite, loading }) => ({
+  saleSite,
+  loading: loading.models.saleSite,
+  pageData: saleSite.pageData,
+  handleResult: saleSite.handleResult,
+  tempSaleSite: saleSite.tempSaleSite,
 }))
-export default class Scape extends Component {
+export default class SaleSite extends Component {
   constructor(props) {
     super(props);
   }
@@ -40,7 +40,7 @@ export default class Scape extends Component {
   queryPage = param => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'scape/page',
+      type: 'saleSite/page',
       payload: {
         ...param,
       },
@@ -83,7 +83,7 @@ export default class Scape extends Component {
     if (flag) {
       const { dispatch } = this.props;
       dispatch({
-        type: 'scape/getScenicSpotList',
+        type: 'saleSite/getScenicSpotList',
       });
     }
     this.setState({
@@ -97,7 +97,7 @@ export default class Scape extends Component {
   clearModelsData = () => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'scape/clearData',
+      type: 'saleSite/clearData',
     });
   };
   /**
@@ -140,7 +140,7 @@ export default class Scape extends Component {
   remove = ids => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'scape/remove',
+      type: 'saleSite/remove',
       payload: ids,
     }).then(() => {
       const { handleResult, pageData } = this.props;
@@ -164,11 +164,11 @@ export default class Scape extends Component {
   handlePreEdit = id => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'scape/getById',
+      type: 'saleSite/getById',
       payload: id,
     }).then(() => {
-      const { handleResult, tempScape, pageData } = this.props;
-      if (handleResult.status && tempScape !== null) {
+      const { handleResult, tempSaleSite, pageData } = this.props;
+      if (handleResult.status && tempSaleSite !== null) {
         this.changeEidtVisible('编辑', true);
       } else {
         const param = {
@@ -202,14 +202,14 @@ export default class Scape extends Component {
         render: (text, record, index) => <span>{index + 1}</span>,
       },
       {
-        title: '景点名称',
-        dataIndex: 'scapeName',
-        key: 'scapeName',
+        title: '站点名称',
+        dataIndex: 'siteName',
+        key: 'siteName',
       },
       {
         title: '所属景区',
-        dataIndex: 'scenicSpot.scapeName',
-        key: 'scenicSpot.scapeName',
+        dataIndex: 'scenicSpot.spotName',
+        key: 'scenicSpot.spotName',
       },
       {
         title: '描述',
@@ -255,7 +255,7 @@ export default class Scape extends Component {
               删除
             </Button>
             <Input.Search
-              placeholder="请输入景点名称"
+              placeholder="请输入站点名称"
               onSearch={this.handleSearch}
               style={{ width: 200, float: 'right' }}
             />
@@ -282,7 +282,7 @@ export default class Scape extends Component {
             />
           </Col>
         </Row>
-        <ScapeForm editVisible={editVisible} title={editTitle} {...editMethods} />
+        <SaleSiteForm editVisible={editVisible} title={editTitle} {...editMethods} />
       </PageHeaderWrapper>
     );
   }

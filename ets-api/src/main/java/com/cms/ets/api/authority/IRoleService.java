@@ -19,7 +19,7 @@ public interface IRoleService extends IService<Role> {
      * 分页查询
      * @param page 分页参数
      * @param name 名称
-     * @return Role
+     * @return IPage
      */
     IPage<Role> page(Page<Role> page, String name);
 

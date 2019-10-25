@@ -52,7 +52,7 @@ public class ScenicSpotController extends BaseController {
     @PostMapping("update")
     @ApiOperation("更新")
     public HandleResult update(@RequestBody ScenicSpot scenicSpot) {
-        scenicSpotService.save(scenicSpot);
+        scenicSpotService.updateById(scenicSpot);
         return success();
     }
 

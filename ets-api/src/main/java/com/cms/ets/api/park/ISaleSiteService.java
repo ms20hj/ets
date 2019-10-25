@@ -3,27 +3,24 @@ package com.cms.ets.api.park;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.cms.ets.model.mysql.park.ScenicSpot;
-
-import java.util.List;
+import com.cms.ets.model.mysql.park.SaleSite;
 
 /**
  * <p>
- * 景区信息表 服务类
+ * 销售站点信息表 服务类
  * </p>
  *
  * @author cms
- * @since 2019-10-24
+ * @since 2019-10-25
  */
-public interface IScenicSpotService extends IService<ScenicSpot> {
-
+public interface ISaleSiteService extends IService<SaleSite> {
     /**
      * 分页查询
      * @param page 分页参数
      * @param name 名称
      * @return IPage
      */
-    IPage<ScenicSpot> page(Page<ScenicSpot> page, String name);
+    IPage<SaleSite> page(Page<SaleSite> page, String name);
 
     /**
      * 校验角色名称是否已存在
@@ -32,11 +29,4 @@ public interface IScenicSpotService extends IService<ScenicSpot> {
      * @return 存在true, 不存在false
      */
     boolean checkNameExist(String name, String id);
-
-    /**
-     * 简易查询，只查询id、spotName
-     * @return List<ScenicSpot>
-     * @date 2019年10月25日11:45:21
-     */
-    List<ScenicSpot> getSimpleList();
 }
