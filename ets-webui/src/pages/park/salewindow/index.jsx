@@ -270,7 +270,8 @@ export default class SaleWindow extends Component {
               rowKey={item => item.id}
               pagination={false}
               rowSelection={rowSelection}
-            ></Table>
+            >
+            </Table>
             <Pagination
               defaultCurrent={1}
               showSizeChanger
