@@ -26,7 +26,7 @@ public interface IScenicSpotService extends IService<ScenicSpot> {
     IPage<ScenicSpot> page(Page<ScenicSpot> page, String name);
 
     /**
-     * 校验角色名称是否已存在
+     * 校验名称是否已存在
      * @param name 名称
      * @param id 主键
      * @return 存在true, 不存在false

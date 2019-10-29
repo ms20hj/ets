@@ -154,6 +154,19 @@ export default {
               ],
             },
             {
+              path: '/marketing',
+              icon: 'bank',
+              name: 'marketing',
+              routes: [
+                {
+                  name: 'travelagency',
+                  path: '/marketing/travelagency',
+                  component: './marketing/travelagency',
+                  exact: true,
+                },
+              ],
+            },
+            {
               component: './404',
             },
           ],
