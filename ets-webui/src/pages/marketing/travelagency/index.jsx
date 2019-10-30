@@ -3,7 +3,7 @@ import {Button, Table, Pagination, Divider, Row, Col, message, Input, Modal, For
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect } from 'dva';
 import TravelTypeForm from './components/TravelTypeForm';
-import SaleWindowForm from "../../park/salewindow/components/SaleWindowForm";
+import TravelAgencyForm from './components/TravelAgencyForm';
 import {getContentHeight} from "../../../utils/utils";
 
 @Form.create()
@@ -27,6 +27,7 @@ export default class TravelAgency extends Component {
     editTypeTitle: '新增',
     typeAddButtonDisabled: true,
     typeEditButtonDisabled: true,
+    typeDelButtonDisabled: true,
     addButtonDisabled: true,
     selectedRowKeys: [],
     selectedRows: [],
@@ -49,6 +50,13 @@ export default class TravelAgency extends Component {
    * @param param
    */
   queryPage = param => {
+    if (!param) {
+      const { pageData } = this.props;
+      param = {
+        current: 1,
+        size: pageData.pagination.size,
+      }
+    }
     const {currentKey} = this.state;
     param.parentId = currentKey;
     const { dispatch } = this.props;
@@ -63,6 +71,12 @@ export default class TravelAgency extends Component {
         selectedRowKeys: [],
         selectedRows: [],
       });
+      const { pageData } = this.props;
+      if (pageData.list.length === 0) {
+        this.setState({typeDelButtonDisabled: false});
+      } else {
+        this.setState({typeDelButtonDisabled: true});
+      }
     });
   };
 
@@ -74,16 +88,21 @@ export default class TravelAgency extends Component {
       const {treeTravel,pageData} = this.props;
       const rootNode = treeTravel[0];
       if (rootNode.children && rootNode.children.length > 0) {
-        debugger;
         const child = rootNode.children[0];
         this.setState({
           treeSelectKeys: [child.id],
           currentKey: child.id,
+          typeAddButtonDisabled: true,
+          typeEditButtonDisabled: false,
+          addButtonDisabled: false,
         })
       } else {
         this.setState({
           treeSelectKeys: [],
           currentKey: '',
+          typeAddButtonDisabled: false,
+          typeEditButtonDisabled: true,
+          addButtonDisabled: true,
         })
       }
       const param = {
@@ -91,8 +110,7 @@ export default class TravelAgency extends Component {
         size: pageData.pagination.size,
       };
       this.queryPage(param);
-    });
-  };
+    })};
 
   /**
    * 搜索
@@ -125,6 +143,9 @@ export default class TravelAgency extends Component {
       editVisible: flag,
       editTitle: title,
     });
+    if (!flag) {
+      this.clearModelsData();
+    }
   };
 
   changeEditTypeVisible = (title, flag) => {
@@ -132,6 +153,12 @@ export default class TravelAgency extends Component {
       editTypeVisible: flag,
       editTypeTitle: title,
     });
+    if (!flag) {
+      const {dispatch} = this.props;
+      dispatch({
+        type: 'travelAgency/clearTypeData'
+      });
+    }
   };
   /**
    * 清理model 那边的临时数据
@@ -297,8 +324,10 @@ export default class TravelAgency extends Component {
   onSelectTreeNode = (selectedKeys, info) => {
     const props = info.node.props;
     this.setState({
-      currentKey:props.eventKey
+      currentKey:props.eventKey,
+      treeSelectKeys: [props.eventKey],
     });
+    setTimeout(() => {this.queryPage()}, 300);
     if (props.eventKey === 'ROOT') {
       this.setState({
         typeAddButtonDisabled: false,
@@ -318,7 +347,7 @@ export default class TravelAgency extends Component {
     const { pageData, loading, treeTravel } = this.props;
     const { list, pagination } = pageData;
     const { editVisible, editTitle, editTypeVisible, editTypeTitle, selectedRowKeys, typeAddButtonDisabled,
-      typeEditButtonDisabled, addButtonDisabled, currentKey, treeSelectKeys } = this.state;
+      typeEditButtonDisabled, typeDelButtonDisabled, addButtonDisabled, currentKey, treeSelectKeys } = this.state;
     const columns = [
       {
         title: '序号',
@@ -371,6 +400,7 @@ export default class TravelAgency extends Component {
       queryPage: this.queryPage,
       clearModelsData: this.clearModelsData,
       changeEditVisible: this.changeEditVisible,
+      parentId: currentKey,
     };
     const editTypeMethods = {
       queryTree: this.queryTree,
@@ -394,7 +424,7 @@ export default class TravelAgency extends Component {
                         onClick={() => this.handlePreTypeEdit()}>
                   编辑
                 </Button>
-                <Button disabled={list.length === 0 && typeEditButtonDisabled}
+                <Button disabled={typeDelButtonDisabled}
                         style={{ marginLeft: 10 }}
                         onClick={() => this.handleRemoveType()}>
                   删除
@@ -404,8 +434,8 @@ export default class TravelAgency extends Component {
             <Row>
               <Col>
                 <Tree
+                  expandedKeys={['ROOT']}
                   selectedKeys={treeSelectKeys}
-                  defaultExpandAll
                   onSelect={this.onSelectTreeNode}
                   style={{height: getContentHeight()-50}}
                 >
@@ -460,6 +490,7 @@ export default class TravelAgency extends Component {
           </Col>
         </Row>
         <TravelTypeForm editTypeVisible={editTypeVisible} title={editTypeTitle} {...editTypeMethods} />
+        <TravelAgencyForm editVisible={editVisible} title={editTitle} {...editMethods} />
       </PageHeaderWrapper>
     );
   }

@@ -57,7 +57,7 @@ class ScapeForm extends Component {
     const { form } = this.props;
     form.validateFieldsAndScroll((err, fieldsValue) => {
       if (err) return;
-      const { tempScape, dispatch, queryPage, clearModelsData, changeEidtVisible } = this.props;
+      const { tempScape, dispatch, queryPage, changeEidtVisible } = this.props;
       const action = tempScape.id ? 'scape/update' : 'scape/save';
       tempScape.id ? (fieldsValue.id = tempScape.id) : '';
       dispatch({
@@ -68,7 +68,6 @@ class ScapeForm extends Component {
       }).then(() => {
         const { handleResult, pageData } = this.props;
         if (handleResult.status) {
-          clearModelsData();
           const param = {
             current: 1,
             size: pageData.pagination.size,

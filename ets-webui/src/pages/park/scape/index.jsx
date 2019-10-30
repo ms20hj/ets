@@ -90,6 +90,9 @@ export default class Scape extends Component {
       editVisible: flag,
       editTitle: title,
     });
+    if (!flag) {
+      this.clearModelsData();
+    }
   };
   /**
    * 清理model 那边的临时数据

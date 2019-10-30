@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Form, Input, message, Modal, Radio } from 'antd';
-import { connect } from 'dva';
+import React, {Component} from 'react';
+import {Form, Input, message, Modal, Radio} from 'antd';
+import {connect} from 'dva';
 
 const formItemLayout = {
   labelCol: {
@@ -77,7 +77,7 @@ class EditForm extends Component {
     const { form } = this.props;
     form.validateFieldsAndScroll((err, fieldsValue) => {
       if (err) return;
-      const { tempUser, dispatch, queryPage, clearModelsData, changeEidtVisible } = this.props;
+      const { tempUser, dispatch, queryPage, changeEidtVisible } = this.props;
       const action = tempUser.id ? 'user/update' : 'user/save';
       tempUser.id ? (fieldsValue.id = tempUser.id) : '';
       dispatch({
@@ -88,7 +88,6 @@ class EditForm extends Component {
       }).then(() => {
         const { handleResult, pageData } = this.props;
         if (handleResult.status) {
-          clearModelsData();
           const param = {
             current: 1,
             size: pageData.pagination.size,

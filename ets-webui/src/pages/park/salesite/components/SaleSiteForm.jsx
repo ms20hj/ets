@@ -57,7 +57,7 @@ class SaleSiteForm extends Component {
     const { form } = this.props;
     form.validateFieldsAndScroll((err, fieldsValue) => {
       if (err) return;
-      const { tempSaleSite, dispatch, queryPage, clearModelsData, changeEidtVisible } = this.props;
+      const { tempSaleSite, dispatch, queryPage, changeEidtVisible } = this.props;
       const action = tempSaleSite.id ? 'saleSite/update' : 'saleSite/save';
       tempSaleSite.id ? (fieldsValue.id = tempSaleSite.id) : '';
       dispatch({
@@ -68,7 +68,6 @@ class SaleSiteForm extends Component {
       }).then(() => {
         const { handleResult, pageData } = this.props;
         if (handleResult.status) {
-          clearModelsData();
           const param = {
             current: 1,
             size: pageData.pagination.size,

@@ -30,7 +30,7 @@ public class TravelAgencyServiceImpl extends ServiceImpl<TravelAgencyMapper, Tra
         if (StringUtils.isNotEmpty(name)) {
             wrapper.like("name", name);
         }
-        wrapper.orderByDesc("create_time");
+        wrapper.orderByAsc("sort_num");
         return page(page, wrapper);
     }
 
@@ -49,7 +49,7 @@ public class TravelAgencyServiceImpl extends ServiceImpl<TravelAgencyMapper, Tra
     public List<TravelAgency> getByParentId(String parentId) {
         QueryWrapper<TravelAgency> wrapper = new QueryWrapper<>();
         wrapper.eq("parent_id", parentId);
-        wrapper.orderByDesc("create_time");
+        wrapper.orderByAsc("sort_num");
         return list(wrapper);
     }
 

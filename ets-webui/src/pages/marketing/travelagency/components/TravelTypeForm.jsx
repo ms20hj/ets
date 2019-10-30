@@ -15,7 +15,6 @@ const formItemLayout = {
   travelAgency,
   handleResult: travelAgency.handleResult,
   tempTravelType: travelAgency.tempTravelType,
-  pageData: travelAgency.pageData,
 }))
 class TravelTypeForm extends Component {
   constructor(props) {
@@ -62,6 +61,7 @@ class TravelTypeForm extends Component {
       const action = tempTravelType.id ? 'travelAgency/update' : 'travelAgency/save';
       tempTravelType.id ? (fieldsValue.id = tempTravelType.id) : '';
       fieldsValue.parentId = parentId;
+      fieldsValue.level = 2; //类别等级为2
       dispatch({
         type: action,
         payload: {
@@ -107,11 +107,22 @@ class TravelTypeForm extends Component {
               initialValue: tempTravelType.name,
               rules: [
                 { required: true, message: '请输入类别名称' },
-                { max: 10, message: '窗口名称不能超过10个字符' },
+                { max: 10, message: '类别名称不能超过10个字符' },
                 { validator: this.validateName },
               ],
               validateTrigger: 'onBlur',
             })(<Input placeholder="请输入类别名称" />)}
+          </Form.Item>
+          <Form.Item label="排序号">
+            {getFieldDecorator('sortNum', {
+              initialValue: tempTravelType.sortNum,
+              rules: [
+                { required: true, message: '请输入排序号' },
+                { max: 4, message: '排序号不能超过4位数' },
+                { pattern: `^[0-9]*$`, message: '排序号格式错误'}
+              ],
+              validateTrigger: 'onBlur',
+            })(<Input placeholder="请输入排序号" />)}
           </Form.Item>
         </Form>
       </Modal>

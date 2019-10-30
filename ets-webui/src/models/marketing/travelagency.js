@@ -25,9 +25,11 @@ const TravelAgencyModel = {
       phone: '',
       contact: '',
       address: '',
+      sortNum: 0,
     },
     tempTravelType: {
       name: '',
+      sortNum: 0,
     },
     treeTravel: [],
   },
@@ -132,6 +134,7 @@ const TravelAgencyModel = {
           phone: '',
           contact: '',
           address: '',
+          sortNum: 0,
         },
       };
     },
@@ -142,6 +145,7 @@ const TravelAgencyModel = {
         handleResult: null,
         tempTravelType: {
           name: '',
+          sortNum: 0,
         },
       };
     },

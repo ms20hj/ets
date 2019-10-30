@@ -43,7 +43,7 @@ public class CodeGenerator {
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setModuleName("park");
+        pc.setModuleName("marketing");
         pc.setParent("com.cms.ets.model.mysql");
         mpg.setPackageInfo(pc);
 
@@ -97,7 +97,7 @@ public class CodeGenerator {
 //        strategy.setRestControllerStyle(true);
 //        strategy.setSuperControllerClass("com.baomidou.ant.common.BaseController");
         //需要生成表名
-        strategy.setInclude("t_sale_site");
+        strategy.setInclude("t_travel_agency");
         strategy.setSuperEntityColumns("id","create_id","update_id","create_time","update_time");
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setEntityTableFieldAnnotationEnable(true);

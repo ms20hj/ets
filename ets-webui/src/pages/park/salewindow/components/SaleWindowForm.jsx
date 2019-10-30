@@ -87,7 +87,7 @@ class SaleWindowForm extends Component {
     const { form } = this.props;
     form.validateFieldsAndScroll((err, fieldsValue) => {
       if (err) return;
-      const { tempSaleWindow, dispatch, queryPage, clearModelsData, changeEidtVisible } = this.props;
+      const { tempSaleWindow, dispatch, queryPage, changeEidtVisible } = this.props;
       const action = tempSaleWindow.id ? 'saleWindow/update' : 'saleWindow/save';
       tempSaleWindow.id ? (fieldsValue.id = tempSaleWindow.id) : '';
       dispatch({
@@ -98,7 +98,6 @@ class SaleWindowForm extends Component {
       }).then(() => {
         const { handleResult, pageData } = this.props;
         if (handleResult.status) {
-          clearModelsData();
           const param = {
             current: 1,
             size: pageData.pagination.size,

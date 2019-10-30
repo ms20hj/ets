@@ -64,6 +64,12 @@ public class TravelAgency extends BaseEntity {
     @TableField("level")
     private int level;
 
+    /**
+     * 排序
+     */
+    @TableField("sort_num")
+    private int sortNum;
+
     @TableField(exist = false)
     private List<TravelAgency> children;
 
@@ -123,6 +129,14 @@ public class TravelAgency extends BaseEntity {
 
     public void setChildren(List<TravelAgency> children) {
         this.children = children;
+    }
+
+    public int getSortNum() {
+        return sortNum;
+    }
+
+    public void setSortNum(int sortNum) {
+        this.sortNum = sortNum;
     }
 
     @Override

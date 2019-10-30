@@ -58,7 +58,7 @@ class RoleForm extends Component {
     const { form } = this.props;
     form.validateFieldsAndScroll(['roleName'], (err, fieldsValue) => {
       if (err) return;
-      const { tempRole, dispatch, queryPage, clearModelsData, changeEditVisible } = this.props;
+      const { tempRole, dispatch, queryPage, changeEditVisible } = this.props;
       const action = tempRole.id ? 'role/update' : 'role/save';
       tempRole.id ? (fieldsValue.id = tempRole.id) : '';
       fieldsValue.userIdList = tempRole.userIdList;
@@ -71,7 +71,6 @@ class RoleForm extends Component {
       }).then(() => {
         const { handleResult, pageData } = this.props;
         if (handleResult.status) {
-          clearModelsData();
           const param = {
             current: 1,
             size: pageData.pagination.size,

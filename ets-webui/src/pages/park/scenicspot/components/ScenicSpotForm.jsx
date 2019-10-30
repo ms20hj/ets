@@ -56,7 +56,7 @@ class ScenicSpotForm extends Component {
     const { form } = this.props;
     form.validateFieldsAndScroll((err, fieldsValue) => {
       if (err) return;
-      const { tempScenicSpot, dispatch, queryPage, clearModelsData, changeEidtVisible } = this.props;
+      const { tempScenicSpot, dispatch, queryPage, changeEidtVisible } = this.props;
       const action = tempScenicSpot.id ? 'scenicSpot/update' : 'scenicSpot/save';
       tempScenicSpot.id ? (fieldsValue.id = tempScenicSpot.id) : '';
       dispatch({
@@ -67,7 +67,6 @@ class ScenicSpotForm extends Component {
       }).then(() => {
         const { handleResult, pageData } = this.props;
         if (handleResult.status) {
-          clearModelsData();
           const param = {
             current: 1,
             size: pageData.pagination.size,
