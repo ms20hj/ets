@@ -15,7 +15,6 @@ const formItemLayout = {
   saleWindow,
   handleResult: saleWindow.handleResult,
   tempSaleWindow: saleWindow.tempSaleWindow,
-  pageData: saleWindow.pageData,
   saleSiteList: saleWindow.saleSiteList,
 }))
 class SaleWindowForm extends Component {
@@ -87,7 +86,7 @@ class SaleWindowForm extends Component {
     const { form } = this.props;
     form.validateFieldsAndScroll((err, fieldsValue) => {
       if (err) return;
-      const { tempSaleWindow, dispatch, queryPage, changeEidtVisible } = this.props;
+      const { tempSaleWindow, dispatch, queryPage, changeEditVisible, refreshCurrentPage } = this.props;
       const action = tempSaleWindow.id ? 'saleWindow/update' : 'saleWindow/save';
       tempSaleWindow.id ? (fieldsValue.id = tempSaleWindow.id) : '';
       dispatch({
@@ -96,14 +95,10 @@ class SaleWindowForm extends Component {
           ...fieldsValue,
         },
       }).then(() => {
-        const { handleResult, pageData } = this.props;
+        const { handleResult } = this.props;
         if (handleResult.status) {
-          const param = {
-            current: 1,
-            size: pageData.pagination.size,
-          };
-          queryPage(param);
-          changeEidtVisible('', false);
+          tempSaleWindow.id ? refreshCurrentPage() : queryPage();
+          changeEditVisible('', false);
           message.success('保存成功');
         } else {
           message.error('保存失败');
@@ -117,7 +112,7 @@ class SaleWindowForm extends Component {
       editVisible,
       title,
       form,
-      changeEidtVisible,
+      changeEditVisible,
       tempSaleWindow,
       saleSiteList,
     } = this.props;
@@ -129,7 +124,7 @@ class SaleWindowForm extends Component {
         title={title}
         visible={editVisible}
         onOk={this.handleSubmit}
-        onCancel={() => changeEidtVisible('', false)}
+        onCancel={() => changeEditVisible('', false)}
       >
         <Form {...formItemLayout}>
           <Form.Item label="窗口名称">

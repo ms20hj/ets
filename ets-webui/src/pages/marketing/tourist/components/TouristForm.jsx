@@ -51,11 +51,24 @@ class TouristForm extends Component {
     }
   };
 
+  checkSortNum = (rule, value, callback) => {
+    const regPos = /^-?[0-9]\d*$/; // 非负浮点数
+    if (value && value !== '') {
+      if(!regPos.test(value)){
+        callback('请输入数字!');
+      }
+      if (value.length > 4) {
+        callback('不能超出4位数!');
+      }
+    }
+    callback();
+  };
+
   handleSubmit = () => {
     const { form } = this.props;
     form.validateFieldsAndScroll((err, fieldsValue) => {
       if (err) return;
-      const { tempTourist, dispatch, queryPage, changeEditVisible } = this.props;
+      const { tempTourist, dispatch, queryPage, changeEditVisible, refreshCurrentPage } = this.props;
       const action = tempTourist.id ? 'tourist/update' : 'tourist/save';
       tempTourist.id ? (fieldsValue.id = tempTourist.id) : '';
       dispatch({
@@ -66,7 +79,7 @@ class TouristForm extends Component {
       }).then(() => {
         const { handleResult } = this.props;
         if (handleResult.status) {
-          queryPage();
+          tempTourist.id ? refreshCurrentPage() : queryPage();
           changeEditVisible('', false);
           message.success('保存成功');
         } else {
@@ -105,8 +118,7 @@ class TouristForm extends Component {
               initialValue: tempTourist.sortNum,
               rules: [
                 { required: true, message: '请输入排序号' },
-                { max: 4, message: '排序号不能超过4位数' },
-                { pattern: `^[0-9]*$`, message: '排序号格式错误' },
+                { validator: this.checkSortNum },
               ],
               validateTrigger: 'onBlur',
             })(<Input placeholder="请输入排序号" />)}

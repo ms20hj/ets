@@ -22,15 +22,11 @@ export default class User extends Component {
     editTitle: '新增',
     selectedRowKeys: [],
     selectedRows: [],
+    searchValue: '',
   };
 
   componentDidMount() {
-    const { pageData } = this.props;
-    const param = {
-      current: pageData.pagination.current,
-      size: pageData.pagination.size,
-    };
-    this.queryPage(param);
+    this.queryPage();
   }
 
   /**
@@ -38,6 +34,15 @@ export default class User extends Component {
    * @param param
    */
   queryPage = param => {
+    if (!param) {
+      const { pageData } = this.props;
+      const { searchValue } = this.state;
+      param = {
+        current: 1,
+        size: pageData.pagination.size,
+        name: searchValue,
+      };
+    }
     const { dispatch } = this.props;
     dispatch({
       type: 'user/page',
@@ -52,6 +57,19 @@ export default class User extends Component {
     });
   };
   /**
+   * 刷新当前页面的数据
+   */
+  refreshCurrentPage = () => {
+    const { pageData } = this.props;
+    const { searchValue } = this.state;
+    const param = {
+      current: pageData.pagination.current,
+      size: pageData.pagination.size,
+      name: searchValue,
+    };
+    this.queryPage(param);
+  };
+  /**
    * 搜索
    * @param value
    */
@@ -63,12 +81,16 @@ export default class User extends Component {
       name: value,
     };
     this.queryPage(param);
+    this.setState({
+      searchValue: value,
+    });
   };
 
   handleTableChange = (current, size) => {
     const param = {
       current: current,
       size: size,
+      name: this.state.searchValue,
     };
     this.queryPage(param);
   };
@@ -77,7 +99,7 @@ export default class User extends Component {
     return `共 ${total} 条`;
   }
 
-  changeEidtVisible = (title, flag) => {
+  changeEditVisible = (title, flag) => {
     this.setState({
       editVisible: flag,
       editTitle: title,
@@ -142,11 +164,7 @@ export default class User extends Component {
       const { handleResult, pageData } = this.props;
       if (handleResult.status) {
         this.clearModelsData();
-        const param = {
-          current: 1,
-          size: pageData.pagination.size,
-        };
-        this.queryPage(param);
+        this.queryPage();
         message.success('删除成功');
       } else {
         message.error('删除失败');
@@ -165,20 +183,15 @@ export default class User extends Component {
     }).then(() => {
       const { handleResult, tempUser, pageData } = this.props;
       if (handleResult.status && tempUser !== null) {
-        this.changeEidtVisible('编辑', true);
+        this.changeEditVisible('编辑', true);
       } else {
-        const param = {
-          current: 1,
-          size: pageData.pagination.size,
-        };
-        this.queryPage(param);
+        this.queryPage();
         message.error('数据不存在');
       }
     });
   };
 
   onSelectChange = (selectedRowKeys, selectedRows) => {
-    console.log(selectedRowKeys, selectedRows);
     this.setState({
       selectedRowKeys,
       selectedRows,
@@ -244,14 +257,15 @@ export default class User extends Component {
     };
     const editMethods = {
       queryPage: this.queryPage,
+      refreshCurrentPage: this.refreshCurrentPage,
       clearModelsData: this.clearModelsData,
-      changeEidtVisible: this.changeEidtVisible,
+      changeEditVisible: this.changeEditVisible,
     };
     return (
       <PageHeaderWrapper>
         <Row>
           <Col>
-            <Button type="primary" onClick={() => this.changeEidtVisible('新增', true)}>
+            <Button type="primary" onClick={() => this.changeEditVisible('新增', true)}>
               新增
             </Button>
             <Button
@@ -280,7 +294,7 @@ export default class User extends Component {
             >
             </Table>
             <Pagination
-              defaultCurrent={1}
+              current={pagination.current}
               showSizeChanger
               onChange={this.handleTableChange}
               onShowSizeChange={this.handleTableChange}

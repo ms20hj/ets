@@ -22,15 +22,11 @@ export default class Role extends Component {
     editTitle: '新增',
     selectedRowKeys: [],
     selectedRows: [],
+    searchValue: '',
   };
 
   componentDidMount() {
-    const { pageData } = this.props;
-    const param = {
-      current: pageData.pagination.current,
-      size: pageData.pagination.size,
-    };
-    this.queryPage(param);
+    this.queryPage();
   }
 
   /**
@@ -38,6 +34,15 @@ export default class Role extends Component {
    * @param param
    */
   queryPage = param => {
+    if (!param) {
+      const { pageData } = this.props;
+      const { searchValue } = this.state;
+      param = {
+        current: 1,
+        size: pageData.pagination.size,
+        name: searchValue,
+      };
+    }
     const { dispatch } = this.props;
     dispatch({
       type: 'role/page',
@@ -51,6 +56,21 @@ export default class Role extends Component {
       });
     });
   };
+
+  /**
+   * 刷新当前页面的数据
+   */
+  refreshCurrentPage = () => {
+    const { pageData } = this.props;
+    const { searchValue } = this.state;
+    const param = {
+      current: pageData.pagination.current,
+      size: pageData.pagination.size,
+      name: searchValue,
+    };
+    this.queryPage(param);
+  };
+
   /**
    * 搜索
    * @param value
@@ -63,12 +83,16 @@ export default class Role extends Component {
       name: value,
     };
     this.queryPage(param);
+    this.setState({
+      searchValue: value,
+    });
   };
 
   handleTableChange = (current, size) => {
     const param = {
       current: current,
       size: size,
+      name: this.state.searchValue,
     };
     this.queryPage(param);
   };
@@ -145,14 +169,10 @@ export default class Role extends Component {
       type: 'role/remove',
       payload: ids,
     }).then(() => {
-      const { handleResult, pageData } = this.props;
+      const { handleResult } = this.props;
       if (handleResult.status) {
         this.clearModelsData();
-        const param = {
-          current: 1,
-          size: pageData.pagination.size,
-        };
-        this.queryPage(param);
+        this.queryPage();
         message.success('删除成功');
       } else {
         message.error('删除失败');
@@ -169,24 +189,17 @@ export default class Role extends Component {
       type: 'role/getAuthRole',
       payload: id,
     }).then(() => {
-      const { handleResult, tempRole, pageData } = this.props;
-      console.log('handlePreEdit', tempRole);
-      console.log('handlePreEdit', handleResult);
+      const { handleResult, tempRole } = this.props;
       if (handleResult.status && tempRole !== null) {
         this.changeEditVisible('编辑', true);
       } else {
-        const param = {
-          current: 1,
-          size: pageData.pagination.size,
-        };
-        this.queryPage(param);
+        this.queryPage();
         message.error('数据不存在');
       }
     });
   };
 
   onSelectChange = (selectedRowKeys, selectedRows) => {
-    console.log(selectedRowKeys, selectedRows);
     this.setState({
       selectedRowKeys,
       selectedRows,
@@ -237,6 +250,7 @@ export default class Role extends Component {
     };
     const editMethods = {
       queryPage: this.queryPage,
+      refreshCurrentPage: this.refreshCurrentPage,
       clearModelsData: this.clearModelsData,
       changeEditVisible: this.changeEditVisible,
     };
@@ -273,7 +287,7 @@ export default class Role extends Component {
             >
             </Table>
             <Pagination
-              defaultCurrent={1}
+              current={pagination.current}
               showSizeChanger
               onChange={this.handleTableChange}
               onShowSizeChange={this.handleTableChange}

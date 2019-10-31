@@ -122,7 +122,7 @@ const SaleSiteModel = {
       };
     },
 
-    puttTempSaleSite(state, { payload }) {
+    putTempSaleSite(state, { payload }) {
       return {
         ...state,
         tempSaleSite: {

@@ -11,11 +11,10 @@ const formItemLayout = {
   },
 };
 
-@connect(({ user, loading }) => ({
+@connect(({ user }) => ({
   user,
   handleResult: user.handleResult,
   tempUser: user.tempUser,
-  pageData: user.pageData,
 }))
 class EditForm extends Component {
   constructor(props) {
@@ -77,7 +76,7 @@ class EditForm extends Component {
     const { form } = this.props;
     form.validateFieldsAndScroll((err, fieldsValue) => {
       if (err) return;
-      const { tempUser, dispatch, queryPage, changeEidtVisible } = this.props;
+      const { tempUser, dispatch, queryPage, changeEditVisible, refreshCurrentPage } = this.props;
       const action = tempUser.id ? 'user/update' : 'user/save';
       tempUser.id ? (fieldsValue.id = tempUser.id) : '';
       dispatch({
@@ -86,14 +85,10 @@ class EditForm extends Component {
           ...fieldsValue,
         },
       }).then(() => {
-        const { handleResult, pageData } = this.props;
+        const { handleResult } = this.props;
         if (handleResult.status) {
-          const param = {
-            current: 1,
-            size: pageData.pagination.size,
-          };
-          queryPage(param);
-          changeEidtVisible('', false);
+          tempUser.id ? refreshCurrentPage() : queryPage();
+          changeEditVisible('', false);
           message.success('保存成功');
         } else {
           message.error('保存失败');
@@ -103,7 +98,7 @@ class EditForm extends Component {
   };
 
   render() {
-    const { editVisible, title, form, changeEidtVisible, tempUser } = this.props;
+    const { editVisible, title, form, changeEditVisible, tempUser } = this.props;
     const { getFieldDecorator } = form;
 
     return (
@@ -112,7 +107,7 @@ class EditForm extends Component {
         title={title}
         visible={editVisible}
         onOk={this.handleSubmit}
-        onCancel={() => changeEidtVisible('', false)}
+        onCancel={() => changeEditVisible('', false)}
       >
         <Form {...formItemLayout}>
           <Form.Item label="用户名">

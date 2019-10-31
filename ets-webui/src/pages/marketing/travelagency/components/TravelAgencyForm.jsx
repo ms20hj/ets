@@ -52,12 +52,24 @@ class TravelAgencyForm extends Component {
     }
   };
 
+  checkSortNum = (rule, value, callback) => {
+    const regPos = /^-?[0-9]\d*$/; // 非负浮点数
+    if (value && value !== '') {
+      if(!regPos.test(value)){
+        callback('请输入数字!');
+      }
+      if (value.length > 4) {
+        callback('不能超出4位数!');
+      }
+    }
+    callback();
+  };
 
   handleSubmit = () => {
     const { form, parentId } = this.props;
     form.validateFieldsAndScroll((err, fieldsValue) => {
       if (err) return;
-      const { tempTravelAgency, dispatch, queryPage, changeEditVisible, pageData } = this.props;
+      const { tempTravelAgency, dispatch, queryPage, changeEditVisible, refreshCurrentPage } = this.props;
       const action = tempTravelAgency.id ? 'travelAgency/update' : 'travelAgency/save';
       tempTravelAgency.id ? (fieldsValue.id = tempTravelAgency.id) : '';
       fieldsValue.parentId = parentId;
@@ -70,16 +82,12 @@ class TravelAgencyForm extends Component {
       }).then(() => {
         const { handleResult, dispatch } = this.props;
         if (handleResult.status) {
-          message.success('保存成功');
+          tempTravelAgency.id ? refreshCurrentPage() : queryPage();
           dispatch({
             type: 'travelAgency/clearData'
           });
-          const param = {
-            current: 1,
-            size: pageData.pagination.size,
-          };
-          queryPage(param);
           changeEditVisible('', false);
+          message.success('保存成功');
         } else {
           message.error('保存失败');
         }
@@ -150,8 +158,7 @@ class TravelAgencyForm extends Component {
               initialValue: tempTravelAgency.sortNum,
               rules: [
                 { required: true, message: '请输入排序号' },
-                { max: 4, message: '排序号不能超过4位数' },
-                { pattern: `^[0-9]*$`, message: '排序号格式错误'}
+                { validator: this.checkSortNum },
               ],
               validateTrigger: 'onBlur',
             })(<Input placeholder="请输入排序号" />)}

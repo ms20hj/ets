@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Form, Input, message, Modal, Select } from 'antd';
-import { connect } from 'dva';
+import React, {Component} from 'react';
+import {Form, Input, message, Modal, Select} from 'antd';
+import {connect} from 'dva';
 
 const formItemLayout = {
   labelCol: {
@@ -15,7 +15,6 @@ const formItemLayout = {
   saleSite,
   handleResult: saleSite.handleResult,
   tempSaleSite: saleSite.tempSaleSite,
-  pageData: saleSite.pageData,
   scenicSpotList: saleSite.scenicSpotList,
 }))
 class SaleSiteForm extends Component {
@@ -57,7 +56,7 @@ class SaleSiteForm extends Component {
     const { form } = this.props;
     form.validateFieldsAndScroll((err, fieldsValue) => {
       if (err) return;
-      const { tempSaleSite, dispatch, queryPage, changeEidtVisible } = this.props;
+      const { tempSaleSite, dispatch, queryPage, changeEditVisible, refreshCurrentPage } = this.props;
       const action = tempSaleSite.id ? 'saleSite/update' : 'saleSite/save';
       tempSaleSite.id ? (fieldsValue.id = tempSaleSite.id) : '';
       dispatch({
@@ -66,14 +65,10 @@ class SaleSiteForm extends Component {
           ...fieldsValue,
         },
       }).then(() => {
-        const { handleResult, pageData } = this.props;
+        const { handleResult } = this.props;
         if (handleResult.status) {
-          const param = {
-            current: 1,
-            size: pageData.pagination.size,
-          };
-          queryPage(param);
-          changeEidtVisible('', false);
+          tempSaleSite.id ? refreshCurrentPage() : queryPage();
+          changeEditVisible('', false);
           message.success('保存成功');
         } else {
           message.error('保存失败');
@@ -87,7 +82,7 @@ class SaleSiteForm extends Component {
       editVisible,
       title,
       form,
-      changeEidtVisible,
+      changeEditVisible,
       tempSaleSite,
       scenicSpotList,
     } = this.props;
@@ -99,7 +94,7 @@ class SaleSiteForm extends Component {
         title={title}
         visible={editVisible}
         onOk={this.handleSubmit}
-        onCancel={() => changeEidtVisible('', false)}
+        onCancel={() => changeEditVisible('', false)}
       >
         <Form {...formItemLayout}>
           <Form.Item label="站点名称">

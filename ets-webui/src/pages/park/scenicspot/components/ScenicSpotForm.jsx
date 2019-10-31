@@ -15,7 +15,6 @@ const formItemLayout = {
   scenicSpot,
   handleResult: scenicSpot.handleResult,
   tempScenicSpot: scenicSpot.tempScenicSpot,
-  pageData: scenicSpot.pageData,
 }))
 class ScenicSpotForm extends Component {
   constructor(props) {
@@ -56,7 +55,7 @@ class ScenicSpotForm extends Component {
     const { form } = this.props;
     form.validateFieldsAndScroll((err, fieldsValue) => {
       if (err) return;
-      const { tempScenicSpot, dispatch, queryPage, changeEidtVisible } = this.props;
+      const { tempScenicSpot, dispatch, queryPage, changeEditVisible, refreshCurrentPage } = this.props;
       const action = tempScenicSpot.id ? 'scenicSpot/update' : 'scenicSpot/save';
       tempScenicSpot.id ? (fieldsValue.id = tempScenicSpot.id) : '';
       dispatch({
@@ -65,14 +64,10 @@ class ScenicSpotForm extends Component {
           ...fieldsValue,
         },
       }).then(() => {
-        const { handleResult, pageData } = this.props;
+        const { handleResult, } = this.props;
         if (handleResult.status) {
-          const param = {
-            current: 1,
-            size: pageData.pagination.size,
-          };
-          queryPage(param);
-          changeEidtVisible('', false);
+          tempScenicSpot.id ? refreshCurrentPage() : queryPage();
+          changeEditVisible('', false);
           message.success('保存成功');
         } else {
           message.error('保存失败');
@@ -82,7 +77,7 @@ class ScenicSpotForm extends Component {
   };
 
   render() {
-    const { editVisible, title, form, changeEidtVisible, tempScenicSpot } = this.props;
+    const { editVisible, title, form, changeEditVisible, tempScenicSpot } = this.props;
     const { getFieldDecorator } = form;
 
     return (
@@ -91,7 +86,7 @@ class ScenicSpotForm extends Component {
         title={title}
         visible={editVisible}
         onOk={this.handleSubmit}
-        onCancel={() => changeEidtVisible('', false)}
+        onCancel={() => changeEditVisible('', false)}
       >
         <Form {...formItemLayout}>
           <Form.Item label="景区名称">

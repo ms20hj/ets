@@ -61,6 +61,20 @@ export default class Tourist extends Component {
   };
 
   /**
+   * 刷新当前页面的数据
+   */
+  refreshCurrentPage = () => {
+    const { pageData } = this.props;
+    const { searchValue } = this.state;
+    const param = {
+      current: pageData.pagination.current,
+      size: pageData.pagination.size,
+      name: searchValue,
+    };
+    this.queryPage(param);
+  };
+
+  /**
    * 搜索
    * @param value
    */
@@ -81,6 +95,7 @@ export default class Tourist extends Component {
     const param = {
       current: current,
       size: size,
+      name: this.state.searchValue,
     };
     this.queryPage(param);
   };
@@ -230,6 +245,7 @@ export default class Tourist extends Component {
     };
     const editMethods = {
       queryPage: this.queryPage,
+      refreshCurrentPage: this.refreshCurrentPage,
       clearModelsData: this.clearModelsData,
       changeEditVisible: this.changeEditVisible,
     };
@@ -265,7 +281,7 @@ export default class Tourist extends Component {
               rowSelection={rowSelection}
             ></Table>
             <Pagination
-              defaultCurrent={1}
+              current={pagination.current}
               showSizeChanger
               onChange={this.handleTableChange}
               onShowSizeChange={this.handleTableChange}

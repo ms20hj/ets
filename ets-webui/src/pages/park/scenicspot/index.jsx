@@ -25,15 +25,11 @@ export default class ScenicSpot extends Component {
     selectedRows: [],
     tableScroll: {},
     contentHeight: getContentHeight(),
+    searchValue: '',
   };
 
   componentDidMount() {
-    const { pageData } = this.props;
-    const param = {
-      current: pageData.pagination.current,
-      size: pageData.pagination.size,
-    };
-    this.queryPage(param);
+    this.queryPage();
   }
 
   /**
@@ -41,6 +37,15 @@ export default class ScenicSpot extends Component {
    * @param param
    */
   queryPage = param => {
+    if (!param) {
+      const { pageData } = this.props;
+      const { searchValue } = this.state;
+      param = {
+        current: 1,
+        size: pageData.pagination.size,
+        name: searchValue,
+      };
+    }
     const { dispatch } = this.props;
     dispatch({
       type: 'scenicSpot/page',
@@ -57,22 +62,17 @@ export default class ScenicSpot extends Component {
   };
 
   /**
-   * 根据table数据量计算table高度和滚动
+   * 刷新当前页面的数据
    */
-  calculateTableHeight = () => {
-    const {pageData} = this.props;
-    let tableScroll;
-    const recordHeight = pageData.list.length * 57;
-    const {contentHeight} = this.state;
-    const tableHeight = contentHeight- 80;
-    if(recordHeight > tableHeight){
-      tableScroll = {x:false,y:tableHeight-50};
-    }else{
-      tableScroll = {x:false,y:false};
-    }
-    this.setState({
-      tableScroll,
-    });
+  refreshCurrentPage = () => {
+    const { pageData } = this.props;
+    const { searchValue } = this.state;
+    const param = {
+      current: pageData.pagination.current,
+      size: pageData.pagination.size,
+      name: searchValue,
+    };
+    this.queryPage(param);
   };
 
   /**
@@ -87,12 +87,16 @@ export default class ScenicSpot extends Component {
       name: value,
     };
     this.queryPage(param);
+    this.setState({
+      searchValue: value,
+    });
   };
 
   handleTableChange = (current, size) => {
     const param = {
       current: current,
       size: size,
+      name: this.state.searchValue,
     };
     this.queryPage(param);
   };
@@ -101,7 +105,7 @@ export default class ScenicSpot extends Component {
     return `共 ${total} 条`;
   }
 
-  changeEidtVisible = (title, flag) => {
+  changeEditVisible = (title, flag) => {
     this.setState({
       editVisible: flag,
       editTitle: title,
@@ -163,14 +167,10 @@ export default class ScenicSpot extends Component {
       type: 'scenicSpot/remove',
       payload: ids,
     }).then(() => {
-      const { handleResult, pageData } = this.props;
+      const { handleResult } = this.props;
       if (handleResult.status) {
         this.clearModelsData();
-        const param = {
-          current: 1,
-          size: pageData.pagination.size,
-        };
-        this.queryPage(param);
+        this.queryPage();
         message.success('删除成功');
       } else {
         message.error('删除失败');
@@ -187,22 +187,17 @@ export default class ScenicSpot extends Component {
       type: 'scenicSpot/getById',
       payload: id,
     }).then(() => {
-      const { handleResult, tempScenicSpot, pageData } = this.props;
+      const { handleResult, tempScenicSpot, } = this.props;
       if (handleResult.status && tempScenicSpot !== null) {
-        this.changeEidtVisible('编辑', true);
+        this.changeEditVisible('编辑', true);
       } else {
-        const param = {
-          current: 1,
-          size: pageData.pagination.size,
-        };
-        this.queryPage(param);
+        this.queryPage();
         message.error('数据不存在');
       }
     });
   };
 
   onSelectChange = (selectedRowKeys, selectedRows) => {
-    console.log(selectedRowKeys, selectedRows);
     this.setState({
       selectedRowKeys,
       selectedRows,
@@ -252,14 +247,15 @@ export default class ScenicSpot extends Component {
     };
     const editMethods = {
       queryPage: this.queryPage,
+      refreshCurrentPage: this.refreshCurrentPage,
       clearModelsData: this.clearModelsData,
-      changeEidtVisible: this.changeEidtVisible,
+      changeEditVisible: this.changeEditVisible,
     };
     return (
       <PageHeaderWrapper>
         <Row>
           <Col>
-            <Button type="primary" onClick={() => this.changeEidtVisible('新增', true)}>
+            <Button type="primary" onClick={() => this.changeEditVisible('新增', true)}>
               新增
             </Button>
             <Button
@@ -288,7 +284,7 @@ export default class ScenicSpot extends Component {
             >
             </Table>
             <Pagination
-              defaultCurrent={1}
+              current={pagination.current}
               showSizeChanger
               onChange={this.handleTableChange}
               onShowSizeChange={this.handleTableChange}

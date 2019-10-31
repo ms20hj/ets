@@ -33,15 +33,10 @@ export default class TravelAgency extends Component {
     selectedRows: [],
     currentKey: '',
     treeSelectKeys: [],
+    searchValue: '',
   };
 
   componentDidMount() {
-    const { pageData } = this.props;
-    const param = {
-      current: pageData.pagination.current,
-      size: pageData.pagination.size,
-    };
-    this.queryPage(param);
     this.queryTree();
   }
 
@@ -52,13 +47,19 @@ export default class TravelAgency extends Component {
   queryPage = param => {
     if (!param) {
       const { pageData } = this.props;
+      const { searchValue, currentKey } = this.state;
+      const {} = this.state;
       param = {
         current: 1,
         size: pageData.pagination.size,
-      }
+        name: searchValue,
+        parentId: currentKey,
+      };
+    } else {
+      const { currentKey } = this.state;
+      param.parentId = currentKey;
     }
-    const {currentKey} = this.state;
-    param.parentId = currentKey;
+
     const { dispatch } = this.props;
     dispatch({
       type: 'travelAgency/page',
@@ -85,7 +86,7 @@ export default class TravelAgency extends Component {
     dispatch({
       type: 'travelAgency/getTreeTravel'
     }).then( () => {
-      const {treeTravel,pageData} = this.props;
+      const {treeTravel} = this.props;
       const rootNode = treeTravel[0];
       if (rootNode.children && rootNode.children.length > 0) {
         const child = rootNode.children[0];
@@ -105,12 +106,22 @@ export default class TravelAgency extends Component {
           addButtonDisabled: true,
         })
       }
-      const param = {
-        current: 1,
-        size: pageData.pagination.size,
-      };
-      this.queryPage(param);
+      this.queryPage();
     })};
+
+  /**
+   * 刷新当前页面的数据
+   */
+  refreshCurrentPage = () => {
+    const { pageData } = this.props;
+    const { searchValue } = this.state;
+    const param = {
+      current: pageData.pagination.current,
+      size: pageData.pagination.size,
+      name: searchValue,
+    };
+    this.queryPage(param);
+  };
 
   /**
    * 搜索
@@ -124,12 +135,16 @@ export default class TravelAgency extends Component {
       name: value,
     };
     this.queryPage(param);
+    this.setState({
+      searchValue: value,
+    });
   };
 
   handleTableChange = (current, size) => {
     const param = {
       current: current,
       size: size,
+      name: this.state.searchValue,
     };
     this.queryPage(param);
   };
@@ -241,14 +256,10 @@ export default class TravelAgency extends Component {
       type: 'travelAgency/remove',
       payload: ids,
     }).then(() => {
-      const { handleResult, pageData } = this.props;
+      const { handleResult } = this.props;
       if (handleResult.status) {
         this.clearModelsData();
-        const param = {
-          current: 1,
-          size: pageData.pagination.size,
-        };
-        this.queryPage(param);
+        this.queryPage();
         message.success('删除成功');
       } else {
         message.error('删除失败');
@@ -265,15 +276,11 @@ export default class TravelAgency extends Component {
       type: 'travelAgency/getById',
       payload: id,
     }).then(() => {
-      const { handleResult, tempTravelAgency, pageData } = this.props;
+      const { handleResult, tempTravelAgency } = this.props;
       if (handleResult.status && tempTravelAgency !== null) {
         this.changeEditVisible('编辑', true);
       } else {
-        const param = {
-          current: 1,
-          size: pageData.pagination.size,
-        };
-        this.queryPage(param);
+        this.queryPage();
         message.error('数据不存在');
       }
     });
@@ -299,7 +306,6 @@ export default class TravelAgency extends Component {
   };
 
   onSelectChange = (selectedRowKeys, selectedRows) => {
-    console.log(selectedRowKeys, selectedRows);
     this.setState({
       selectedRowKeys,
       selectedRows,
@@ -398,6 +404,7 @@ export default class TravelAgency extends Component {
     };
     const editMethods = {
       queryPage: this.queryPage,
+      refreshCurrentPage: this.refreshCurrentPage,
       clearModelsData: this.clearModelsData,
       changeEditVisible: this.changeEditVisible,
       parentId: currentKey,
@@ -477,7 +484,7 @@ export default class TravelAgency extends Component {
                 >
                 </Table>
                 <Pagination
-                  defaultCurrent={1}
+                  current={pagination.current}
                   showSizeChanger
                   onChange={this.handleTableChange}
                   onShowSizeChange={this.handleTableChange}

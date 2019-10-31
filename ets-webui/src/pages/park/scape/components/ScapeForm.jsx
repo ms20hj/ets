@@ -15,7 +15,6 @@ const formItemLayout = {
   scape,
   handleResult: scape.handleResult,
   tempScape: scape.tempScape,
-  pageData: scape.pageData,
   scenicSpotList: scape.scenicSpotList,
 }))
 class ScapeForm extends Component {
@@ -57,7 +56,7 @@ class ScapeForm extends Component {
     const { form } = this.props;
     form.validateFieldsAndScroll((err, fieldsValue) => {
       if (err) return;
-      const { tempScape, dispatch, queryPage, changeEidtVisible } = this.props;
+      const { tempScape, dispatch, queryPage, changeEditVisible, refreshCurrentPage } = this.props;
       const action = tempScape.id ? 'scape/update' : 'scape/save';
       tempScape.id ? (fieldsValue.id = tempScape.id) : '';
       dispatch({
@@ -66,14 +65,10 @@ class ScapeForm extends Component {
           ...fieldsValue,
         },
       }).then(() => {
-        const { handleResult, pageData } = this.props;
+        const { handleResult } = this.props;
         if (handleResult.status) {
-          const param = {
-            current: 1,
-            size: pageData.pagination.size,
-          };
-          queryPage(param);
-          changeEidtVisible('', false);
+          tempScape.id ? refreshCurrentPage() : queryPage();
+          changeEditVisible('', false);
           message.success('保存成功');
         } else {
           message.error('保存失败');
@@ -83,7 +78,7 @@ class ScapeForm extends Component {
   };
 
   render() {
-    const { editVisible, title, form, changeEidtVisible, tempScape, scenicSpotList } = this.props;
+    const { editVisible, title, form, changeEditVisible, tempScape, scenicSpotList } = this.props;
     const { getFieldDecorator } = form;
 
     return (
@@ -92,7 +87,7 @@ class ScapeForm extends Component {
         title={title}
         visible={editVisible}
         onOk={this.handleSubmit}
-        onCancel={() => changeEidtVisible('', false)}
+        onCancel={() => changeEditVisible('', false)}
       >
         <Form {...formItemLayout}>
           <Form.Item label="景点名称">

@@ -69,4 +69,11 @@ public class TouristController extends BaseController {
         boolean flag = touristService.removeByIds(ids);
         return verifyResp(flag);
     }
+
+    @GetMapping("getById")
+    @ApiOperation("根据ID查询")
+    public HandleResult getById(String id){
+        Tourist tourist = touristService.getById(id);
+        return success(tourist);
+    }
 }

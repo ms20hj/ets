@@ -15,7 +15,6 @@ const formItemLayout = {
   role,
   handleResult: role.handleResult,
   tempRole: role.tempRole,
-  pageData: role.pageData,
   userList: role.userList,
   menuList: role.menuList,
 }))
@@ -58,7 +57,7 @@ class RoleForm extends Component {
     const { form } = this.props;
     form.validateFieldsAndScroll(['roleName'], (err, fieldsValue) => {
       if (err) return;
-      const { tempRole, dispatch, queryPage, changeEditVisible } = this.props;
+      const { tempRole, dispatch, queryPage, changeEditVisible, refreshCurrentPage } = this.props;
       const action = tempRole.id ? 'role/update' : 'role/save';
       tempRole.id ? (fieldsValue.id = tempRole.id) : '';
       fieldsValue.userIdList = tempRole.userIdList;
@@ -69,13 +68,9 @@ class RoleForm extends Component {
           ...fieldsValue,
         },
       }).then(() => {
-        const { handleResult, pageData } = this.props;
+        const { handleResult } = this.props;
         if (handleResult.status) {
-          const param = {
-            current: 1,
-            size: pageData.pagination.size,
-          };
-          queryPage(param);
+          tempRole.id ? refreshCurrentPage() : queryPage();
           changeEditVisible('', false);
           message.success('保存成功');
         } else {
