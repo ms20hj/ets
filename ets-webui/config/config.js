@@ -164,6 +164,12 @@ export default {
                   component: './marketing/travelagency',
                   exact: true,
                 },
+                {
+                  name: 'tourist',
+                  path: '/marketing/tourist',
+                  component: './marketing/tourist',
+                  exact: true,
+                },
               ],
             },
             {

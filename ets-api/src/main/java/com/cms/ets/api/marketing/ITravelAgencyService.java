@@ -25,7 +25,7 @@ public interface ITravelAgencyService extends IService<TravelAgency> {
     IPage<TravelAgency> page(Page<TravelAgency> page, String name, String parentId);
 
     /**
-     * 校验角色名称是否已存在
+     * 校验名称是否已存在
      * @param name 名称
      * @param id 主键
      * @return 存在true, 不存在false
