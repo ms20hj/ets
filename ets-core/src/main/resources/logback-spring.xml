@@ -11,7 +11,7 @@
     <jmxConfigurator/>
 
     <!-- 定义日志文件 输出位置 -->
-    <springProperty name="LOG_PATH" source="logging.path" scope="context" defaultValue="../logs/"/>
+    <springProperty name="LOG_PATH" source="logging.path" scope="context" defaultValue="../logs"/>
     <property name="log.home_dir" value="${LOG_PATH}"/>
     <!-- 日志最大的历史 30天 -->
     <property name="log.maxHistory" value="30"/>
