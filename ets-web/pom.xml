@@ -14,6 +14,11 @@
     <dependencies>
         <dependency>
             <groupId>com.cms</groupId>
+            <artifactId>ets-common</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cms</groupId>
             <artifactId>ets-core</artifactId>
             <version>1.0.0</version>
         </dependency>

@@ -56,6 +56,14 @@ public class HandleResult implements Serializable {
         return resp;
     }
 
+    public static HandleResult error(String message) {
+        HandleResult resp = new HandleResult();
+        resp.setCode(CodeEnum.FAILURE.getCode());
+        resp.setMessage(message);
+        resp.setStatus(false);
+        return resp;
+    }
+
     public static HandleResult error(CodeEnum ce){
         HandleResult resp = new HandleResult();
         resp.setCode(ce.getCode());

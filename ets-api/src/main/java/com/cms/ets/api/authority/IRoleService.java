@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.cms.ets.model.mysql.authority.Role;
 
+import java.util.List;
+
 /**
  * <p>
  * 角色表 服务类
@@ -44,4 +46,11 @@ public interface IRoleService extends IService<Role> {
      * @date 2019年10月23日16:44:13
      */
     void saveOrUpdateAuth(Role role);
+
+    /**
+     * 根据用户id查询当前用户拥有的角色
+     * @param userId 用户id
+     * @return List<Role>
+     */
+    List<Role> getByUserId(String userId);
 }

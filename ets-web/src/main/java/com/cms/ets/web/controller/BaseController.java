@@ -36,6 +36,9 @@ public abstract class BaseController {
         return HandleResult.error();
     }
 
+    protected HandleResult error(String message) {
+        return HandleResult.error(message);
+    }
     /**
      * @Description: 错误信息返回 根据枚举类型
      * @MethodName:respError

@@ -1,6 +1,6 @@
 import { routerRedux } from 'dva/router';
 import { stringify } from 'querystring';
-import { fakeAccountLogin, getFakeCaptcha } from '@/services/login';
+import { fakeAccountLogin, getFakeCaptcha, getPublicKey } from '@/services/login';
 import { setAuthority } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
 const Model = {
@@ -9,6 +9,14 @@ const Model = {
     status: undefined,
   },
   effects: {
+
+    *getPublicKey(_, { call, put }) {
+      const response = yield call(getPublicKey);
+      if (response.status) {
+        localStorage.setItem("rsaKey", response.data);
+      }
+    },
+
     *login({ payload }, { call, put }) {
       const response = yield call(fakeAccountLogin, payload);
       yield put({

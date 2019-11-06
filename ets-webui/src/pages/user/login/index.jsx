@@ -17,6 +17,14 @@ class Login extends Component {
     type: 'account',
     autoLogin: true,
   };
+
+  componentDidMount() {
+    const {dispatch} = this.props;
+    dispatch({
+      type: 'login/getPublicKey'
+    });
+  }
+
   changeAutoLogin = e => {
     this.setState({
       autoLogin: e.target.checked,

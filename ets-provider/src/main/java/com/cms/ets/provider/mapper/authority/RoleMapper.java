@@ -2,6 +2,9 @@ package com.cms.ets.provider.mapper.authority;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.cms.ets.model.mysql.authority.Role;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.cms.ets.model.mysql.authority.Role;
  */
 public interface RoleMapper extends BaseMapper<Role> {
 
+    List<Role> getByUserId(@Param("userId") String userId);
 }

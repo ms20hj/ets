@@ -76,4 +76,9 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
         roleUserService.saveAuth(role.getId(), role.getUserIdList());
         roleMenuService.saveAuth(role.getId(), role.getMenuIdList());
     }
+
+    @Override
+    public List<Role> getByUserId(String userId) {
+        return baseMapper.getByUserId(userId);
+    }
 }

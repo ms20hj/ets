@@ -4,10 +4,9 @@ logging:
 
 #  shiroConfig中filterChainDefinitionMap过滤器的配置，把可以匿名访问的url，
 shiro:
-  noneFilterUrl: /common/**, /static/**, /swagger-ui.html, /swagger-resources/**, /v2/**, /webjars/**, /userLogin/*, /thirdlogin/**, /appRegister/**
+  noneFilterUrl: /common/**, /static/**, /swagger-ui.html, /swagger-resources/**, /v2/**, /webjars/**, /login/*
   #没有登陆的用户只能访问登陆页面
   unauthorizedUrl: /common/unauth
-
 
 
 ---

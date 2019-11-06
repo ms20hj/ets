@@ -37,4 +37,12 @@ public interface IRoleUserService extends IService<RoleUser> {
      * @date 2019年10月23日16:46:32
      */
     void saveAuth(String roleId, List<String> userIdList);
+
+    /**
+     * 根据用户id查询角色用户集合
+     * @param userId 用户id
+     * @return List<RoleUser>
+     * @date 2019年11月5日10:53:01
+     */
+    List<RoleUser> getByUserId(String userId);
 }

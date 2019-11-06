@@ -40,4 +40,11 @@ public class RoleUserServiceImpl extends ServiceImpl<RoleUserMapper, RoleUser> i
         List<RoleUser> list = userIdList.stream().map(userId -> new RoleUser(roleId, userId)).collect(Collectors.toList());
         saveBatch(list);
     }
+
+    @Override
+    public List<RoleUser> getByUserId(String userId) {
+        QueryWrapper<RoleUser> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_id", userId);
+        return list(wrapper);
+    }
 }
