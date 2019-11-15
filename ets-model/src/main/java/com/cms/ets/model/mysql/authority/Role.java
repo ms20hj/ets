@@ -19,6 +19,10 @@ public class Role extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
+    public static final String MODULE_NAME = "权限管理";
+
+    public static final String MENU_NAME = "角色管理";
+
     /**
      * 角色名称
      */

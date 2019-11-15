@@ -17,6 +17,10 @@ public class Tourist extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
+    public static final String MODULE_NAME = "营销管理";
+
+    public static final String MENU_NAME = "游客管理";
+
     /**
      * 名称
      */

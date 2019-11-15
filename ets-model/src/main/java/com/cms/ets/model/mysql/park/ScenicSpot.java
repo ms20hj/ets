@@ -16,7 +16,9 @@ import com.baomidou.mybatisplus.annotation.TableField;
 public class ScenicSpot extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
+    public static final String MODULE_NAME = "园区管理";
 
+    public static final String MENU_NAME = "景区点管理";
     /**
      * 景区名称
      */

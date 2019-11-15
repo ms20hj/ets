@@ -18,6 +18,9 @@ import java.util.List;
 public class TravelAgency extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
+    public static final String MODULE_NAME = "营销管理";
+
+    public static final String MENU_NAME = "旅行社管理";
     /**
      * 根节点id
      */

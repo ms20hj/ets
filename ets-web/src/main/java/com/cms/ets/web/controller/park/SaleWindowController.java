@@ -5,8 +5,10 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cms.ets.api.park.ISaleWindowService;
+import com.cms.ets.common.constant.OperateLogConstant;
 import com.cms.ets.common.response.HandleResult;
 import com.cms.ets.model.mysql.park.SaleWindow;
+import com.cms.ets.web.annotation.OperationLog;
 import com.cms.ets.web.controller.BaseController;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -44,6 +46,7 @@ public class SaleWindowController extends BaseController {
 
     @PostMapping("save")
     @ApiOperation("保存")
+    @OperationLog(action = OperateLogConstant.ADD, moduleName = SaleWindow.MODULE_NAME, menuName = SaleWindow.MENU_NAME)
     public HandleResult save(@RequestBody SaleWindow window) {
         saleWindowService.save(window);
         return success();
@@ -51,6 +54,7 @@ public class SaleWindowController extends BaseController {
 
     @PostMapping("update")
     @ApiOperation("更新")
+    @OperationLog(action = OperateLogConstant.EDIT, moduleName = SaleWindow.MODULE_NAME, menuName = SaleWindow.MENU_NAME)
     public HandleResult update(@RequestBody SaleWindow window) {
         saleWindowService.updateById(window);
         return success();
@@ -72,6 +76,7 @@ public class SaleWindowController extends BaseController {
 
     @DeleteMapping("remove")
     @ApiOperation("删除")
+    @OperationLog(action = OperateLogConstant.REMOVE, moduleName = SaleWindow.MODULE_NAME, menuName = SaleWindow.MENU_NAME)
     public HandleResult remove(@RequestBody List<String> ids){
         boolean flag = saleWindowService.removeByIds(ids);
         return verifyResp(flag);

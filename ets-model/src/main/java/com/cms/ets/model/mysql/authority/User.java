@@ -17,6 +17,10 @@ public class User extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
+    public static final String MODULE_NAME = "权限管理";
+
+    public static final String MENU_NAME = "用户管理";
+
     /**
      * 姓名
      */

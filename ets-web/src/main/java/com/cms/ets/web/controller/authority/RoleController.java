@@ -7,10 +7,12 @@ import com.cms.ets.api.authority.IMenuService;
 import com.cms.ets.api.authority.IRoleService;
 import com.cms.ets.api.authority.IRoleUserService;
 import com.cms.ets.api.authority.IUserService;
+import com.cms.ets.common.constant.OperateLogConstant;
 import com.cms.ets.common.response.HandleResult;
 import com.cms.ets.model.mysql.authority.Menu;
 import com.cms.ets.model.mysql.authority.Role;
 import com.cms.ets.model.mysql.authority.User;
+import com.cms.ets.web.annotation.OperationLog;
 import com.cms.ets.web.controller.BaseController;
 import com.google.common.collect.ImmutableMap;
 import io.swagger.annotations.ApiOperation;
@@ -46,6 +48,7 @@ public class RoleController extends BaseController {
 
     @PostMapping("save")
     @ApiOperation("保存")
+    @OperationLog(action = OperateLogConstant.ADD, moduleName = Role.MODULE_NAME, menuName = Role.MENU_NAME)
     public HandleResult save(@RequestBody Role role) {
         roleService.saveOrUpdateAuth(role);
         return success();
@@ -53,6 +56,7 @@ public class RoleController extends BaseController {
 
     @PostMapping("update")
     @ApiOperation("更新")
+    @OperationLog(action = OperateLogConstant.EDIT, moduleName = Role.MODULE_NAME, menuName = Role.MENU_NAME)
     public HandleResult update(@RequestBody Role role) {
         roleService.saveOrUpdateAuth(role);
         return success();
@@ -67,6 +71,7 @@ public class RoleController extends BaseController {
 
     @DeleteMapping("remove")
     @ApiOperation("删除")
+    @OperationLog(action = OperateLogConstant.REMOVE, moduleName = Role.MODULE_NAME, menuName = Role.MENU_NAME)
     public HandleResult remove(@RequestBody List<String> ids){
         boolean flag = roleService.removeByIds(ids);
         return verifyResp(flag);
