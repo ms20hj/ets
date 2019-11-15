@@ -50,23 +50,6 @@ const footerRender = (_, defaultDom) => {
 
 const BasicLayout = props => {
   const { dispatch, children, settings } = props;
-  /**
-   * constructor
-   */
-
-  useEffect(() => {
-    if (dispatch) {
-      dispatch({
-        type: 'user/fetchCurrent',
-      });
-      dispatch({
-        type: 'settings/getSetting',
-      });
-    }
-  }, []);
-  /**
-   * init variables
-   */
 
   const handleMenuCollapse = payload => {
     if (dispatch) {

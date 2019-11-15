@@ -1,6 +1,7 @@
 package com.cms.ets.web.controller.authority;
 
 import cn.hutool.crypto.digest.MD5;
+import cn.hutool.json.JSONObject;
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
 import com.alibaba.dubbo.config.annotation.Reference;
@@ -17,9 +18,7 @@ import org.apache.shiro.authc.AccountException;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -52,8 +51,10 @@ public class LoginController extends BaseController {
      * @param password 密码，此密码是经过前端RSA加密
      * @return HandleResult
      */
-    @GetMapping("userLogin")
-    public HandleResult userLogin(String userName, String password){
+    @PostMapping("userLogin")
+    public HandleResult userLogin(@RequestBody JSONObject jsonObject){
+        String userName = jsonObject.getStr("userName");
+        String password = jsonObject.getStr("password");
         try {
             User user = userService.getByUserName(userName);
             if (user == null) {

@@ -33,6 +33,10 @@ public class RSAUtil {
 		Security.addProvider(new BouncyCastleProvider());
 	}
 
+	private static RSAPublicKey rsaPublicKey;
+
+	private static RSAPrivateKey rsaPrivateKey;
+
 	/**
 	 * 随机生成密钥对
 	 *
@@ -115,12 +119,13 @@ public class RSAUtil {
 	 * @param publicKeyStr 公钥数据字符串
 	 * @return 公钥
 	 */
-	public static RSAPublicKey loadPublicKeyByStr(String publicKeyStr) {
+	public static void loadPublicKeyByStr(String publicKeyStr) {
 		try {
 			byte[] buffer = Base64.getDecoder().decode(publicKeyStr);
 			KeyFactory keyFactory = KeyFactory.getInstance("RSA", "BC");
 			X509EncodedKeySpec keySpec = new X509EncodedKeySpec(buffer);
-			return (RSAPublicKey) keyFactory.generatePublic(keySpec);
+			//
+			setRsaPublicKey((RSAPublicKey) keyFactory.generatePublic(keySpec));
 		} catch (NoSuchAlgorithmException e) {
 			throw new SystemException("无此算法", e);
 		} catch (InvalidKeySpecException e) {
@@ -182,12 +187,12 @@ public class RSAUtil {
 		}
 	}
 
-	public static RSAPrivateKey loadPrivateKeyByStr(String privateKeyStr) {
+	public static void loadPrivateKeyByStr(String privateKeyStr) {
 		try {
 			byte[] buffer = Base64.getDecoder().decode(privateKeyStr);
 			PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(buffer);
 			KeyFactory keyFactory = KeyFactory.getInstance("RSA", "BC");
-			return (RSAPrivateKey) keyFactory.generatePrivate(keySpec);
+			setRsaPrivateKey((RSAPrivateKey) keyFactory.generatePrivate(keySpec));
 		} catch (NoSuchAlgorithmException e) {
 			throw new SystemException("无此算法", e);
 		} catch (InvalidKeySpecException e) {
@@ -231,8 +236,7 @@ public class RSAUtil {
 	}
 
 	public static String encryptByPublicKey(String data) {
-		RSAPublicKey rsaPublicKey = RSAUtil.loadPublicKeyByStr(RsaConstant.PUBLIC_KEY);
-		byte[] bytes = encrypt(rsaPublicKey, data.getBytes());
+		byte[] bytes = encrypt(getRsaPublicKey(), data.getBytes());
 		return Base64.getEncoder().encodeToString(bytes);
 	}
 
@@ -341,7 +345,23 @@ public class RSAUtil {
 	public static String decrypt(String rsaPwd) {
 		// rsa解密
 		byte[] cipherData = Base64.getDecoder().decode(rsaPwd);
-		byte[] xpwd = RSAUtil.decrypt(RSAUtil.loadPrivateKeyByStr(RsaConstant.PRIVATE_KEY), cipherData);
+		byte[] xpwd = RSAUtil.decrypt(getRsaPrivateKey(), cipherData);
 		return new String(xpwd);
+	}
+
+	public static RSAPublicKey getRsaPublicKey() {
+		return rsaPublicKey;
+	}
+
+	public static void setRsaPublicKey(RSAPublicKey rsaPublicKey) {
+		RSAUtil.rsaPublicKey = rsaPublicKey;
+	}
+
+	public static RSAPrivateKey getRsaPrivateKey() {
+		return rsaPrivateKey;
+	}
+
+	public static void setRsaPrivateKey(RSAPrivateKey rsaPrivateKey) {
+		RSAUtil.rsaPrivateKey = rsaPrivateKey;
 	}
 }

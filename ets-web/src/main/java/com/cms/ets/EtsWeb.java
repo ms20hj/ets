@@ -3,6 +3,8 @@ package com.cms.ets;
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
 import com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;
+import com.cms.ets.common.constant.RsaConstant;
+import com.cms.ets.core.util.RSAUtil;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration;
@@ -11,6 +13,8 @@ import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import javax.annotation.PostConstruct;
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class, MongoAutoConfiguration.class, MongoDataAutoConfiguration.class})
 @EnableDubbo
@@ -27,5 +31,12 @@ public class EtsWeb extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(EtsWeb.class);
+    }
+
+    @PostConstruct
+    protected void initRsaKey() {
+        RSAUtil.loadPublicKeyByStr(RsaConstant.PUBLIC_KEY);
+        RSAUtil.loadPrivateKeyByStr(RsaConstant.PRIVATE_KEY);
+        LOG.info("加载RSA公钥秘钥成功！！！");
     }
 }

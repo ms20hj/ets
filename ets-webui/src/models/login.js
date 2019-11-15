@@ -1,30 +1,33 @@
 import { routerRedux } from 'dva/router';
 import { stringify } from 'querystring';
-import { fakeAccountLogin, getFakeCaptcha, getPublicKey } from '@/services/login';
-import { setAuthority } from '@/utils/authority';
+import { userLogin, getFakeCaptcha, getPublicKey } from '@/services/login';
+import { setLoginData } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
 const Model = {
   namespace: 'login',
   state: {
-    status: undefined,
+    loginResult: {
+      status: true,
+    },
   },
   effects: {
-
     *getPublicKey(_, { call, put }) {
-      const response = yield call(getPublicKey);
-      if (response.status) {
-        localStorage.setItem("rsaKey", response.data);
+      const rsaKey = localStorage.getItem('rsaKey');
+      if (!rsaKey) {
+        const response = yield call(getPublicKey);
+        if (response.status) {
+          localStorage.setItem('rsaKey', response.data);
+        }
       }
     },
 
     *login({ payload }, { call, put }) {
-      const response = yield call(fakeAccountLogin, payload);
+      const response = yield call(userLogin, payload);
       yield put({
         type: 'changeLoginStatus',
         payload: response,
       }); // Login successfully
-
-      if (response.status === 'ok') {
+      if (response.status) {
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();
         let { redirect } = params;
@@ -69,8 +72,8 @@ const Model = {
   },
   reducers: {
     changeLoginStatus(state, { payload }) {
-      setAuthority(payload.currentAuthority);
-      return { ...state, status: payload.status, type: payload.type };
+      setLoginData(payload.data);
+      return { ...state, loginResult: payload };
     },
   },
 };
