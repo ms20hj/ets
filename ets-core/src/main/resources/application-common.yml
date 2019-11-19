@@ -6,7 +6,7 @@ logging:
 shiro:
   noneFilterUrl: /common/**, /static/**, /swagger-ui.html, /swagger-resources/**, /v2/**, /webjars/**, /login/*
   #没有登陆的用户只能访问登陆页面
-  unauthorizedUrl: /common/unauth
+  unauthorizedUrl: /login/unAuth
 
 
 ---
@@ -20,7 +20,6 @@ spring:
       path: D://image//
       #    path: /home/project/idaas/attachment/ #服务器部署环境地址
       displayPath: /attachment/
-  unauthorizedUrl: /common/unauth
 
 ---
 #生产环境参数配置

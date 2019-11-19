@@ -28,7 +28,11 @@ public enum CodeEnum {
     /**
      * 查无数据
      */
-    QUERY_NO_DATA("无对应数据", 10005);
+    QUERY_NO_DATA("无对应数据", 10005),
+    /**
+     * 登录失效/未登录
+     */
+    AUTHORIZE_UNAUTH("未登录", 10006);
 
 
 

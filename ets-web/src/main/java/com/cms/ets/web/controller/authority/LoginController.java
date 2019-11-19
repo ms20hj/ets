@@ -2,6 +2,7 @@ package com.cms.ets.web.controller.authority;
 
 import cn.hutool.crypto.digest.MD5;
 import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
 import com.alibaba.dubbo.config.annotation.Reference;
@@ -20,6 +21,11 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Map;
 
 /**
@@ -84,4 +90,26 @@ public class LoginController extends BaseController {
         }
         return error(CodeEnum.SYSTEM_ERROR);
     }
+
+//    @RequestMapping("unAuth")
+//    public void unAuth(HttpServletRequest request, HttpServletResponse response) {
+//        SecurityUtils.getSubject().logout();
+//        try {
+//            response.setContentType("application/json;charset=utf-8");
+//            ServletOutputStream out = response.getOutputStream();
+//            HandleResult result = HandleResult.error(CodeEnum.AUTHORIZE_UNAUTH);
+//            out.write(JSONUtil.toJsonStr(result).getBytes());
+//            out.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+    @RequestMapping("unAuth")
+    public HandleResult unAuth() {
+        SecurityUtils.getSubject().logout();
+        return error(CodeEnum.AUTHORIZE_UNAUTH);
+    }
+
+
 }

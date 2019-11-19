@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.servlet.Filter;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +34,7 @@ public class ShiroConfig {
     private int timeout;
     @Value("${spring.redis.expire}")
     private int expire;
-    @Value("${spring.unauthorizedUrl}")
+    @Value("${shiro.unauthorizedUrl}")
     private String unauthorizedUrl;
     @Value("#{'${shiro.noneFilterUrl}'.split(',')}")
     private List<String> noneFilterUrl;
@@ -98,29 +99,35 @@ public class ShiroConfig {
         return securityManager;
     }
 
+    public CORSAuthenticationFilter corsAuthenticationFilter(){
+        return new CORSAuthenticationFilter();
+    }
+
     @Bean
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         // 没有登陆的用户只能访问登陆页面，前后端分离中登录界面跳转应由前端路由控制，后台仅返回json数据
-        shiroFilterFactoryBean.setLoginUrl(unauthorizedUrl);
+//        shiroFilterFactoryBean.setLoginUrl(unauthorizedUrl);
         // 未授权界面;
-        shiroFilterFactoryBean.setUnauthorizedUrl(unauthorizedUrl);
-        //自定义拦截器
-//        Map<String, Filter> filtersMap = new LinkedHashMap<>();
-        //限制同一帐号同时在线的个数。
-//        filtersMap.put("kickout", kickoutSessionControlFilter());
-//        shiroFilterFactoryBean.setFilters(filtersMap);
-
+//        shiroFilterFactoryBean.setUnauthorizedUrl(unauthorizedUrl);
         // 权限控制map
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         // 表示可以匿名访问的url
         for (String url : noneFilterUrl){
             filterChainDefinitionMap.put(url.trim(), "anon");
         }
-        //此处需要添加一个kickout，上面添加的自定义拦截器,才能生效表示需要认证才可以访问
+        //authc:所有url必须通过认证才能访问，anon:所有url都可以匿名访问
+        filterChainDefinitionMap.put("/**", "corsAuthenticationFilter");
         filterChainDefinitionMap.put("/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+
+        //自定义过滤器
+        Map<String, Filter> filterMap = new LinkedHashMap<>();
+        filterMap.put("corsAuthenticationFilter", corsAuthenticationFilter());
+        shiroFilterFactoryBean.setFilters(filterMap);
+
+
         return shiroFilterFactoryBean;
     }
 
@@ -143,7 +150,7 @@ public class ShiroConfig {
     public SimpleCookie getSessionIdCookie() {
         SimpleCookie cookie = new SimpleCookie("sid");
         cookie.setHttpOnly(true);
-        cookie.setMaxAge(-1);
+        cookie.setMaxAge(1800);
         return cookie;
     }
 

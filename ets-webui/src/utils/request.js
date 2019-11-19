@@ -26,6 +26,7 @@ const codeMessage = {
  */
 
 const errorHandler = error => {
+  console.log('errorHandler', error);
   const { response } = error;
 
   if (response && response.status) {
@@ -53,4 +54,15 @@ const request = extend({
   // 默认错误处理
   credentials: 'include', // 默认请求是否带上cookie
 });
+
+// 克隆响应对象做解析处理
+request.interceptors.response.use(async (response) => {
+  const data = await response.clone().json();
+  console.log('interceptors',data);
+  // if(data && data.NOT_LOGIN) {
+  //   location.href = '登录url';
+  // }
+  return response;
+});
+
 export default request;
