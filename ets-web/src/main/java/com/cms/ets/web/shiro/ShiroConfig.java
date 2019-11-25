@@ -108,9 +108,9 @@ public class ShiroConfig {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         // 没有登陆的用户只能访问登陆页面，前后端分离中登录界面跳转应由前端路由控制，后台仅返回json数据
-//        shiroFilterFactoryBean.setLoginUrl(unauthorizedUrl);
+        shiroFilterFactoryBean.setLoginUrl(unauthorizedUrl);
         // 未授权界面;
-//        shiroFilterFactoryBean.setUnauthorizedUrl(unauthorizedUrl);
+        shiroFilterFactoryBean.setUnauthorizedUrl(unauthorizedUrl);
         // 权限控制map
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         // 表示可以匿名访问的url
