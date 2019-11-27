@@ -1,6 +1,7 @@
 package com.cms.ets.web.shiro;
 
 import com.cms.ets.common.constant.ShiroConstant;
+import com.cms.ets.web.shiro.filter.ShiroUserFilter;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler;
 import org.apache.shiro.session.mgt.SessionValidationScheduler;
@@ -99,9 +100,9 @@ public class ShiroConfig {
         return securityManager;
     }
 
-    public CORSAuthenticationFilter corsAuthenticationFilter(){
-        return new CORSAuthenticationFilter();
-    }
+//    public CORSAuthenticationFilter corsAuthenticationFilter(){
+//        return new CORSAuthenticationFilter();
+//    }
 
     @Bean
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
@@ -118,15 +119,12 @@ public class ShiroConfig {
             filterChainDefinitionMap.put(url.trim(), "anon");
         }
         //authc:所有url必须通过认证才能访问，anon:所有url都可以匿名访问
-        filterChainDefinitionMap.put("/**", "corsAuthenticationFilter");
         filterChainDefinitionMap.put("/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
-
         //自定义过滤器
         Map<String, Filter> filterMap = new LinkedHashMap<>();
-        filterMap.put("corsAuthenticationFilter", corsAuthenticationFilter());
+        filterMap.put("custom", new ShiroUserFilter());
         shiroFilterFactoryBean.setFilters(filterMap);
-
 
         return shiroFilterFactoryBean;
     }

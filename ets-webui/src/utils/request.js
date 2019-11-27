@@ -4,6 +4,7 @@
  */
 import { extend } from 'umi-request';
 import { notification } from 'antd';
+import router from 'umi/router';
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
   201: '新建或修改数据成功。',
@@ -28,7 +29,6 @@ const codeMessage = {
 const errorHandler = error => {
   console.log('errorHandler', error);
   const { response } = error;
-
   if (response && response.status) {
     const errorText = codeMessage[response.status] || response.statusText;
     const { status, url } = response;
@@ -42,7 +42,6 @@ const errorHandler = error => {
       message: '网络异常',
     });
   }
-
   return response;
 };
 /**
@@ -55,13 +54,18 @@ const request = extend({
   credentials: 'include', // 默认请求是否带上cookie
 });
 
-// 克隆响应对象做解析处理
+//response 拦截器，对返回结果进行处理
 request.interceptors.response.use(async (response) => {
   const data = await response.clone().json();
-  console.log('interceptors',data);
-  // if(data && data.NOT_LOGIN) {
-  //   location.href = '登录url';
-  // }
+  if (data.code === 10006) {
+    localStorage.removeItem("userId");
+    localStorage.removeItem("token");
+    window.sessionStorage.clear();
+    router.replace({
+      pathname: '/user/login'
+    });
+    return response;
+  }
   return response;
 });
 
