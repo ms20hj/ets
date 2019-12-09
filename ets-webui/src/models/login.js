@@ -46,8 +46,8 @@ const Model = {
             return;
           }
         }
-
         yield put(routerRedux.replace(redirect || '/'));
+      } else {
       }
     },
 
@@ -72,7 +72,9 @@ const Model = {
   },
   reducers: {
     changeLoginStatus(state, { payload }) {
-      setLoginData(payload.data);
+      if (payload.status) {
+        setLoginData(payload.data);
+      }
       return { ...state, loginResult: payload };
     },
   },

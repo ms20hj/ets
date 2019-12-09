@@ -4,11 +4,11 @@ public enum CodeEnum {
     /**
      * 通用请求成功
      */
-    SUCCESS("request success", 0),
+    SUCCESS("请求成功", 0),
     /**
      * 通用请求失败
      */
-    FAILURE("request failure", 1),
+    FAILURE("请求失败", 1),
     /**
      * 业务处理异常
      */
@@ -20,7 +20,7 @@ public enum CodeEnum {
     /**
      * 无权限
      */
-    AUTHORIZE_ERROR("没有权限", 10003),
+    NO_AUTHORIZE("没有权限", 10003),
     /**
      * 校验失败
      */
