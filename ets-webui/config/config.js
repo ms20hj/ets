@@ -181,6 +181,12 @@ export default {
                   component: './marketing/tourist',
                   exact: true,
                 },
+                {
+                  name: 'ticket',
+                  path: '/marketing/ticket',
+                  component: './marketing/ticket',
+                  exact: true,
+                },
               ],
             },
             {

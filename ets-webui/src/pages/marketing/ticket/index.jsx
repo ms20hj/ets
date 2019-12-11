@@ -2,20 +2,20 @@ import React, { Component } from 'react';
 import {Button, Table, Pagination, Divider, Row, Col, message, Input, Modal, Form, Tree} from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect } from 'dva';
-import TravelTypeForm from './components/TravelTypeForm';
-import TravelAgencyForm from './components/TravelAgencyForm';
+import CategoryForm from './components/CategoryForm';
+import TicketForm from './components/TicketForm';
 import {getContentHeight} from "../../../utils/utils";
 
 @Form.create()
-@connect(({ travelAgency, loading }) => ({
-  travelAgency,
-  loading: loading.models.travelAgency,
-  pageData: travelAgency.pageData,
-  handleResult: travelAgency.handleResult,
-  tempTravelAgency: travelAgency.tempTravelAgency,
-  treeTravel: travelAgency.treeTravel,
+@connect(({ ticket, loading }) => ({
+  ticket,
+  loading: loading.models.ticket,
+  pageData: ticket.pageData,
+  handleResult: ticket.handleResult,
+  tempTicket: ticket.tempTicket,
+  treeCategory: ticket.treeCategory,
 }))
-export default class TravelAgency extends Component {
+export default class Ticket extends Component {
   constructor(props) {
     super(props);
   }
@@ -62,7 +62,7 @@ export default class TravelAgency extends Component {
 
     const { dispatch } = this.props;
     dispatch({
-      type: 'travelAgency/page',
+      type: 'ticket/page',
       payload: {
         ...param,
       },
@@ -84,10 +84,10 @@ export default class TravelAgency extends Component {
   queryTree = () => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'travelAgency/getTreeTravel'
+      type: 'ticket/getTreeCategory'
     }).then( () => {
-      const {treeTravel} = this.props;
-      const rootNode = treeTravel[0];
+      const {treeCategory} = this.props;
+      const rootNode = treeCategory[0];
       if (rootNode.children && rootNode.children.length > 0) {
         const child = rootNode.children[0];
         this.setState({
@@ -171,7 +171,7 @@ export default class TravelAgency extends Component {
     if (!flag) {
       const {dispatch} = this.props;
       dispatch({
-        type: 'travelAgency/clearTypeData'
+        type: 'ticket/clearTypeData'
       });
     }
   };
@@ -181,7 +181,7 @@ export default class TravelAgency extends Component {
   clearModelsData = () => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'travelAgency/clearData',
+      type: 'ticket/clearData',
     });
   };
   /**
@@ -210,7 +210,7 @@ export default class TravelAgency extends Component {
       const {currentKey} = this.state;
       const ids = [currentKey];
       dispatch({
-        type: 'travelAgency/remove',
+        type: 'ticket/remove',
         payload: ids,
       }).then(() => {
         const { handleResult } = this.props;
@@ -253,7 +253,7 @@ export default class TravelAgency extends Component {
   remove = ids => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'travelAgency/remove',
+      type: 'ticket/remove',
       payload: ids,
     }).then(() => {
       const { handleResult } = this.props;
@@ -273,11 +273,11 @@ export default class TravelAgency extends Component {
   handlePreEdit = id => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'travelAgency/getById',
+      type: 'ticket/getById',
       payload: id,
     }).then(() => {
-      const { handleResult, tempTravelAgency } = this.props;
-      if (handleResult.status && tempTravelAgency !== null) {
+      const { handleResult, tempTicket } = this.props;
+      if (handleResult.status && tempTicket !== null) {
         this.changeEditVisible('编辑', true);
       } else {
         this.queryPage();
@@ -292,11 +292,11 @@ export default class TravelAgency extends Component {
     const { dispatch } = this.props;
     const {currentKey} = this.state;
     dispatch({
-      type: 'travelAgency/getTypeById',
+      type: 'ticket/getTypeById',
       payload: currentKey,
     }).then(() => {
-      const { handleResult, tempTravelType } = this.props;
-      if (handleResult.status && tempTravelType !== null) {
+      const { handleResult, tempTicketCategory } = this.props;
+      if (handleResult.status && tempTicketCategory !== null) {
         this.changeEditTypeVisible('编辑', true);
       } else {
         this.queryTree();
@@ -319,12 +319,12 @@ export default class TravelAgency extends Component {
   renderTreeNodes = (data) => data.map(item => {
     if (item.children) {
       return (
-        <Tree.TreeNode title={item.name} key={item.id} dataRef={item}>
+        <Tree.TreeNode title={item.categoryName} key={item.id} dataRef={item}>
           {this.renderTreeNodes(item.children)}
         </Tree.TreeNode>
       );
     }
-    return <Tree.TreeNode key={item.id} title={item.name} dataRef={item} />;
+    return <Tree.TreeNode key={item.id} title={item.categoryName} dataRef={item} />;
   });
 
   onSelectTreeNode = (selectedKeys, info) => {
@@ -352,7 +352,7 @@ export default class TravelAgency extends Component {
   };
 
   render() {
-    const { pageData, loading, treeTravel } = this.props;
+    const { pageData, loading, treeCategory } = this.props;
     const { list, pagination } = pageData;
     const { editVisible, editTitle, editTypeVisible, editTypeTitle, selectedRowKeys, typeAddButtonDisabled,
       typeEditButtonDisabled, typeDelButtonDisabled, addButtonDisabled, currentKey, treeSelectKeys } = this.state;
@@ -414,7 +414,6 @@ export default class TravelAgency extends Component {
     const editTypeMethods = {
       queryTree: this.queryTree,
       changeEditTypeVisible: this.changeEditTypeVisible,
-      parentId: currentKey,
     };
     return (
       <PageHeaderWrapper>
@@ -448,7 +447,7 @@ export default class TravelAgency extends Component {
                   onSelect={this.onSelectTreeNode}
                   style={{height: getContentHeight()-50}}
                 >
-                  {this.renderTreeNodes(treeTravel)}
+                  {this.renderTreeNodes(treeCategory)}
                 </Tree>
               </Col>
             </Row>
@@ -498,8 +497,8 @@ export default class TravelAgency extends Component {
             </Row>
           </Col>
         </Row>
-        <TravelTypeForm editTypeVisible={editTypeVisible} title={editTypeTitle} {...editTypeMethods} />
-        <TravelAgencyForm editVisible={editVisible} title={editTitle} {...editMethods} />
+        <CategoryForm editTypeVisible={editTypeVisible} title={editTypeTitle} {...editTypeMethods} />
+        <TicketForm editVisible={editVisible} title={editTitle} {...editMethods} />
       </PageHeaderWrapper>
     );
   }

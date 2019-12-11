@@ -97,7 +97,7 @@ public class CodeGenerator {
 //        strategy.setRestControllerStyle(true);
 //        strategy.setSuperControllerClass("com.baomidou.ant.common.BaseController");
         //需要生成表名
-        strategy.setInclude("t_tourist");
+        strategy.setInclude("t_ticket", "t_ticket_category");
         strategy.setSuperEntityColumns("id","create_id","update_id","create_time","update_time");
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setEntityTableFieldAnnotationEnable(true);
