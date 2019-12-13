@@ -10,6 +10,7 @@ import {
   updateCagegory,
   checkCategoryNameExist,
   getScenicSpotList,
+  getDictionary,
 } from '@/services/ticket';
 
 const TicketModel = {
@@ -47,6 +48,10 @@ const TicketModel = {
     },
     treeCategory: [],
     scenicSpotList: [],
+    physicalList: [],
+    deadlineUnitList: [],
+    printMethodList: [],
+    printTemplateList: [],
   },
 
   effects: {
@@ -146,6 +151,37 @@ const TicketModel = {
       });
     },
 
+    *getPhysicalDictionary(_, { call, put }) {
+      const response = yield call(getDictionary, TICKET_PHYSICAL);
+      yield put({
+        type: 'putPhysicalList',
+        payload: response,
+      });
+    },
+
+    *getDeadlineUnitDictionary(_, { call, put}) {
+      const response = yield call(getDictionary, TICKET_DEADLINEUNIT);
+      yield put({
+        type: 'putDeadlineUnitList',
+        payload: response
+      });
+    },
+
+    *getPrintMethodDictionary(_, { call, put}) {
+      const response = yield call(getDictionary, TICKET_PRINTMETHOD);
+      yield put({
+        type: 'putPrintMethodList',
+        payload: response
+      });
+    },
+
+    *getPrintTemplateDictionary(_, { call, put}) {
+      const response = yield call(getDictionary, TICKET_PRINTTEMPLATE);
+      yield put({
+        type: 'putPrintTemplateList',
+        payload: response
+      });
+    },
   },
 
   reducers: {
@@ -246,6 +282,34 @@ const TicketModel = {
         ...state,
         scenicSpotList: payload.data,
       };
+    },
+
+    putPhysicalList(state, {payload}) {
+      return {
+        ...state,
+        physicalList: payload.data,
+      }
+    },
+
+    putDeadlineUnitList(state, {payload}) {
+      return {
+        ...state,
+        deadlineUnitList: payload.data,
+      }
+    },
+
+    putPrintMethodList(state, {payload}) {
+      return {
+        ...state,
+        printMethodList: payload.data,
+      }
+    },
+
+    putPrintTemplateList(state, {payload}) {
+      return {
+        ...state,
+        printTemplateList: payload.data,
+      }
     },
 
   },

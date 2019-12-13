@@ -62,7 +62,7 @@ dubbo:
   protocol:
     name: "dubbo"
     # 开启dubbo端口自动分配功能, 将从28800开始检索
-    #    port: "20890"
+    port: "20895"
     accesslog: "true"
     threadpool: "cached"
     threads: "500"

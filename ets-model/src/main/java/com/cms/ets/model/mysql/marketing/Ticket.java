@@ -73,7 +73,7 @@ public class Ticket extends BaseEntity {
     private int deadline;
 
     /**
-     * 期限单位：天、月、年
+     * 门票期限单位：天D、月M、年Y
      */
     @TableField("deadline_unit")
     private String deadlineUnit;

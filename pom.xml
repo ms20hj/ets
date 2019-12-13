@@ -39,7 +39,6 @@
         <mybatisplus.generator.version>3.2.0</mybatisplus.generator.version>
         <mysql.connector.version>5.1.45</mysql.connector.version>
         <p6spy.version>3.8.0</p6spy.version>
-        <okhttp.version>3.14.0</okhttp.version>
         <commons-lang.version>2.6</commons-lang.version>
         <guava.version>27.0.1-jre</guava.version>
         <mongodb-plus.version>1.0.0.RELEASE</mongodb-plus.version>
@@ -48,7 +47,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <freemarker.version>2.3.28</freemarker.version>
-        <junit.version>4.11</junit.version>
+        <junit.version>4.12</junit.version>
         <bouncycastle.version>1.56</bouncycastle.version>
     </properties>
 
@@ -169,7 +168,6 @@
                 <version>${p6spy.version}</version>
             </dependency>
 
-            <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
             <dependency>
                 <groupId>commons-lang</groupId>
                 <artifactId>commons-lang</artifactId>

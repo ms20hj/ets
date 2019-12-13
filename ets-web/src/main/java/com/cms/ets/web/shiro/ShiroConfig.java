@@ -64,8 +64,8 @@ public class ShiroConfig {
         return redisManager;
     }
 
-    @Bean
-    public RedisCacheManager cacheManager() {
+    @Bean(name = "shiroCacheManager")
+    public RedisCacheManager shiroCacheManager() {
         RedisCacheManager redisCacheManager = new RedisCacheManager();
         redisCacheManager.setRedisManager(redisManager());
         //设置前缀
@@ -84,7 +84,7 @@ public class ShiroConfig {
         sessionManager.setSessionValidationSchedulerEnabled(true);
         sessionManager.setSessionValidationScheduler(getSessionValidationScheduler());
         EnterpriseCacheSessionDAO cacheSessionDAO = new EnterpriseCacheSessionDAO();
-        cacheSessionDAO.setCacheManager(cacheManager());
+        cacheSessionDAO.setCacheManager(shiroCacheManager());
         sessionManager.setSessionDAO(cacheSessionDAO);
         sessionManager.setSessionIdCookieEnabled(true);
         sessionManager.setSessionIdCookie(getSessionIdCookie());
@@ -95,7 +95,7 @@ public class ShiroConfig {
     public SecurityManager securityManager(){
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(shiroRealm());
-        securityManager.setCacheManager(cacheManager());
+        securityManager.setCacheManager(shiroCacheManager());
         securityManager.setSessionManager(sessionManager());
         return securityManager;
     }

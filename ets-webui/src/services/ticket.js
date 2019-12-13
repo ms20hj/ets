@@ -99,3 +99,7 @@ export async function checkCategoryNameExist(param) {
 export async function getScenicSpotList() {
   return request('/server/api/scenicSpot/getSimpleList')
 }
+
+export async function getDictionary(prefix) {
+  return request(`/server/api/dictionary/getChildrenByPrefix?prefix=${prefix}`)
+}

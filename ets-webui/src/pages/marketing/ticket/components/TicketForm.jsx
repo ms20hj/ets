@@ -22,6 +22,10 @@ const formItemLayout = {
   tempTicket: ticket.tempTicket,
   pageData: ticket.pageData,
   scenicSpotList: ticket.scenicSpotList,
+  physicalList: ticket.physicalList,
+  deadlineUnitList: ticket.deadlineUnitList,
+  printMethodList: ticket.printMethodList,
+  printTemplateList: ticket.printTemplateList,
 }))
 class TicketForm extends Component {
 
@@ -33,6 +37,18 @@ class TicketForm extends Component {
     const {dispatch} = this.props;
     dispatch({
       type: 'ticket/getScenicSpotList',
+    });
+    dispatch({
+      type: 'ticket/getPhysicalDictionary',
+    });
+    dispatch({
+      type: 'ticket/getDeadlineUnitDictionary',
+    });
+    dispatch({
+      type: 'ticket/getPrintMethodDictionary',
+    });
+    dispatch({
+      type: 'ticket/getPrintTemplateDictionary',
     });
   }
 
@@ -129,10 +145,10 @@ class TicketForm extends Component {
         onCancel={() => changeEditVisible('', false)}
       >
 
-        <Form>
+        <Form {...formItemLayout}>
           <Row gutter={2}>
             <Col span={12}>
-              <Form.Item {...formItemLayout} label="票名称">
+              <Form.Item label="票名称">
                 {getFieldDecorator('ticketName', {
                   initialValue: tempTicket.ticketName,
                   rules: [
@@ -146,7 +162,7 @@ class TicketForm extends Component {
             </Col>
 
             <Col span={12}>
-              <Form.Item {...formItemLayout} label="所属景区">
+              <Form.Item label="所属景区">
                 {getFieldDecorator('scenicSpotId', {
                   initialValue: tempTicket.scenicSpotId,
                   rules: [{ required: true, message: '请选择所属景区' }],
