@@ -5,12 +5,19 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.cms.ets.api.config.IDictionaryService;
 import com.cms.ets.api.marketing.ITicketService;
+import com.cms.ets.api.park.IScenicSpotService;
+import com.cms.ets.model.mysql.config.Dictionary;
 import com.cms.ets.model.mysql.marketing.Ticket;
+import com.cms.ets.model.mysql.park.ScenicSpot;
 import com.cms.ets.provider.mapper.marketing.TicketMapper;
+import com.google.common.collect.ImmutableMap;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -22,12 +29,18 @@ import java.util.List;
  */
 @Service
 public class TicketServiceImpl extends ServiceImpl<TicketMapper, Ticket> implements ITicketService {
+
+    @Autowired
+    private IDictionaryService dictionaryService;
+    @Autowired
+    private IScenicSpotService scenicSpotService;
+
     @Override
     public IPage<Ticket> page(Page<Ticket> page, String name, String categoryId) {
         QueryWrapper<Ticket> wrapper = new QueryWrapper<>();
-        wrapper.eq("ticket_gategory_id", categoryId);
+        wrapper.eq("ticket_category_id", categoryId);
         if (StringUtils.isNotEmpty(name)) {
-            wrapper.like("name", name);
+            wrapper.like("ticket_name", name);
         }
         wrapper.orderByAsc("sort_num");
         return page(page, wrapper);
@@ -36,7 +49,7 @@ public class TicketServiceImpl extends ServiceImpl<TicketMapper, Ticket> impleme
     @Override
     public boolean checkNameExist(String name, String id) {
         QueryWrapper<Ticket> wrapper = new QueryWrapper<>();
-        wrapper.eq("name", name);
+        wrapper.eq("ticket_name", name);
         if (StringUtils.isNotEmpty(id)) {
             wrapper.ne("id", id);
         }
@@ -49,5 +62,16 @@ public class TicketServiceImpl extends ServiceImpl<TicketMapper, Ticket> impleme
         QueryWrapper<Ticket> wrapper = new QueryWrapper<>();
         wrapper.eq("ticket_gategory_id", categoryId);
         return list(wrapper);
+    }
+
+    @Override
+    public Map<String, Object> getTicketSelectParams() {
+        List<ScenicSpot> scenicSpotList = scenicSpotService.getSimpleList();
+        List<Dictionary> physicalList = dictionaryService.getChildrenByParentPrefix(Ticket.TICKET_PHYSICAL);
+        List<Dictionary> deadlineUnitList = dictionaryService.getChildrenByParentPrefix(Ticket.TICKET_DEADLINEUNIT);
+        List<Dictionary> printMethodList = dictionaryService.getChildrenByParentPrefix(Ticket.TICKET_PRINTMETHOD);
+        List<Dictionary> printTemplateList = dictionaryService.getChildrenByParentPrefix(Ticket.TICKET_PRINTTEMPLATE);
+        return ImmutableMap.of("scenicSpotList", scenicSpotList, "physicalList", physicalList, "deadlineUnitList", deadlineUnitList,
+                "printMethodList", printMethodList, "printTemplateList", printTemplateList);
     }
 }

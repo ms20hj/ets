@@ -23,6 +23,25 @@ public class Ticket extends BaseEntity {
     public static final String MODULE_NAME = "营销管理";
 
     public static final String MENU_NAME = "门票管理";
+    /**
+     * 门票介质
+     */
+    public static final String TICKET_PHYSICAL = "physical";
+    /**
+     * 门票期限单位
+     * @type {string}
+     */
+    public static final String TICKET_DEADLINEUNIT = "deadlineUnit";
+    /**
+     * 出票方式
+     * @type {string}
+     */
+    public static final String TICKET_PRINTMETHOD = "printMethod";
+    /**
+     * 打印模板
+     * @type {string}
+     */
+    public static final String TICKET_PRINTTEMPLATE = "printTemplate";
 
     /**
      * 票名称

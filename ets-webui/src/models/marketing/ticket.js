@@ -9,8 +9,7 @@ import {
   saveCagegory,
   updateCagegory,
   checkCategoryNameExist,
-  getScenicSpotList,
-  getDictionary,
+  getTicketSelectParams,
 } from '@/services/ticket';
 
 const TicketModel = {
@@ -143,45 +142,14 @@ const TicketModel = {
       });
     },
 
-    *getScenicSpotList(_, { call, put}) {
-      const response = yield call(getScenicSpotList);
+    *initTicketSelectParams(_, { call, put}){
+      const response = yield call(getTicketSelectParams);
       yield put({
-        type: 'putScenicSpotList',
+        type: 'putInitTicketSelectParams',
         payload: response,
       });
     },
 
-    *getPhysicalDictionary(_, { call, put }) {
-      const response = yield call(getDictionary, TICKET_PHYSICAL);
-      yield put({
-        type: 'putPhysicalList',
-        payload: response,
-      });
-    },
-
-    *getDeadlineUnitDictionary(_, { call, put}) {
-      const response = yield call(getDictionary, TICKET_DEADLINEUNIT);
-      yield put({
-        type: 'putDeadlineUnitList',
-        payload: response
-      });
-    },
-
-    *getPrintMethodDictionary(_, { call, put}) {
-      const response = yield call(getDictionary, TICKET_PRINTMETHOD);
-      yield put({
-        type: 'putPrintMethodList',
-        payload: response
-      });
-    },
-
-    *getPrintTemplateDictionary(_, { call, put}) {
-      const response = yield call(getDictionary, TICKET_PRINTTEMPLATE);
-      yield put({
-        type: 'putPrintTemplateList',
-        payload: response
-      });
-    },
   },
 
   reducers: {
@@ -277,40 +245,18 @@ const TicketModel = {
       };
     },
 
-    putScenicSpotList(state, { payload }){
+    putInitTicketSelectParams(state, {payload}){
+      const data = payload.data;
       return {
         ...state,
-        scenicSpotList: payload.data,
+        scenicSpotList: data.scenicSpotList,
+        physicalList: data.physicalList,
+        deadlineUnitList: data.deadlineUnitList,
+        printMethodList: data.printMethodList,
+        printTemplateList: data.printTemplateList,
       };
     },
 
-    putPhysicalList(state, {payload}) {
-      return {
-        ...state,
-        physicalList: payload.data,
-      }
-    },
-
-    putDeadlineUnitList(state, {payload}) {
-      return {
-        ...state,
-        deadlineUnitList: payload.data,
-      }
-    },
-
-    putPrintMethodList(state, {payload}) {
-      return {
-        ...state,
-        printMethodList: payload.data,
-      }
-    },
-
-    putPrintTemplateList(state, {payload}) {
-      return {
-        ...state,
-        printTemplateList: payload.data,
-      }
-    },
 
   },
 };

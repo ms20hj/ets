@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.cms.ets.model.mysql.marketing.Ticket;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -41,4 +42,11 @@ public interface ITicketService extends IService<Ticket> {
      * @date 2019年10月29日14:05:08
      */
     List<Ticket> getByCategoryId(String categoryId);
+
+    /**
+     * 获取门票下拉框初始化值
+     * @return Map<String, Object>
+     * @date 2019年12月19日17:52:43
+     */
+    Map<String, Object> getTicketSelectParams();
 }

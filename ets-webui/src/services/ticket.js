@@ -67,6 +67,10 @@ export async function getTicketCategory() {
   return request(`/server/api/ticketCategory/listTree`);
 }
 
+export async function getTicketSelectParams() {
+  return request(`/server/api/ticket/getTicketSelectParams`);
+}
+
 export async function saveCagegory(obj) {
   return request('/server/api/ticketCategory/save', {
     method: 'POST',
@@ -94,10 +98,6 @@ export async function checkCategoryNameExist(param) {
   return request(
     `/server/api/ticketCategory/checkNameExist?name=${param.name}&id=${param.id ? param.id : ''}`,
   );
-}
-
-export async function getScenicSpotList() {
-  return request('/server/api/scenicSpot/getSimpleList')
 }
 
 export async function getDictionary(prefix) {

@@ -14,6 +14,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -80,5 +81,17 @@ public class TicketController extends BaseController {
     public HandleResult getById(String id) {
         Ticket ticket = ticketService.getById(id);
         return success(ticket);
+    }
+
+    /**
+     * 获取门票下拉框初始化值
+     * @return HandleResult
+     * @date 2019年12月19日17:50:16
+     * @author ChenMingsen
+     */
+    @GetMapping("getTicketSelectParams")
+    public HandleResult getTicketSelectParams(){
+        Map<String, Object> params = ticketService.getTicketSelectParams();
+        return success(params);
     }
 }

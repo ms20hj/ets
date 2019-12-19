@@ -34,6 +34,7 @@ export default class Ticket extends Component {
     currentKey: '',
     treeSelectKeys: [],
     searchValue: '',
+    currentNode: {},
   };
 
   componentDidMount() {
@@ -328,10 +329,12 @@ export default class Ticket extends Component {
   });
 
   onSelectTreeNode = (selectedKeys, info) => {
+    console.info("onSelectTreeNode", info);
     const props = info.node.props;
     this.setState({
       currentKey:props.eventKey,
       treeSelectKeys: [props.eventKey],
+      currentNode: {categoryName: props.title, id: props.eventKey},
     });
     setTimeout(() => {this.queryPage()}, 300);
     if (props.eventKey === 'ROOT') {

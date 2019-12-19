@@ -65,6 +65,10 @@ request.interceptors.response.use(async (response) => {
       pathname: '/user/login'
     });
     return response;
+  } else if (data.code === 1) {
+    notification.error({
+      message: `请求失败`,
+    });
   }
   return response;
 });

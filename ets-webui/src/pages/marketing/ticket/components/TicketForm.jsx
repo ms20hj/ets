@@ -36,19 +36,7 @@ class TicketForm extends Component {
   componentDidMount() {
     const {dispatch} = this.props;
     dispatch({
-      type: 'ticket/getScenicSpotList',
-    });
-    dispatch({
-      type: 'ticket/getPhysicalDictionary',
-    });
-    dispatch({
-      type: 'ticket/getDeadlineUnitDictionary',
-    });
-    dispatch({
-      type: 'ticket/getPrintMethodDictionary',
-    });
-    dispatch({
-      type: 'ticket/getPrintTemplateDictionary',
+      type: 'ticket/initTicketSelectParams',
     });
   }
 

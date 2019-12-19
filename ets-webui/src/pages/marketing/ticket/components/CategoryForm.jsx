@@ -54,7 +54,6 @@ class CategoryForm extends Component {
 
   handleSubmit = () => {
     const { form } = this.props;
-    debugger;
     form.validateFieldsAndScroll((err, fieldsValue) => {
       if (err) return;
       const { tempTicketCategory, dispatch, queryTree, changeEditTypeVisible } = this.props;

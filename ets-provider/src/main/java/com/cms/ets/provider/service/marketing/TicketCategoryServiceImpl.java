@@ -25,7 +25,7 @@ public class TicketCategoryServiceImpl extends ServiceImpl<TicketCategoryMapper,
     @Override
     public boolean checkNameExist(String name, String id) {
         QueryWrapper<TicketCategory> wrapper = new QueryWrapper<>();
-        wrapper.eq("name", name);
+        wrapper.eq("category_name", name);
         if (StringUtils.isNotEmpty(id)) {
             wrapper.ne("id", id);
         }
