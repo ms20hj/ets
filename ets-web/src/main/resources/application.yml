@@ -89,7 +89,7 @@ spring:
   profiles: dev
   # redis 缓存参数配置
   redis:
-    host: 106.54.164.115
+    host: 122.51.119.135
     port: 6379
     database: 1
     expire: 1800

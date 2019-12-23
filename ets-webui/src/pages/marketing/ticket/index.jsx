@@ -94,6 +94,7 @@ export default class Ticket extends Component {
         this.setState({
           treeSelectKeys: [child.id],
           currentKey: child.id,
+          currentNode: {id: child.id, title: child.categoryName},
           typeAddButtonDisabled: true,
           typeEditButtonDisabled: false,
           addButtonDisabled: false,
@@ -102,6 +103,7 @@ export default class Ticket extends Component {
         this.setState({
           treeSelectKeys: [],
           currentKey: '',
+          currentNode: {},
           typeAddButtonDisabled: false,
           typeEditButtonDisabled: true,
           addButtonDisabled: true,
@@ -358,7 +360,7 @@ export default class Ticket extends Component {
     const { pageData, loading, treeCategory } = this.props;
     const { list, pagination } = pageData;
     const { editVisible, editTitle, editTypeVisible, editTypeTitle, selectedRowKeys, typeAddButtonDisabled,
-      typeEditButtonDisabled, typeDelButtonDisabled, addButtonDisabled, currentKey, treeSelectKeys } = this.state;
+      typeEditButtonDisabled, typeDelButtonDisabled, addButtonDisabled, currentKey, treeSelectKeys, currentNode } = this.state;
     const columns = [
       {
         title: '序号',
@@ -413,6 +415,7 @@ export default class Ticket extends Component {
       clearModelsData: this.clearModelsData,
       changeEditVisible: this.changeEditVisible,
       parentId: currentKey,
+      currentNode,
     };
     const editTypeMethods = {
       queryTree: this.queryTree,

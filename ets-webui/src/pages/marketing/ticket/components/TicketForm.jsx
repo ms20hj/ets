@@ -121,6 +121,8 @@ class TicketForm extends Component {
       changeEditVisible,
       tempTicket,
       scenicSpotList,
+      physicalList,
+      currentNode,
     } = this.props;
     const { getFieldDecorator } = form;
     return (
@@ -160,6 +162,41 @@ class TicketForm extends Component {
                     {scenicSpotList.map((item, index) => (
                       <Select.Option key={item.id} value={item.id}>
                         {item.spotName}
+                      </Select.Option>
+                    ))}
+                  </Select>,
+                )}
+              </Form.Item>
+            </Col>
+          </Row>
+
+          <Row gutter={2}>
+            <Col span={12}>
+              <Form.Item label="所属种类">
+                {getFieldDecorator('ticketCategoryId', {
+                  initialValue: tempTicket.ticketCategoryId === '' ? currentNode.id:tempTicket.ticketCategoryId,
+                })(
+                  <Select placeholder="请选择所属种类" disabled>
+                    <Select.Option value={currentNode.id} >
+                      {currentNode.title}
+                    </Select.Option>
+                  </Select>,
+                )}
+              </Form.Item>
+            </Col>
+
+            <Col span={12}>
+              <Form.Item label="门票介质">
+                {getFieldDecorator('physical', {
+                  // 字典值是字符串，所以需要转化成字符串
+                  initialValue: tempTicket.physical+'',
+                  rules: [{ required: true, message: '请选择门票介质' }],
+                  validateTrigger: 'onBlur',
+                })(
+                  <Select placeholder="请选择门票介质">
+                    {physicalList.map((item, index) => (
+                      <Select.Option key={item.dictValue}>
+                        {item.dictName}
                       </Select.Option>
                     ))}
                   </Select>,
