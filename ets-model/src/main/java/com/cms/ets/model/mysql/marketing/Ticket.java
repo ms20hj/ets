@@ -65,7 +65,7 @@ public class Ticket extends BaseEntity {
      * 线下窗口售价
      */
     @TableField("sale_price")
-    private BigDecimal salePrice;
+    private double salePrice;
 
     /**
      * 票面打印价
@@ -163,11 +163,11 @@ public class Ticket extends BaseEntity {
         this.ticketCategoryId = ticketCategoryId;
     }
 
-    public BigDecimal getSalePrice() {
+    public double getSalePrice() {
         return salePrice;
     }
 
-    public void setSalePrice(BigDecimal salePrice) {
+    public void setSalePrice(double salePrice) {
         this.salePrice = salePrice;
     }
 

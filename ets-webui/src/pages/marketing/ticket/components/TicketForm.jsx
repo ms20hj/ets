@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Form, Input, message, Modal, Select } from 'antd';
+import { Form, Input, message, Modal, Select, DatePicker, Row, Col } from 'antd';
 import { connect } from 'dva';
-import Row from "antd/lib/grid/row";
-import Col from "antd/lib/grid/col";
+import moment from "moment";
+
 
 const formItemLayout = {
   labelCol: {
@@ -15,6 +15,20 @@ const formItemLayout = {
     md: {span: 16},
   },
 };
+
+const formItemLayoutColspan = {
+  labelCol: {
+    xs: {span: 24},
+    sm: {span: 4},
+  },
+  wrapperCol: {
+    xs: {span: 24},
+    sm: {span: 12},
+    md: {span: 16},
+  },
+};
+
+const { RangePicker } = DatePicker;
 
 @connect(({ ticket }) => ({
   ticket,
@@ -122,6 +136,9 @@ class TicketForm extends Component {
       tempTicket,
       scenicSpotList,
       physicalList,
+      deadlineUnitList,
+      printMethodList,
+      printTemplateList,
       currentNode,
     } = this.props;
     const { getFieldDecorator } = form;
@@ -205,6 +222,118 @@ class TicketForm extends Component {
             </Col>
           </Row>
 
+          <Row gutter={2}>
+            <Col span={12}>
+              <Form.Item label="窗口售价">
+                {getFieldDecorator('salePrice', {
+                  initialValue: tempTicket.salePrice,
+                  rules: [
+                    { required: true, message: '请输入窗口售价' },
+                    { pattern: '^[1-9]*[1-9][0-9]*$', message: '请输入整数'},
+                    { max: 8, message: '不能超过8位数'}
+                  ],
+                  validateTrigger: 'onBlur',
+                })(<Input prefix="￥" suffix="RMB" placeholder="请输入窗口售价" width={150}/>)}
+              </Form.Item>
+            </Col>
+
+            <Col span={12}>
+              <Form.Item label="票面打印价">
+                {getFieldDecorator('printPrice', {
+                  initialValue: tempTicket.printPrice,
+                  rules: [
+                    { required: true, message: '请输入票面打印价' },
+                    { pattern: '^[1-9]*[1-9][0-9]*$', message: '请输入整数'},
+                    { max: 8, message: '不能超过8位数'}
+                  ],
+                  validateTrigger: 'onBlur',
+                })(<Input prefix="￥" suffix="RMB" placeholder="请输入票面打印价" width={150}/>)}
+              </Form.Item>
+            </Col>
+          </Row>
+
+          <Row gutter={2}>
+            <Col span={12}>
+              <Form.Item label="网络售价">
+                {getFieldDecorator('networkPrice', {
+                  initialValue: tempTicket.networkPrice,
+                  rules: [
+                    { required: true, message: '请输入网络售价' },
+                    { pattern: '^[1-9]*[1-9][0-9]*$', message: '请输入整数'},
+                    { max: 8, message: '不能超过8位数'}
+                  ],
+                  validateTrigger: 'onBlur',
+                })(<Input prefix="￥" suffix="RMB" placeholder="请输入网络售价" width={150}/>)}
+              </Form.Item>
+            </Col>
+
+            <Col span={12}>
+              <Form.Item label="有效期限">
+                {getFieldDecorator('deadline', {
+                  initialValue: tempTicket.printPrice,
+                  rules: [
+                    { required: true, message: '请输入有效期限' },
+                    { pattern: '^[1-9]*[1-9][0-9]*$', message: '请输入整数'},
+                    { max: 3, message: '不能超过3位数'}
+                  ],
+                  validateTrigger: 'onBlur',
+                })(<Input placeholder="请输入有效期限" width={150}/>)}
+              </Form.Item>
+            </Col>
+          </Row>
+
+          <Row gutter={2}>
+            <Col span={12}>
+              <Form.Item label="有效期单位">
+                {getFieldDecorator('deadlineUnit', {
+                  initialValue: tempTicket.deadlineUnit,
+                  rules: [
+                    { required: true, message: '请选择有效期单位' },
+                  ],
+                  validateTrigger: 'onBlur',
+                })(
+                  <Select placeholder="请选择有效期单位">
+                    {deadlineUnitList.map((item, index) => (
+                      <Select.Option key={item.dictValue}>
+                        {item.dictName}
+                      </Select.Option>
+                    ))}
+                  </Select>,
+                )}
+              </Form.Item>
+            </Col>
+
+            <Col span={12}>
+              <Form.Item label="打印方式">
+                {getFieldDecorator('printMethod', {
+                  // 字典值是字符串，所以需要转化成字符串
+                  initialValue: tempTicket.printMethod+'',
+                  rules: [{ required: true, message: '请选择打印方式' }],
+                  validateTrigger: 'onBlur',
+                })(
+                  <Select placeholder="请选择打印方式">
+                    {printMethodList.map((item, index) => (
+                      <Select.Option key={item.dictValue}>
+                        {item.dictName}
+                      </Select.Option>
+                    ))}
+                  </Select>,
+                )}
+              </Form.Item>
+            </Col>
+          </Row>
+
+          <Row gutter={2}>
+            <Col span={24}>
+              <Form.Item label="参售日期" {...formItemLayoutColspan}>
+                {getFieldDecorator('range-picker', {
+                  initialValue: [moment(tempTicket.beginDate, 'yyyy-MM-dd'), moment(tempTicket.endDate, 'yyyy-MM-dd')],
+                  rules: [{ type: 'array', required: true, message: '请选择参售日期' }],
+                })(<RangePicker />)}
+              </Form.Item>
+            </Col>
+
+          </Row>
         </Form>
       </Modal>
     );

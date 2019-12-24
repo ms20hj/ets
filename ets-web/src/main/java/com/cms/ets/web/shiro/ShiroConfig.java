@@ -33,6 +33,8 @@ public class ShiroConfig {
     private int redisPort;
     @Value("${spring.redis.timeout}")
     private int timeout;
+    @Value("${spring.redis.database}")
+    private int database;
     @Value("${spring.redis.expire}")
     private int expire;
     @Value("${shiro.unauthorizedUrl}")
@@ -55,12 +57,10 @@ public class ShiroConfig {
     @Bean
     public RedisManager redisManager() {
         RedisManager redisManager = new RedisManager();
-        redisManager.setHost(redisHost);
-        redisManager.setPort(redisPort);
+        redisManager.setHost(redisHost + ":" + redisPort);
         //设置超时时间
         redisManager.setTimeout(timeout);
-        // 设置缓存过期时间
-        redisManager.setExpire(expire);
+        redisManager.setDatabase(database);
         return redisManager;
     }
 
@@ -68,6 +68,7 @@ public class ShiroConfig {
     public RedisCacheManager shiroCacheManager() {
         RedisCacheManager redisCacheManager = new RedisCacheManager();
         redisCacheManager.setRedisManager(redisManager());
+        redisCacheManager.setExpire(expire);
         //设置前缀
         redisCacheManager.setKeyPrefix(ShiroConstant.SHIRO_USER_CACHE);
         return redisCacheManager;
