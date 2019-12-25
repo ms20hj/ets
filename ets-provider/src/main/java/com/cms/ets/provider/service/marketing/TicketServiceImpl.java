@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cms.ets.api.config.IDictionaryService;
+import com.cms.ets.api.marketing.ITicketScapeService;
 import com.cms.ets.api.marketing.ITicketService;
 import com.cms.ets.api.park.IScenicSpotService;
 import com.cms.ets.model.mysql.config.Dictionary;
@@ -15,6 +16,7 @@ import com.cms.ets.provider.mapper.marketing.TicketMapper;
 import com.google.common.collect.ImmutableMap;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -34,6 +36,8 @@ public class TicketServiceImpl extends ServiceImpl<TicketMapper, Ticket> impleme
     private IDictionaryService dictionaryService;
     @Autowired
     private IScenicSpotService scenicSpotService;
+    @Autowired
+    private ITicketScapeService ticketScapeService;
 
     @Override
     public IPage<Ticket> page(Page<Ticket> page, String name, String categoryId) {
@@ -69,5 +73,17 @@ public class TicketServiceImpl extends ServiceImpl<TicketMapper, Ticket> impleme
         List<Dictionary> printTemplateList = dictionaryService.getChildrenByParentPrefix(Ticket.TICKET_PRINTTEMPLATE);
         return ImmutableMap.of("scenicSpotList", scenicSpotList, "physicalList", physicalList, "deadlineUnitList", deadlineUnitList,
                 "printMethodList", printMethodList, "printTemplateList", printTemplateList);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void saveAndInitTicketScape(Ticket ticket) {
+        this.save(ticket);
+        ticketScapeService.saveByTicket(ticket);
+    }
+
+    @Override
+    public void updateAndResetTicketScape(Ticket ticket) {
+
     }
 }

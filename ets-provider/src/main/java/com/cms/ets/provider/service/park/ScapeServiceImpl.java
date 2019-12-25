@@ -39,4 +39,11 @@ public class ScapeServiceImpl extends ServiceImpl<ScapeMapper, Scape> implements
         List<Scape> list = list(wrapper);
         return !list.isEmpty();
     }
+
+    @Override
+    public List<Scape> getByScenicSpotId(String scenicSpotId) {
+        QueryWrapper<Scape> wrapper = new QueryWrapper<>();
+        wrapper.eq("scenic_spot_id", scenicSpotId);
+        return list(wrapper);
+    }
 }

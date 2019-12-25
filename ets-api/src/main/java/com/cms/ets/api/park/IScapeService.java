@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.cms.ets.model.mysql.park.Scape;
 
+import java.util.List;
+
 /**
  * <p>
  * 景点信息表 服务类
@@ -30,4 +32,12 @@ public interface IScapeService extends IService<Scape> {
      * @return 存在true, 不存在false
      */
     boolean checkNameExist(String name, String id);
+
+    /**
+     * 根据景区id查询景点集合
+     * @param scenicSpotId 景区id
+     * @return List<Scape>
+     * @date 2019年12月25日17:21:26
+     */
+    List<Scape> getByScenicSpotId(String scenicSpotId);
 }

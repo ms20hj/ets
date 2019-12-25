@@ -49,4 +49,18 @@ public interface ITicketService extends IService<Ticket> {
      * @date 2019年12月19日17:52:43
      */
     Map<String, Object> getTicketSelectParams();
+
+    /**
+     * 保存门票信息，初始化门票景点关联数据
+     * @param ticket Ticket对象
+     * @date 2019年12月25日17:12:02
+     */
+    void saveAndInitTicketScape(Ticket ticket);
+
+    /**
+     * 更新门票信息，重置门票景点关联数据
+     * @param ticket Ticket对象
+     * @date 2019年12月25日17:12:36
+     */
+    void updateAndResetTicketScape(Ticket ticket);
 }
