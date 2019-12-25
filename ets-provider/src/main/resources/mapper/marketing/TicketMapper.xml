@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.ets.provider.mapper.marketing.TicketMapper">
+
+    <resultMap id="baseResult" type="com.cms.ets.model.mysql.marketing.Ticket">
+        <id column="id" property="id"/>
+        <result column="ticket_name" property="ticketName"/>
+        <result column="scenic_spot_id" property="scenicSpotId"/>
+        <result column="ticket_category_id" property="ticketCategoryId"/>
+        <result column="sale_price" property="salePrice"/>
+        <result column="print_price" property="printPrice"/>
+        <result column="network_price" property="networkPrice"/>
+        <result column="physical" property="physical"/>
+        <result column="deadline" property="deadline"/>
+        <result column="deadline_unit" property="deadlineUnit"/>
+        <result column="print_method" property="printMethod"/>
+        <result column="begin_date" property="beginDate"/>
+        <result column="end_date" property="endDate"/>
+        <result column="status" property="status"/>
+        <result column="print_template" property="printTemplate"/>
+        <result column="sort_num" property="sortNum"/>
+        <result column="description" property="description"/>
+        <association property="scenicSpot" javaType="com.cms.ets.model.mysql.park.ScenicSpot">
+            <id column="ssid" property="id"/>
+            <result column="spot_name" property="spotName" />
+        </association>
+        <association property="ticketCategory" javaType="com.cms.ets.model.mysql.marketing.TicketCategory">
+            <id column="tcid" property="id"/>
+            <result column="category_name" property="categoryName" />
+        </association>
+    </resultMap>
+
+    <select id="pageQuery" parameterType="string" resultMap="baseResult">
+        select t.id, t.ticket_name, t.scenic_spot_id, t.ticket_category_id, t.sale_price,
+        t.print_price, t.network_price, t.physical, t.deadline, t.deadline_unit, t.print_method,
+        t.begin_date, t.end_date, t.status, t.print_template, t.sort_num, t.description,
+        tc.id as tcid, tc.category_name, ss.id as ssid, ss.spot_name
+        from t_ticket t left join t_ticket_category tc on t.ticket_category_id = tc.id
+        left join t_scenic_spot ss on t.scenic_spot_id = ss.id
+        where t.ticket_category_id = #{categoryId}
+        <if test="name != null and name != '' ">
+            and t.ticket_name LIKE concat('%', #{name}, '%')
+        </if>
+        order by t.sort_num asc
+    </select>
+
+</mapper>

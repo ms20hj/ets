@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
-import {Button, Table, Pagination, Divider, Row, Col, message, Input, Modal, Form, Tree} from 'antd';
+import {
+  Button,
+  Table,
+  Pagination,
+  Divider,
+  Row,
+  Col,
+  message,
+  Input,
+  Modal,
+  Form,
+  Tree,
+} from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect } from 'dva';
 import CategoryForm from './components/CategoryForm';
 import TicketForm from './components/TicketForm';
-import {getContentHeight} from "../../../utils/utils";
+import { getContentHeight } from '../../../utils/utils';
 
 @Form.create()
 @connect(({ ticket, loading }) => ({
@@ -75,9 +87,9 @@ export default class Ticket extends Component {
       });
       const { pageData } = this.props;
       if (pageData.list.length === 0) {
-        this.setState({typeDelButtonDisabled: false});
+        this.setState({ typeDelButtonDisabled: false });
       } else {
-        this.setState({typeDelButtonDisabled: true});
+        this.setState({ typeDelButtonDisabled: true });
       }
     });
   };
@@ -85,20 +97,20 @@ export default class Ticket extends Component {
   queryTree = () => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'ticket/getTreeCategory'
-    }).then( () => {
-      const {treeCategory} = this.props;
+      type: 'ticket/getTreeCategory',
+    }).then(() => {
+      const { treeCategory } = this.props;
       const rootNode = treeCategory[0];
       if (rootNode.children && rootNode.children.length > 0) {
         const child = rootNode.children[0];
         this.setState({
           treeSelectKeys: [child.id],
           currentKey: child.id,
-          currentNode: {id: child.id, title: child.categoryName},
+          currentNode: { id: child.id, title: child.categoryName },
           typeAddButtonDisabled: true,
           typeEditButtonDisabled: false,
           addButtonDisabled: false,
-        })
+        });
       } else {
         this.setState({
           treeSelectKeys: [],
@@ -107,10 +119,11 @@ export default class Ticket extends Component {
           typeAddButtonDisabled: false,
           typeEditButtonDisabled: true,
           addButtonDisabled: true,
-        })
+        });
       }
       this.queryPage();
-    })};
+    });
+  };
 
   /**
    * 刷新当前页面的数据
@@ -172,9 +185,9 @@ export default class Ticket extends Component {
       editTypeTitle: title,
     });
     if (!flag) {
-      const {dispatch} = this.props;
+      const { dispatch } = this.props;
       dispatch({
-        type: 'ticket/clearTypeData'
+        type: 'ticket/clearTypeData',
       });
     }
   };
@@ -210,7 +223,7 @@ export default class Ticket extends Component {
   handleRemoveType = () => {
     const removeType = () => {
       const { dispatch } = this.props;
-      const {currentKey} = this.state;
+      const { currentKey } = this.state;
       const ids = [currentKey];
       dispatch({
         type: 'ticket/remove',
@@ -293,7 +306,7 @@ export default class Ticket extends Component {
    */
   handlePreTypeEdit = () => {
     const { dispatch } = this.props;
-    const {currentKey} = this.state;
+    const { currentKey } = this.state;
     dispatch({
       type: 'ticket/getTypeById',
       payload: currentKey,
@@ -319,26 +332,29 @@ export default class Ticket extends Component {
    * 渲染树节点
    * @param data
    */
-  renderTreeNodes = (data) => data.map(item => {
-    if (item.children) {
-      return (
-        <Tree.TreeNode title={item.categoryName} key={item.id} dataRef={item}>
-          {this.renderTreeNodes(item.children)}
-        </Tree.TreeNode>
-      );
-    }
-    return <Tree.TreeNode key={item.id} title={item.categoryName} dataRef={item} />;
-  });
+  renderTreeNodes = data =>
+    data.map(item => {
+      if (item.children) {
+        return (
+          <Tree.TreeNode title={item.categoryName} key={item.id} dataRef={item}>
+            {this.renderTreeNodes(item.children)}
+          </Tree.TreeNode>
+        );
+      }
+      return <Tree.TreeNode key={item.id} title={item.categoryName} dataRef={item} />;
+    });
 
   onSelectTreeNode = (selectedKeys, info) => {
-    console.info("onSelectTreeNode", info);
+    console.info('onSelectTreeNode', info);
     const props = info.node.props;
     this.setState({
-      currentKey:props.eventKey,
+      currentKey: props.eventKey,
       treeSelectKeys: [props.eventKey],
-      currentNode: {categoryName: props.title, id: props.eventKey},
+      currentNode: { categoryName: props.title, id: props.eventKey },
     });
-    setTimeout(() => {this.queryPage()}, 300);
+    setTimeout(() => {
+      this.queryPage();
+    }, 300);
     if (props.eventKey === 'ROOT') {
       this.setState({
         typeAddButtonDisabled: false,
@@ -359,8 +375,20 @@ export default class Ticket extends Component {
   render() {
     const { pageData, loading, treeCategory } = this.props;
     const { list, pagination } = pageData;
-    const { editVisible, editTitle, editTypeVisible, editTypeTitle, selectedRowKeys, typeAddButtonDisabled,
-      typeEditButtonDisabled, typeDelButtonDisabled, addButtonDisabled, currentKey, treeSelectKeys, currentNode } = this.state;
+    const {
+      editVisible,
+      editTitle,
+      editTypeVisible,
+      editTypeTitle,
+      selectedRowKeys,
+      typeAddButtonDisabled,
+      typeEditButtonDisabled,
+      typeDelButtonDisabled,
+      addButtonDisabled,
+      currentKey,
+      treeSelectKeys,
+      currentNode,
+    } = this.state;
     const columns = [
       {
         title: '序号',
@@ -370,19 +398,29 @@ export default class Ticket extends Component {
         render: (text, record, index) => <span>{index + 1}</span>,
       },
       {
-        title: '旅行社名称',
-        dataIndex: 'name',
-        key: 'name',
+        title: '票名称',
+        dataIndex: 'ticketName',
+        key: 'ticketName',
       },
       {
-        title: '联系人',
-        dataIndex: 'contact',
-        key: 'contact',
+        title: '所属景区',
+        dataIndex: 'scenicSpot.spotName',
+        key: 'scenicSpot.spotName',
       },
       {
-        title: '联系电话',
-        dataIndex: 'phone',
-        key: 'phone',
+        title: '所属票种',
+        dataIndex: 'ticketCategory.categoryName',
+        key: 'ticketCategory.categoryName',
+      },
+      {
+        title: '窗口售价',
+        dataIndex: 'salePrice',
+        key: 'salePrice',
+      },
+      {
+        title: '票面打印价',
+        dataIndex: 'printPrice',
+        key: 'printPrice',
       },
       {
         title: '状态',
@@ -428,19 +466,27 @@ export default class Ticket extends Component {
           <Col span={4}>
             <Row>
               <Col>
-                <Button type="primary" disabled={typeAddButtonDisabled}
-                        style={{ marginLeft: 30 }}
-                        onClick={() => this.changeEditTypeVisible('新增', true)}>
+                <Button
+                  type="primary"
+                  disabled={typeAddButtonDisabled}
+                  style={{ marginLeft: 30 }}
+                  onClick={() => this.changeEditTypeVisible('新增', true)}
+                >
                   新增
                 </Button>
-                <Button type="primary" disabled={typeEditButtonDisabled}
-                        style={{ marginLeft: 10} }
-                        onClick={() => this.handlePreTypeEdit()}>
+                <Button
+                  type="primary"
+                  disabled={typeEditButtonDisabled}
+                  style={{ marginLeft: 10 }}
+                  onClick={() => this.handlePreTypeEdit()}
+                >
                   编辑
                 </Button>
-                <Button disabled={typeDelButtonDisabled}
-                        style={{ marginLeft: 10 }}
-                        onClick={() => this.handleRemoveType()}>
+                <Button
+                  disabled={typeDelButtonDisabled}
+                  style={{ marginLeft: 10 }}
+                  onClick={() => this.handleRemoveType()}
+                >
                   删除
                 </Button>
               </Col>
@@ -451,7 +497,7 @@ export default class Ticket extends Component {
                   expandedKeys={['ROOT']}
                   selectedKeys={treeSelectKeys}
                   onSelect={this.onSelectTreeNode}
-                  style={{height: getContentHeight()-50}}
+                  style={{ height: getContentHeight() - 50 }}
                 >
                   {this.renderTreeNodes(treeCategory)}
                 </Tree>
@@ -462,7 +508,11 @@ export default class Ticket extends Component {
           <Col span={20}>
             <Row>
               <Col>
-                <Button type="primary" disabled={addButtonDisabled} onClick={() => this.changeEditVisible('新增', true)}>
+                <Button
+                  type="primary"
+                  disabled={addButtonDisabled}
+                  onClick={() => this.changeEditVisible('新增', true)}
+                >
                   新增
                 </Button>
                 <Button
@@ -473,7 +523,7 @@ export default class Ticket extends Component {
                   删除
                 </Button>
                 <Input.Search
-                  placeholder="请输入旅行社名称"
+                  placeholder="请输入票名称"
                   onSearch={this.handleSearch}
                   style={{ width: 200, float: 'right' }}
                 />
@@ -488,8 +538,7 @@ export default class Ticket extends Component {
                   rowKey={item => item.id}
                   pagination={false}
                   rowSelection={rowSelection}
-                >
-                </Table>
+                ></Table>
                 <Pagination
                   current={pagination.current}
                   showSizeChanger
@@ -503,7 +552,11 @@ export default class Ticket extends Component {
             </Row>
           </Col>
         </Row>
-        <CategoryForm editTypeVisible={editTypeVisible} title={editTypeTitle} {...editTypeMethods} />
+        <CategoryForm
+          editTypeVisible={editTypeVisible}
+          title={editTypeTitle}
+          {...editTypeMethods}
+        />
         <TicketForm editVisible={editVisible} title={editTitle} {...editMethods} />
       </PageHeaderWrapper>
     );

@@ -37,13 +37,9 @@ public class TicketServiceImpl extends ServiceImpl<TicketMapper, Ticket> impleme
 
     @Override
     public IPage<Ticket> page(Page<Ticket> page, String name, String categoryId) {
-        QueryWrapper<Ticket> wrapper = new QueryWrapper<>();
-        wrapper.eq("ticket_category_id", categoryId);
-        if (StringUtils.isNotEmpty(name)) {
-            wrapper.like("ticket_name", name);
-        }
-        wrapper.orderByAsc("sort_num");
-        return page(page, wrapper);
+        List<Ticket> list = baseMapper.pageQuery(page, name, categoryId);
+        page.setRecords(list);
+        return page;
     }
 
     @Override

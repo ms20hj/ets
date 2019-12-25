@@ -38,8 +38,10 @@ const TicketModel = {
       beginDate: '',
       endDate: '',
       status: 0,
+      fmStatus: true,
       printTemplate: '',
       sortNum: 0,
+      description: '',
     },
     tempTicketCategory: {
       name: '',
@@ -142,14 +144,13 @@ const TicketModel = {
       });
     },
 
-    *initTicketSelectParams(_, { call, put}){
+    *initTicketSelectParams(_, { call, put }) {
       const response = yield call(getTicketSelectParams);
       yield put({
         type: 'putInitTicketSelectParams',
         payload: response,
       });
     },
-
   },
 
   reducers: {
@@ -184,9 +185,9 @@ const TicketModel = {
           ticketName: '',
           scenicSpotId: '',
           ticketCategoryId: '',
-          salePrice: 0.00,
-          printPrice: 0.00,
-          networkPrice: 0.00,
+          salePrice: 0.0,
+          printPrice: 0.0,
+          networkPrice: 0.0,
           physical: 0,
           deadline: 1,
           deadlineUnit: '',
@@ -194,8 +195,10 @@ const TicketModel = {
           beginDate: '',
           endDate: '',
           status: 0,
+          fmStatus: true,
           printTemplate: '',
           sortNum: 0,
+          description: '',
         },
       };
     },
@@ -245,7 +248,7 @@ const TicketModel = {
       };
     },
 
-    putInitTicketSelectParams(state, {payload}){
+    putInitTicketSelectParams(state, { payload }) {
       const data = payload.data;
       return {
         ...state,
@@ -256,8 +259,6 @@ const TicketModel = {
         printTemplateList: data.printTemplateList,
       };
     },
-
-
   },
 };
 export default TicketModel;

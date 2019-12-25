@@ -1,12 +1,12 @@
 package com.cms.ets.model.mysql.marketing;
 
-import java.math.BigDecimal;
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.cms.ets.model.mysql.BaseEntity;
-import java.time.LocalDate;
-import java.util.Date;
-
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.cms.ets.common.constant.CommonConstant;
+import com.cms.ets.model.mysql.BaseEntity;
+import com.cms.ets.model.mysql.park.ScenicSpot;
+
+import java.util.Date;
 
 /**
  * <p>
@@ -54,12 +54,22 @@ public class Ticket extends BaseEntity {
      */
     @TableField("scenic_spot_id")
     private String scenicSpotId;
+    /**
+     * 所属景区对象
+     */
+    @TableField(exist = false)
+    private ScenicSpot scenicSpot;
 
     /**
      * 门票类型id
      */
     @TableField("ticket_category_id")
     private String ticketCategoryId;
+    /**
+     * 所属类别对象
+     */
+    @TableField(exist = false)
+    private TicketCategory ticketCategory;
 
     /**
      * 线下窗口售价
@@ -120,6 +130,9 @@ public class Ticket extends BaseEntity {
      */
     @TableField("status")
     private int status;
+
+    @TableField(exist = false)
+    private boolean fmStatus;
 
     /**
      * 打印模板
@@ -243,6 +256,19 @@ public class Ticket extends BaseEntity {
         this.status = status;
     }
 
+    public boolean isFmStatus() {
+        if (getStatus() == CommonConstant.ENABLE) {
+            fmStatus = true;
+        } else {
+            fmStatus = false;
+        }
+        return fmStatus;
+    }
+
+    public void setFmStatus(boolean fmStatus) {
+        this.fmStatus = fmStatus;
+    }
+
     public String getPrintTemplate() {
         return printTemplate;
     }
@@ -265,6 +291,22 @@ public class Ticket extends BaseEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public ScenicSpot getScenicSpot() {
+        return scenicSpot;
+    }
+
+    public void setScenicSpot(ScenicSpot scenicSpot) {
+        this.scenicSpot = scenicSpot;
+    }
+
+    public TicketCategory getTicketCategory() {
+        return ticketCategory;
+    }
+
+    public void setTicketCategory(TicketCategory ticketCategory) {
+        this.ticketCategory = ticketCategory;
     }
 
     @Override

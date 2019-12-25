@@ -14,7 +14,7 @@ spring:
     # 时区指定为东八区
     time-zone: GMT+8
     # 过滤掉值为Null的属性
-    default-property-inclusion: non_null
+#    default-property-inclusion: non_null
     generator:
       # 数字类型的属性的值也加上双引号
       WRITE_NUMBERS_AS_STRINGS: false
