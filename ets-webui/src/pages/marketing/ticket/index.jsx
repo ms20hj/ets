@@ -404,8 +404,8 @@ export default class Ticket extends Component {
       },
       {
         title: '所属景区',
-        dataIndex: 'scenicSpot.spotName',
-        key: 'scenicSpot.spotName',
+        dataIndex: 'scenicSpotStr',
+        key: 'scenicSpotStr',
       },
       {
         title: '所属票种',

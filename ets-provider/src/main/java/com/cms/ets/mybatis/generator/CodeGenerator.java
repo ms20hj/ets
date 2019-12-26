@@ -92,13 +92,13 @@ public class CodeGenerator {
         strategy.setTablePrefix("t_");
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
-        strategy.setSuperEntityClass("com.cms.ets.model.mysql.BaseEntity");
+//        strategy.setSuperEntityClass("com.cms.ets.model.mysql.BaseEntity");
 //        strategy.setEntityLombokModel(true);
 //        strategy.setRestControllerStyle(true);
 //        strategy.setSuperControllerClass("com.baomidou.ant.common.BaseController");
         //需要生成表名
-        strategy.setInclude("t_ticket_scape");
-        strategy.setSuperEntityColumns("id","create_id","update_id","create_time","update_time");
+        strategy.setInclude("t_ticket_scenic_spot");
+//        strategy.setSuperEntityColumns("id","create_id","update_id","create_time","update_time");
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setEntityTableFieldAnnotationEnable(true);
 //        strategy.setTablePrefix(pc.getModuleName() + "_");

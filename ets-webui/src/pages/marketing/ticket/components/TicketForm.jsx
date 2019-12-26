@@ -121,7 +121,6 @@ class TicketForm extends Component {
       const action = tempTicket.id ? 'ticket/update' : 'ticket/save';
       tempTicket.id ? (fieldsValue.id = tempTicket.id) : '';
       fieldsValue.ticketCategoryId = currentNode.id;
-      debugger;
       const status = form.getFieldValue('fmStatus');
       if (status) {
         fieldsValue.status = 0;
@@ -195,12 +194,12 @@ class TicketForm extends Component {
 
             <Col span={12}>
               <Form.Item label="所属景区">
-                {getFieldDecorator('scenicSpotId', {
-                  initialValue: tempTicket.scenicSpotId,
+                {getFieldDecorator('scenicSpotIdList', {
+                  initialValue: tempTicket.scenicSpotIdList,
                   rules: [{ required: true, message: '请选择所属景区' }],
                   validateTrigger: 'onBlur',
                 })(
-                  <Select placeholder="请选择所属景区">
+                  <Select mode="multiple" placeholder="请选择所属景区">
                     {scenicSpotList.map((item, index) => (
                       <Select.Option key={item.id} value={item.id}>
                         {item.spotName}

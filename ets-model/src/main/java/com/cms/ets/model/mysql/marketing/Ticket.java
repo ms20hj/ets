@@ -7,6 +7,8 @@ import com.cms.ets.model.mysql.BaseEntity;
 import com.cms.ets.model.mysql.park.ScenicSpot;
 
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -50,21 +52,28 @@ public class Ticket extends BaseEntity {
     private String ticketName;
 
     /**
-     * 所属景区
-     */
-    @TableField("scenic_spot_id")
-    private String scenicSpotId;
-    /**
-     * 所属景区对象
+     * 关联景区id
      */
     @TableField(exist = false)
-    private ScenicSpot scenicSpot;
+    private List<String> scenicSpotIdList;
+    /**
+     * 关联景区对象集合
+     */
+    @TableField(exist = false)
+    private List<ScenicSpot> scenicSpotList;
+    /**
+     * 关联景区对象名称合计
+     * 多个以逗号分隔
+     */
+    @TableField(exist = false)
+    private String scenicSpotStr;
 
     /**
      * 门票类型id
      */
     @TableField("ticket_category_id")
     private String ticketCategoryId;
+
     /**
      * 所属类别对象
      */
@@ -158,14 +167,6 @@ public class Ticket extends BaseEntity {
 
     public void setTicketName(String ticketName) {
         this.ticketName = ticketName;
-    }
-
-    public String getScenicSpotId() {
-        return scenicSpotId;
-    }
-
-    public void setScenicSpotId(String scenicSpotId) {
-        this.scenicSpotId = scenicSpotId;
     }
 
     public String getTicketCategoryId() {
@@ -293,14 +294,6 @@ public class Ticket extends BaseEntity {
         this.description = description;
     }
 
-    public ScenicSpot getScenicSpot() {
-        return scenicSpot;
-    }
-
-    public void setScenicSpot(ScenicSpot scenicSpot) {
-        this.scenicSpot = scenicSpot;
-    }
-
     public TicketCategory getTicketCategory() {
         return ticketCategory;
     }
@@ -309,11 +302,37 @@ public class Ticket extends BaseEntity {
         this.ticketCategory = ticketCategory;
     }
 
+    public List<String> getScenicSpotIdList() {
+        return scenicSpotIdList;
+    }
+
+    public void setScenicSpotIdList(List<String> scenicSpotIdList) {
+        this.scenicSpotIdList = scenicSpotIdList;
+    }
+
+    public List<ScenicSpot> getScenicSpotList() {
+        return scenicSpotList;
+    }
+
+    public void setScenicSpotList(List<ScenicSpot> scenicSpotList) {
+        this.scenicSpotList = scenicSpotList;
+    }
+
+    public String getScenicSpotStr() {
+        if (getScenicSpotList() != null && !getScenicSpotList().isEmpty()) {
+            scenicSpotStr = getScenicSpotList().stream().map(ScenicSpot::getSpotName).collect(Collectors.joining(","));
+        }
+        return scenicSpotStr;
+    }
+
+    public void setScenicSpotStr(String scenicSpotStr) {
+        this.scenicSpotStr = scenicSpotStr;
+    }
+
     @Override
     public String toString() {
         return "Ticket{" +
             "ticketName=" + ticketName +
-            ", scenicSpotId=" + scenicSpotId +
             ", ticketCategoryId=" + ticketCategoryId +
             ", salePrice=" + salePrice +
             ", printPrice=" + printPrice +

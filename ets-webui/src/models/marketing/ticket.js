@@ -26,7 +26,7 @@ const TicketModel = {
     handleResult: null,
     tempTicket: {
       ticketName: '',
-      scenicSpotId: '',
+      scenicSpotIdList: [],
       ticketCategoryId: '',
       salePrice: 0,
       printPrice: 0,
@@ -183,7 +183,7 @@ const TicketModel = {
         handleResult: null,
         tempTicket: {
           ticketName: '',
-          scenicSpotId: '',
+          scenicSpotIdList: [],
           ticketCategoryId: '',
           salePrice: 0.0,
           printPrice: 0.0,

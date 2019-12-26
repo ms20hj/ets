@@ -49,7 +49,7 @@ public class TicketController extends BaseController {
     @ApiOperation("保存")
     @OperationLog(action = OperateLogConstant.ADD, moduleName = Ticket.MODULE_NAME, menuName = Ticket.MENU_NAME)
     public HandleResult save(@RequestBody Ticket ticket) {
-        ticketService.save(ticket);
+        ticketService.saveAndInitTicketScape(ticket);
         return success();
     }
 
@@ -57,7 +57,7 @@ public class TicketController extends BaseController {
     @ApiOperation("更新")
     @OperationLog(action = OperateLogConstant.EDIT, moduleName = Ticket.MODULE_NAME, menuName = Ticket.MENU_NAME)
     public HandleResult update(@RequestBody Ticket ticket) {
-        ticketService.updateById(ticket);
+        ticketService.updateAndResetTicketScape(ticket);
         return success();
     }
 

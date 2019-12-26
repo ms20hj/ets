@@ -30,26 +30,25 @@ public class TicketScapeServiceImpl extends ServiceImpl<TicketScapeMapper, Ticke
 
     @Override
     public void saveByTicket(Ticket ticket) {
-        List<Scape> list = scapeService.getByScenicSpotId(ticket.getScenicSpotId());
-        if (list.isEmpty()) {
-            return;
+        for (String scenicSpotId : ticket.getScenicSpotIdList()) {
+            this.saveByTicketIdAndScenicSpotId(ticket.getId(), scenicSpotId);
         }
-        List<TicketScape> ticketScapeList = list.stream().map(scape -> new TicketScape(ticket.getId(), ticket.getScenicSpotId(),
-                scape.getId(), scape.getScapeName())).collect(Collectors.toList());
-        this.saveBatch(ticketScapeList);
     }
 
     @Override
     public void resetByTicket(Ticket ticket) {
-        // 查询配置信息
-        List<TicketScape> list = this.getByTicketIdAndScenicSpotId(ticket.getId(), ticket.getScenicSpotId());
-        // 不为空，已经有配置数据生成，直接return
-        if (!list.isEmpty()) {
-            return;
-        }
-        // 先去删掉没用的配置数据
-        this.removeByTicketId(ticket.getId());
-        this.saveByTicket(ticket);
+        // 删除景区id不存在的数据
+        QueryWrapper<TicketScape> wrapper = new QueryWrapper<>();
+        wrapper.eq("ticket_id", ticket.getId());
+        wrapper.notIn("scenic_spot_id", ticket.getScenicSpotIdList().toArray());
+        this.remove(wrapper);
+
+        ticket.getScenicSpotIdList().stream().forEach(scenicSpotId -> {
+            List<TicketScape> list = this.getByTicketIdAndScenicSpotId(ticket.getId(), scenicSpotId);
+            if (list.isEmpty()) {
+                this.saveByTicketIdAndScenicSpotId(ticket.getId(), scenicSpotId);
+            }
+        });
     }
 
     @Override
@@ -65,5 +64,16 @@ public class TicketScapeServiceImpl extends ServiceImpl<TicketScapeMapper, Ticke
         wrapper.eq("ticket_id", ticketId);
         wrapper.eq("scenic_spot_id", scenicSpotId);
         return list(wrapper);
+    }
+
+    @Override
+    public void saveByTicketIdAndScenicSpotId(String ticketId, String scenicSpotId) {
+        List<Scape> list = scapeService.getByScenicSpotId(scenicSpotId);
+        if (list.isEmpty()) {
+            return;
+        }
+        List<TicketScape> ticketScapeList = list.stream().map(scape -> new TicketScape(ticketId, scenicSpotId,
+                scape.getId(), scape.getScapeName())).collect(Collectors.toList());
+        this.saveBatch(ticketScapeList);
     }
 }

@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cms.ets.api.config.IDictionaryService;
 import com.cms.ets.api.marketing.ITicketScapeService;
+import com.cms.ets.api.marketing.ITicketScenicSpotService;
 import com.cms.ets.api.marketing.ITicketService;
 import com.cms.ets.api.park.IScenicSpotService;
 import com.cms.ets.model.mysql.config.Dictionary;
@@ -38,6 +39,8 @@ public class TicketServiceImpl extends ServiceImpl<TicketMapper, Ticket> impleme
     private IScenicSpotService scenicSpotService;
     @Autowired
     private ITicketScapeService ticketScapeService;
+    @Autowired
+    private ITicketScenicSpotService ticketScenicSpotService;
 
     @Override
     public IPage<Ticket> page(Page<Ticket> page, String name, String categoryId) {
@@ -79,11 +82,14 @@ public class TicketServiceImpl extends ServiceImpl<TicketMapper, Ticket> impleme
     @Override
     public void saveAndInitTicketScape(Ticket ticket) {
         this.save(ticket);
+        ticketScenicSpotService.saveByTicket(ticket);
         ticketScapeService.saveByTicket(ticket);
     }
 
     @Override
     public void updateAndResetTicketScape(Ticket ticket) {
-
+        this.updateById(ticket);
+        ticketScenicSpotService.saveByTicket(ticket);
+        ticketScapeService.resetByTicket(ticket);
     }
 }
