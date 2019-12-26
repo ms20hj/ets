@@ -19,8 +19,10 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -41,6 +43,13 @@ public class TicketServiceImpl extends ServiceImpl<TicketMapper, Ticket> impleme
     private ITicketScapeService ticketScapeService;
     @Autowired
     private ITicketScenicSpotService ticketScenicSpotService;
+
+    @Override
+    public Ticket getById(Serializable id) {
+        Ticket ticket = baseMapper.getById(String.valueOf(id));
+        ticket.setScenicSpotIdList(ticket.getScenicSpotList().stream().map(ScenicSpot::getId).collect(Collectors.toList()));
+        return ticket;
+    }
 
     @Override
     public IPage<Ticket> page(Page<Ticket> page, String name, String categoryId) {

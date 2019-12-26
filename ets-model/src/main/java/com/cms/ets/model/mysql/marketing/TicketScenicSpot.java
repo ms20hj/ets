@@ -1,5 +1,6 @@
 package com.cms.ets.model.mysql.marketing;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -21,7 +22,7 @@ public class TicketScenicSpot implements Serializable {
     /**
      * 主键
      */
-    @TableId("id")
+    @TableId(value = "id", type = IdType.ID_WORKER_STR)
     private String id;
 
     /**

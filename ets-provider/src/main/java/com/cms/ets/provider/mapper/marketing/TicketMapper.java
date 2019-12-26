@@ -18,4 +18,6 @@ import java.util.List;
 public interface TicketMapper extends BaseMapper<Ticket> {
 
     List<Ticket> pageQuery(IPage<Ticket> page, @Param("name") String name, @Param("categoryId") String categoryId);
+
+    Ticket getById(@Param("id") String id);
 }

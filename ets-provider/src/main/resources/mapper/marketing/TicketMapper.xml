@@ -44,4 +44,16 @@
         order by t.sort_num asc
     </select>
 
+    <select id="getById" parameterType="string" resultMap="baseResult">
+        select t.id, t.ticket_name, t.ticket_category_id, t.sale_price,
+        t.print_price, t.network_price, t.physical, t.deadline, t.deadline_unit, t.print_method,
+        t.begin_date, t.end_date, t.status, t.print_template, t.sort_num, t.description,
+        tc.id as tcid, tc.category_name, ss.id as ssid, ss.spot_name
+        from t_ticket t left join t_ticket_category tc on t.ticket_category_id = tc.id
+        left join t_ticket_scenic_spot tss on t.id = tss.ticket_id
+        left join t_scenic_spot ss on tss.scenic_spot_id = ss.id
+        where t.id = #{id}
+        order by t.sort_num asc
+    </select>
+
 </mapper>
