@@ -76,4 +76,11 @@ public class TicketScapeServiceImpl extends ServiceImpl<TicketScapeMapper, Ticke
                 scape.getId(), scape.getScapeName())).collect(Collectors.toList());
         this.saveBatch(ticketScapeList);
     }
+
+    @Override
+    public List<TicketScape> getByTicketId(String ticketId) {
+        QueryWrapper<TicketScape> wrapper = new QueryWrapper<>();
+        wrapper.eq("ticket_id", ticketId);
+        return list(wrapper);
+    }
 }

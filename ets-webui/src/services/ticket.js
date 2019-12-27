@@ -103,3 +103,7 @@ export async function checkCategoryNameExist(param) {
 export async function getDictionary(prefix) {
   return request(`/server/api/dictionary/getChildrenByPrefix?prefix=${prefix}`)
 }
+
+export async function getTicketScape(id) {
+  return request(`/server/api/ticketScape/getByTicketId?ticketId=${id}`)
+}

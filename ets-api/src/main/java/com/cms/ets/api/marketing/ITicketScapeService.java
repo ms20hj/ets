@@ -53,4 +53,12 @@ public interface ITicketScapeService extends IService<TicketScape> {
      * @date 2019年12月26日15:32:35
      */
     void saveByTicketIdAndScenicSpotId(String ticketId, String scenicSpotId);
+
+    /**
+     * 根据票类id查询
+     * @param ticketId Ticket id
+     * @return List<TicketScape>
+     * @date 2019年12月27日10:14:17
+     */
+    List<TicketScape> getByTicketId(String ticketId);
 }

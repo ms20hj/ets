@@ -16,6 +16,7 @@ import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect } from 'dva';
 import CategoryForm from './components/CategoryForm';
 import TicketForm from './components/TicketForm';
+import TicketScapeTable from  './components/TicketScapeTable';
 import { getContentHeight } from '../../../utils/utils';
 
 @Form.create()
@@ -26,6 +27,7 @@ import { getContentHeight } from '../../../utils/utils';
   handleResult: ticket.handleResult,
   tempTicket: ticket.tempTicket,
   treeCategory: ticket.treeCategory,
+  ticketScapeList: ticket.ticketScapeList,
 }))
 export default class Ticket extends Component {
   constructor(props) {
@@ -37,6 +39,7 @@ export default class Ticket extends Component {
     editTitle: '新增',
     editTypeVisible: false,
     editTypeTitle: '新增',
+    editTsVisible: false,
     typeAddButtonDisabled: true,
     typeEditButtonDisabled: true,
     typeDelButtonDisabled: true,
@@ -101,7 +104,7 @@ export default class Ticket extends Component {
     }).then(() => {
       const { treeCategory } = this.props;
       const rootNode = treeCategory[0];
-      if (rootNode.children && rootNode.children.length > 0) {
+      if (rootNode && rootNode.children && rootNode.children.length > 0) {
         const child = rootNode.children[0];
         this.setState({
           treeSelectKeys: [child.id],
@@ -190,6 +193,12 @@ export default class Ticket extends Component {
         type: 'ticket/clearTypeData',
       });
     }
+  };
+
+  changeEditTsVisible = (flag) => {
+    this.setState({
+      editTsVisible: flag,
+    });
   };
   /**
    * 清理model 那边的临时数据
@@ -301,6 +310,22 @@ export default class Ticket extends Component {
       }
     });
   };
+
+  handlePreConfigScape = id => {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'ticket/getTicketScapeList',
+      payload: id,
+    }).then(() => {
+      const {handleResult, ticketScapeList} = this.props;
+      if (handleResult.status && ticketScapeList.length !== 0) {
+        this.changeEditTsVisible(true);
+      } else {
+        this.queryPage();
+        message.error('不存在关联的游玩景点');
+      }
+    });
+  };
   /**
    * 编辑类别
    */
@@ -388,6 +413,7 @@ export default class Ticket extends Component {
       currentKey,
       treeSelectKeys,
       currentNode,
+      editTsVisible,
     } = this.state;
     const columns = [
       {
@@ -436,6 +462,10 @@ export default class Ticket extends Component {
               编辑
             </a>
             <Divider type="vertical" />
+            <a size="small" onClick={this.handlePreConfigScape.bind(this, `${record.id}`)}>
+              景点配置
+            </a>
+            <Divider type="vertical" />
             <a size="small" onClick={this.handleRemove.bind(this, `${record.id}`)}>
               删除
             </a>
@@ -458,6 +488,9 @@ export default class Ticket extends Component {
     const editTypeMethods = {
       queryTree: this.queryTree,
       changeEditTypeVisible: this.changeEditTypeVisible,
+    };
+    const ticketScapeMethods = {
+      changeEditTsVisible: this.changeEditTsVisible,
     };
     return (
       <PageHeaderWrapper>
@@ -558,6 +591,7 @@ export default class Ticket extends Component {
           {...editTypeMethods}
         />
         <TicketForm editVisible={editVisible} title={editTitle} {...editMethods} />
+        <TicketScapeTable editTsVisible={editTsVisible} {...ticketScapeMethods} />
       </PageHeaderWrapper>
     );
   }

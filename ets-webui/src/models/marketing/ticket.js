@@ -10,6 +10,7 @@ import {
   updateCagegory,
   checkCategoryNameExist,
   getTicketSelectParams,
+  getTicketScape,
 } from '@/services/ticket';
 
 const TicketModel = {
@@ -53,6 +54,7 @@ const TicketModel = {
     deadlineUnitList: [],
     printMethodList: [],
     printTemplateList: [],
+    ticketScapeList: [],
   },
 
   effects: {
@@ -151,6 +153,14 @@ const TicketModel = {
         payload: response,
       });
     },
+
+    *getTicketScapeList({payload}, { call, put }) {
+      const response = yield call(getTicketScape, payload);
+      yield put({
+        type: 'putTicketScapeList',
+        payload: response
+      });
+    }
   },
 
   reducers: {
@@ -259,6 +269,16 @@ const TicketModel = {
         printTemplateList: data.printTemplateList,
       };
     },
+
+    putTicketScapeList(state, {payload}) {
+      return {
+        ...state,
+        ticketScapeList: payload.data,
+        handleResult: {
+          ...payload,
+        },
+      }
+    }
   },
 };
 export default TicketModel;
