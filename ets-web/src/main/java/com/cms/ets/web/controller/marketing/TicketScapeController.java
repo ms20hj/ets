@@ -5,9 +5,7 @@ import com.cms.ets.api.marketing.ITicketScapeService;
 import com.cms.ets.common.response.HandleResult;
 import com.cms.ets.model.mysql.marketing.TicketScape;
 import com.cms.ets.web.controller.BaseController;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +25,11 @@ public class TicketScapeController extends BaseController {
     public HandleResult getByTicketId(String ticketId){
         List<TicketScape> list = ticketScapeService.getByTicketId(ticketId);
         return success(list);
+    }
+
+    @PostMapping("update")
+    public HandleResult update(@RequestBody TicketScape ticketScape){
+        ticketScapeService.updateInConfig(ticketScape);
+        return success();
     }
 }

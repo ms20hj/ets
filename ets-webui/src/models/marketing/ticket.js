@@ -11,6 +11,7 @@ import {
   checkCategoryNameExist,
   getTicketSelectParams,
   getTicketScape,
+  updateConfig,
 } from '@/services/ticket';
 
 const TicketModel = {
@@ -160,6 +161,14 @@ const TicketModel = {
         type: 'putTicketScapeList',
         payload: response
       });
+    },
+
+    *updateConfig({payload}, {call, put}) {
+      const response = yield call(updateConfig, payload);
+      yield put({
+        type: 'putHandleResult',
+        payload: response,
+      })
     }
   },
 
@@ -278,7 +287,8 @@ const TicketModel = {
           ...payload,
         },
       }
-    }
+    },
+
   },
 };
 export default TicketModel;

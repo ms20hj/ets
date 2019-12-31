@@ -52,7 +52,7 @@ export default class Ticket extends Component {
     currentNode: {},
   };
 
-  componentDidMount() {
+  componentWillMount() {
     this.queryTree();
   }
 

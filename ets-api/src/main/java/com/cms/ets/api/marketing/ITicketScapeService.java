@@ -61,4 +61,12 @@ public interface ITicketScapeService extends IService<TicketScape> {
      * @date 2019年12月27日10:14:17
      */
     List<TicketScape> getByTicketId(String ticketId);
+
+    /**
+     * 更新进门次数
+     * @param ticketScape
+     * @date 2019年12月31日14:57:04
+     * @author CMS
+     */
+    void updateInConfig(TicketScape ticketScape);
 }

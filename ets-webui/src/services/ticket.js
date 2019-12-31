@@ -107,3 +107,12 @@ export async function getDictionary(prefix) {
 export async function getTicketScape(id) {
   return request(`/server/api/ticketScape/getByTicketId?ticketId=${id}`)
 }
+
+export async function updateConfig(obj) {
+  return request('/server/api/ticketScape/update',{
+    method: 'POST',
+    data: {
+      ...obj
+    }
+  });
+}

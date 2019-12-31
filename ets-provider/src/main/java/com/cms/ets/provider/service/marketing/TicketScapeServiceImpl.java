@@ -2,6 +2,7 @@ package com.cms.ets.provider.service.marketing;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cms.ets.api.marketing.ITicketScapeService;
 import com.cms.ets.api.park.IScapeService;
@@ -82,5 +83,14 @@ public class TicketScapeServiceImpl extends ServiceImpl<TicketScapeMapper, Ticke
         QueryWrapper<TicketScape> wrapper = new QueryWrapper<>();
         wrapper.eq("ticket_id", ticketId);
         return list(wrapper);
+    }
+
+    @Override
+    public void updateInConfig(TicketScape ticketScape) {
+        UpdateWrapper<TicketScape> wrapper = new UpdateWrapper<>();
+        wrapper.set("all_in", ticketScape.getAllIn());
+        wrapper.set("day_in", ticketScape.getDayIn());
+        wrapper.eq("id", ticketScape.getId());
+        this.update(wrapper);
     }
 }
