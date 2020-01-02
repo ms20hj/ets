@@ -12,6 +12,8 @@ import {
   getTicketSelectParams,
   getTicketScape,
   updateConfig,
+  getUsersAndChecked,
+  authTicketUser,
 } from '@/services/ticket';
 
 const TicketModel = {
@@ -56,6 +58,8 @@ const TicketModel = {
     printMethodList: [],
     printTemplateList: [],
     ticketScapeList: [],
+    userList: [],
+    userTicketList: [],
   },
 
   effects: {
@@ -169,6 +173,22 @@ const TicketModel = {
         type: 'putHandleResult',
         payload: response,
       })
+    },
+
+    *getUsersAndChecked({payload}, {call, put}) {
+      const resp = yield call(getUsersAndChecked, payload);
+      yield put({
+        type: 'putUsersAndChecked',
+        payload: resp,
+      });
+    },
+
+    *authTicketUser({payload}, {call, put}) {
+      const resp = yield call(authTicketUser, payload);
+      yield put({
+        type: 'putHandleResult',
+        payload: resp,
+      });
     }
   },
 
@@ -289,6 +309,24 @@ const TicketModel = {
       }
     },
 
+    putUsersAndChecked(state, {payload}){
+      return {
+        ...state,
+        userList: payload.data.userList,
+        userTicketList: payload.data.userTicketList,
+        handleResult: {
+          code: payload.code,
+          status: payload.status
+        }
+      };
+    },
+
+    changeUserTicketList(state, {payload}) {
+      return{
+        ...state,
+        userTicketList: payload
+      }
+    }
   },
 };
 export default TicketModel;

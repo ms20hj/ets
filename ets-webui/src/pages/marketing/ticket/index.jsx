@@ -17,6 +17,7 @@ import { connect } from 'dva';
 import CategoryForm from './components/CategoryForm';
 import TicketForm from './components/TicketForm';
 import TicketScapeTable from  './components/TicketScapeTable';
+import TicketUser from  './components/TicketUser';
 import { getContentHeight } from '../../../utils/utils';
 
 @Form.create()
@@ -40,6 +41,7 @@ export default class Ticket extends Component {
     editTypeVisible: false,
     editTypeTitle: '新增',
     editTsVisible: false,
+    saleAuthVisible: false,
     typeAddButtonDisabled: true,
     typeEditButtonDisabled: true,
     typeDelButtonDisabled: true,
@@ -50,9 +52,10 @@ export default class Ticket extends Component {
     treeSelectKeys: [],
     searchValue: '',
     currentNode: {},
+    saleAuthTicketId: '',
   };
 
-  componentWillMount() {
+  componentDidMount() {
     this.queryTree();
   }
 
@@ -200,6 +203,10 @@ export default class Ticket extends Component {
       editTsVisible: flag,
     });
   };
+
+  changeSaleAuthVisible = flag => {
+    this.setState({saleAuthVisible: flag});
+  };
   /**
    * 清理model 那边的临时数据
    */
@@ -326,6 +333,22 @@ export default class Ticket extends Component {
       }
     });
   };
+
+  handleSaleAuth = id => {
+    this.setState({saleAuthTicketId: id});
+    const {dispatch} = this.props;
+    dispatch({
+      type: 'ticket/getUsersAndChecked',
+      payload: id
+    }).then(() => {
+      const {handleResult} = this.props;
+      if (handleResult.status) {
+        this.changeSaleAuthVisible(true);
+      } else {
+        message.error('查询授权用户异常');
+      }
+    });
+  };
   /**
    * 编辑类别
    */
@@ -414,6 +437,8 @@ export default class Ticket extends Component {
       treeSelectKeys,
       currentNode,
       editTsVisible,
+      saleAuthVisible,
+      saleAuthTicketId,
     } = this.state;
     const columns = [
       {
@@ -466,6 +491,10 @@ export default class Ticket extends Component {
               景点配置
             </a>
             <Divider type="vertical" />
+            <a size="small" onClick={this.handleSaleAuth.bind(this, `${record.id}`)}>
+              销售授权
+            </a>
+            <Divider type="vertical" />
             <a size="small" onClick={this.handleRemove.bind(this, `${record.id}`)}>
               删除
             </a>
@@ -491,6 +520,10 @@ export default class Ticket extends Component {
     };
     const ticketScapeMethods = {
       changeEditTsVisible: this.changeEditTsVisible,
+    };
+    const saleAuthMethods = {
+      changeSaleAuthVisible: this.changeSaleAuthVisible,
+      saleAuthTicketId,
     };
     return (
       <PageHeaderWrapper>
@@ -592,6 +625,7 @@ export default class Ticket extends Component {
         />
         <TicketForm editVisible={editVisible} title={editTitle} {...editMethods} />
         <TicketScapeTable editTsVisible={editTsVisible} {...ticketScapeMethods} />
+        <TicketUser saleAuthVisible={saleAuthVisible} {...saleAuthMethods} />
       </PageHeaderWrapper>
     );
   }

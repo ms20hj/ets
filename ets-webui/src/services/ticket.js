@@ -116,3 +116,16 @@ export async function updateConfig(obj) {
     }
   });
 }
+
+export async function getUsersAndChecked(ticketId) {
+  return request(`/server/api/userTicket/getUsersAndChecked?ticketId=${ticketId}`);
+}
+
+export async function authTicketUser(obj) {
+  return request('/server/api/userTicket/authTicketUser', {
+    method: 'POST',
+    data: {
+      ...obj
+    }
+  })
+}

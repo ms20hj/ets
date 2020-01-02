@@ -108,7 +108,6 @@ class RoleForm extends Component {
 
   render() {
     const { editVisible, title, form, tempRole, userList, menuList } = this.props;
-    console.log(tempRole);
     const { getFieldDecorator } = form;
     return (
       <Modal
