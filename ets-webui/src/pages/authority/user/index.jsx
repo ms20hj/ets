@@ -3,6 +3,7 @@ import { Button, Table, Pagination, Divider, Row, Col, message, Input, Modal, Fo
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect } from 'dva';
 import EditForm from './components/EditForm';
+import UserTicket from './components/UserTicket';
 
 @Form.create()
 @connect(({ user, loading }) => ({
@@ -23,6 +24,8 @@ export default class User extends Component {
     selectedRowKeys: [],
     selectedRows: [],
     searchValue: '',
+    saleAuthVisible: false,
+    saleAuthUserId: '',
   };
 
   componentDidMount() {
@@ -191,6 +194,22 @@ export default class User extends Component {
     });
   };
 
+  handleSaleAuth = id => {
+    this.setState({saleAuthUserId: id});
+    const {dispatch} = this.props;
+    dispatch({
+      type: 'user/getTicketsAndChecked',
+      payload: id
+    }).then(() => {
+      const {handleResult} = this.props;
+      if (handleResult.status) {
+        this.changeSaleAuthVisible(true);
+      } else {
+        message.error('查询门票异常');
+      }
+    });
+  };
+
   onSelectChange = (selectedRowKeys, selectedRows) => {
     this.setState({
       selectedRowKeys,
@@ -198,10 +217,14 @@ export default class User extends Component {
     });
   };
 
+  changeSaleAuthVisible = flag => {
+    this.setState({saleAuthVisible: flag});
+  };
+
   render() {
     const { pageData, loading } = this.props;
     const { list, pagination } = pageData;
-    const { editVisible, editTitle, selectedRowKeys } = this.state;
+    const { editVisible, editTitle, selectedRowKeys, saleAuthVisible, saleAuthUserId } = this.state;
     const columns = [
       {
         title: '序号',
@@ -244,6 +267,10 @@ export default class User extends Component {
               编辑
             </a>
             <Divider type="vertical" />
+            <a size="small" onClick={this.handleSaleAuth.bind(this, `${record.id}`)}>
+              销售授权
+            </a>
+            <Divider type="vertical" />
             <a size="small" onClick={this.handleRemove.bind(this, `${record.id}`)}>
               删除
             </a>
@@ -260,6 +287,10 @@ export default class User extends Component {
       refreshCurrentPage: this.refreshCurrentPage,
       clearModelsData: this.clearModelsData,
       changeEditVisible: this.changeEditVisible,
+    };
+    const saleAuthMethods = {
+      changeSaleAuthVisible: this.changeSaleAuthVisible,
+      saleAuthUserId,
     };
     return (
       <PageHeaderWrapper>
@@ -305,6 +336,7 @@ export default class User extends Component {
           </Col>
         </Row>
         <EditForm editVisible={editVisible} title={editTitle} {...editMethods} />
+        <UserTicket saleAuthVisible={saleAuthVisible} {...saleAuthMethods} />
       </PageHeaderWrapper>
     );
   }

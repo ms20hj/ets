@@ -50,4 +50,12 @@ public interface IUserTicketService extends IService<UserTicket> {
      * @date 2020年1月2日15:07:44
      */
     void authTicketUser(String ticketId, List<String> userIds);
+
+    /**
+     * 授权用户门票关系
+     * @param userId User id
+     * @param ticketIds Ticket Id集合
+     * @date 2020年1月3日10:39:07
+     */
+    void authUserTicket(String userId, List<String> ticketIds);
 }

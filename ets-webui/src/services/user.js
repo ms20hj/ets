@@ -71,3 +71,14 @@ export async function remove(param) {
 export async function getById(id) {
   return request(`/server/api/user/getById?id=${id}`);
 }
+
+export async function getTicketsAndChecked(userId) {
+  return request(`/server/api/userTicket/getTicketsAndChecked?userId=${userId}`);
+}
+
+export async function authUserTicket(obj) {
+  return request(`/server/api/userTicket/authUserTicket`, {
+    method: 'POST',
+    data: obj,
+  });
+}

@@ -70,4 +70,11 @@ public interface ITicketService extends IService<Ticket> {
      * @date 2020年1月2日15:53:59
      */
     void removeRelation(List<String> ids);
+
+    /**
+     * 查询简单的ticket对象，只查询id、ticketName字段
+     * @return List<Ticket>
+     * @date 2020年1月3日09:34:15
+     */
+    List<Ticket> getSimpleList();
 }

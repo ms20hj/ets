@@ -7,6 +7,8 @@ import {
   checkNameExist,
   remove,
   getById,
+  getTicketsAndChecked,
+  authUserTicket,
 } from '@/services/user';
 const UserModel = {
   namespace: 'user',
@@ -29,6 +31,8 @@ const UserModel = {
       phone: '',
       status: 0,
     },
+    ticketList: [],
+    userTicketList: [],
   },
   effects: {
     *fetch(_, { call, put }) {
@@ -94,6 +98,23 @@ const UserModel = {
         payload: response,
       });
     },
+
+    *getTicketsAndChecked({ payload }, { call, put }){
+      const resp = yield call(getTicketsAndChecked, payload);
+      yield put({
+        type: 'putTicketsAndChecked',
+        payload: resp,
+      });
+    },
+
+    *authTicketUser({payload}, {call, put}) {
+      const resp = yield call(authUserTicket, payload);
+      yield put({
+        type: 'putHandleResult',
+        payload: resp,
+      });
+    }
+
   },
 
   reducers: {
@@ -166,6 +187,26 @@ const UserModel = {
         },
       };
     },
+
+    putTicketsAndChecked(state, {payload}) {
+      return {
+        ...state,
+        ticketList: payload.data.ticketList,
+        userTicketList: payload.data.userTicketList,
+        handleResult: {
+          code: payload.code,
+          status: payload.status
+        }
+      };
+    },
+
+    changeUserTicketList(state, {payload}) {
+      return{
+        ...state,
+        userTicketList: payload
+      }
+    },
+
   },
 };
 export default UserModel;

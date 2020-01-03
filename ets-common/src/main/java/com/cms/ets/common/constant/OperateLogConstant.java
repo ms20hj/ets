@@ -12,4 +12,6 @@ public class OperateLogConstant {
 
     public static final String REMOVE = "删除";
 
+    public static final String AUTH = "授权";
+
 }

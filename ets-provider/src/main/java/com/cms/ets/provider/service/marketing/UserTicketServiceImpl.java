@@ -68,4 +68,14 @@ public class UserTicketServiceImpl extends ServiceImpl<UserTicketMapper, UserTic
             this.save(ut);
         });
     }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void authUserTicket(String userId, List<String> ticketIds) {
+        this.removeByUserId(userId);
+        ticketIds.stream().forEach(ticketId -> {
+            UserTicket ut = new UserTicket(userId, ticketId);
+            this.save(ut);
+        });
+    }
 }

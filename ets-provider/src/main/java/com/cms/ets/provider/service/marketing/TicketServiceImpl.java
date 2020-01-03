@@ -113,4 +113,12 @@ public class TicketServiceImpl extends ServiceImpl<TicketMapper, Ticket> impleme
             userTicketService.removeByTicketId(id);
         });
     }
+
+    @Override
+    public List<Ticket> getSimpleList() {
+        QueryWrapper<Ticket> wrapper = new QueryWrapper<>();
+        wrapper.select("id", "ticket_name");
+        wrapper.orderByAsc("sort_num");
+        return list(wrapper);
+    }
 }
