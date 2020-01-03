@@ -43,7 +43,6 @@ class TicketUser extends React.Component{
 
   render() {
     const {saleAuthVisible, userList, userTicketList, changeSaleAuthVisible} = this.props;
-    console.log('userTicketList', userTicketList);
     return(
       <Modal
         destroyOnClose={true}

@@ -9,6 +9,7 @@ import com.cms.ets.api.config.IDictionaryService;
 import com.cms.ets.api.marketing.ITicketScapeService;
 import com.cms.ets.api.marketing.ITicketScenicSpotService;
 import com.cms.ets.api.marketing.ITicketService;
+import com.cms.ets.api.marketing.IUserTicketService;
 import com.cms.ets.api.park.IScenicSpotService;
 import com.cms.ets.model.mysql.config.Dictionary;
 import com.cms.ets.model.mysql.marketing.Ticket;
@@ -43,6 +44,8 @@ public class TicketServiceImpl extends ServiceImpl<TicketMapper, Ticket> impleme
     private ITicketScapeService ticketScapeService;
     @Autowired
     private ITicketScenicSpotService ticketScenicSpotService;
+    @Autowired
+    private IUserTicketService userTicketService;
 
     @Override
     public Ticket getById(Serializable id) {
@@ -100,5 +103,14 @@ public class TicketServiceImpl extends ServiceImpl<TicketMapper, Ticket> impleme
         this.updateById(ticket);
         ticketScenicSpotService.saveByTicket(ticket);
         ticketScapeService.resetByTicket(ticket);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void removeRelation(List<String> ids) {
+        removeByIds(ids);
+        ids.stream().forEach(id -> {
+            userTicketService.removeByTicketId(id);
+        });
     }
 }

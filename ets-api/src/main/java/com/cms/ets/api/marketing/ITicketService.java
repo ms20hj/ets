@@ -63,4 +63,11 @@ public interface ITicketService extends IService<Ticket> {
      * @date 2019年12月25日17:12:36
      */
     void updateAndResetTicketScape(Ticket ticket);
+
+    /**
+     * 删除关联
+     * @param ids Ticket Id 集合
+     * @date 2020年1月2日15:53:59
+     */
+    void removeRelation(List<String> ids);
 }
