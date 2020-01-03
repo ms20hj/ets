@@ -95,9 +95,9 @@ public class CodeGenerator {
 //        strategy.setSuperEntityClass("com.cms.ets.model.mysql.BaseEntity");
 //        strategy.setEntityLombokModel(true);
 //        strategy.setRestControllerStyle(true);
-//        strategy.setSuperControllerClass("com.baomidou.ant.common.BaseController");
+        strategy.setSuperControllerClass("com.baomidou.ant.common.BaseController");
         //需要生成表名
-        strategy.setInclude("t_user_ticket");
+        strategy.setInclude("t_discount_customer", "t_discount_source_area", "t_discount_ticket", "t_discount_tourist");
 //        strategy.setSuperEntityColumns("id","create_id","update_id","create_time","update_time");
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setEntityTableFieldAnnotationEnable(true);
