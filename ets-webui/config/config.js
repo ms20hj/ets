@@ -187,6 +187,12 @@ export default {
                   component: './marketing/ticket',
                   exact: true,
                 },
+                {
+                  name: 'discount',
+                  path: '/marketing/discount',
+                  component: './marketing/discount',
+                  exact: true,
+                },
               ],
             },
             {

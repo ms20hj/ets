@@ -13,5 +13,6 @@ public class DictionaryConstant {
         DICTIONARY_CAHCE_PREFIX_KEY.put("deadlineUnit", "门票期限单位");
         DICTIONARY_CAHCE_PREFIX_KEY.put("printMethod", "出票方式");
         DICTIONARY_CAHCE_PREFIX_KEY.put("printTemplate", "打印模板");
+        DICTIONARY_CAHCE_PREFIX_KEY.put("discountWay", "优惠方式");
     }
 }

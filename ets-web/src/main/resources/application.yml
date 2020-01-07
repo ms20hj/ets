@@ -22,7 +22,6 @@ spring:
 
   #redis基础参数配置
   redis:
-    #    password:
     timeout: 1800000
     jedis:
       pool:
@@ -30,6 +29,7 @@ spring:
         max-idle: 64
         min-idle: 16
         max-wait: 5000ms
+    password: ets123
 #  main:
 #    allow-bean-definition-overriding: true
 management:

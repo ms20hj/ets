@@ -1,9 +1,10 @@
 package com.cms.ets.model.mysql.marketing;
 
-import java.math.BigDecimal;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.cms.ets.model.mysql.BaseEntity;
-import com.baomidou.mybatisplus.annotation.TableField;
+
+import java.util.List;
 
 /**
  * <p>
@@ -57,6 +58,42 @@ public class Discount extends BaseEntity {
     @TableField("discount_scale")
     private double discountScale;
 
+    /**
+     * 关联游客集合
+     */
+    @TableField(exist = false)
+    private List<Tourist> touristList;
+
+    /**
+     * 关联游客ID集合
+     */
+    @TableField(exist = false)
+    private List<String> touristIds;
+
+    /**
+     * 关联门票集合
+     */
+    @TableField(exist = false)
+    private List<Ticket> ticketList;
+
+    /**
+     * 关联门票id集合
+     */
+    @TableField(exist = false)
+    private List<String> ticketIds;
+
+    /**
+     * 关联旅行社集合
+     */
+    @TableField(exist = false)
+    private List<TravelAgency> travelAgencyList;
+
+    /**
+     * 关联旅行社id集合
+     */
+    @TableField(exist = false)
+    private List<String> travelAgencyIds;
+
     public String getDiscName() {
         return discName;
     }
@@ -100,6 +137,54 @@ public class Discount extends BaseEntity {
 
     public void setDiscountScale(double discountScale) {
         this.discountScale = discountScale;
+    }
+
+    public List<Tourist> getTouristList() {
+        return touristList;
+    }
+
+    public void setTouristList(List<Tourist> touristList) {
+        this.touristList = touristList;
+    }
+
+    public List<Ticket> getTicketList() {
+        return ticketList;
+    }
+
+    public void setTicketList(List<Ticket> ticketList) {
+        this.ticketList = ticketList;
+    }
+
+    public List<String> getTouristIds() {
+        return touristIds;
+    }
+
+    public void setTouristIds(List<String> touristIds) {
+        this.touristIds = touristIds;
+    }
+
+    public List<String> getTicketIds() {
+        return ticketIds;
+    }
+
+    public void setTicketIds(List<String> ticketIds) {
+        this.ticketIds = ticketIds;
+    }
+
+    public List<TravelAgency> getTravelAgencyList() {
+        return travelAgencyList;
+    }
+
+    public void setTravelAgencyList(List<TravelAgency> travelAgencyList) {
+        this.travelAgencyList = travelAgencyList;
+    }
+
+    public List<String> getTravelAgencyIds() {
+        return travelAgencyIds;
+    }
+
+    public void setTravelAgencyIds(List<String> travelAgencyIds) {
+        this.travelAgencyIds = travelAgencyIds;
     }
 
     @Override

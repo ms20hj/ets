@@ -103,4 +103,31 @@ public class TestDictionary {
         List<Dictionary> list = Lists.newArrayList(d1, d2);
         dictionaryService.saveBatch(list);
     }
+
+    @Test
+    public void saveDiscountWay(){
+//        Dictionary dw = new Dictionary();
+//        dw.setDictName("优惠方式");
+//        dw.setDictValue("优惠方式");
+//        dictionaryService.save(dw);
+
+        String parentId = "1214000423779627010";
+        Dictionary dw1 = new Dictionary();
+        dw1.setDictName("打折");
+        dw1.setDictValue("0");
+        dw1.setParentId("1214000423779627010");
+
+        Dictionary dw2 = new Dictionary();
+        dw2.setDictName("减免");
+        dw2.setDictValue("1");
+        dw2.setParentId("1214000423779627010");
+
+        Dictionary dw3 = new Dictionary();
+        dw3.setDictName("折后价");
+        dw3.setDictValue("2");
+        dw3.setParentId("1214000423779627010");
+
+        List<Dictionary> list = Lists.newArrayList(dw1, dw2, dw3);
+        dictionaryService.saveBatch(list);
+    }
 }

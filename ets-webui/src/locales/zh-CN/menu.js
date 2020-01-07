@@ -12,6 +12,7 @@ export default {
   'menu.marketing.travelagency': '旅行社管理',
   'menu.marketing.tourist': '游客管理',
   'menu.marketing.ticket': '门票管理',
+  'menu.marketing.discount': '优惠管理',
 
   'menu.more-blocks': '更多区块',
   'menu.home': '首页',

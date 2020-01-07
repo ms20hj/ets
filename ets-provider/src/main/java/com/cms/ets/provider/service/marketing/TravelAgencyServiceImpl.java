@@ -59,4 +59,13 @@ public class TravelAgencyServiceImpl extends ServiceImpl<TravelAgencyMapper, Tra
         root.setChildren(getByParentId(TravelAgency.ROOT_ID));
         return Lists.newArrayList(root);
     }
+
+    @Override
+    public List<TravelAgency> getSimpleLeafList() {
+        QueryWrapper<TravelAgency> wrapper = new QueryWrapper<>();
+        wrapper.select("id", "name");
+        wrapper.ne("parent_id", TravelAgency.ROOT_ID);
+        wrapper.orderByAsc("sort_num");
+        return list(wrapper);
+    }
 }

@@ -43,4 +43,11 @@ public class TouristServiceImpl extends ServiceImpl<TouristMapper, Tourist> impl
         List<Tourist> list = list(wrapper);
         return !list.isEmpty();
     }
+
+    @Override
+    public List<Tourist> list() {
+        QueryWrapper<Tourist> wrapper = new QueryWrapper<>();
+        wrapper.orderByAsc("sort_num");
+        return list(wrapper);
+    }
 }

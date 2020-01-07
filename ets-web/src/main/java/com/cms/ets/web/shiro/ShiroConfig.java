@@ -37,6 +37,8 @@ public class ShiroConfig {
     private int database;
     @Value("${spring.redis.expire}")
     private int expire;
+    @Value("${spring.redis.password}")
+    private String password;
     @Value("${shiro.unauthorizedUrl}")
     private String unauthorizedUrl;
     @Value("#{'${shiro.noneFilterUrl}'.split(',')}")
@@ -61,6 +63,7 @@ public class ShiroConfig {
         //设置超时时间
         redisManager.setTimeout(timeout);
         redisManager.setDatabase(database);
+        redisManager.setPassword(password);
         return redisManager;
     }
 

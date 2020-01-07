@@ -14,8 +14,8 @@ import java.io.Serializable;
  * @author cms
  * @since 2020-01-03
  */
-@TableName("t_discount_customer")
-public class DiscountCustomer implements Serializable {
+@TableName("t_discount_travel_agency")
+public class DiscountTravelAgency implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -34,15 +34,15 @@ public class DiscountCustomer implements Serializable {
     /**
      * 客户id
      */
-    @TableField("customer_id")
-    private String customerId;
+    @TableField("travel_agency_id")
+    private String travelAgencyId;
 
-    public DiscountCustomer() {
+    public DiscountTravelAgency() {
     }
 
-    public DiscountCustomer(String discountId, String customerId) {
+    public DiscountTravelAgency(String discountId, String travelAgencyId) {
         this.discountId = discountId;
-        this.customerId = customerId;
+        this.travelAgencyId = travelAgencyId;
     }
 
     public String getId() {
@@ -59,20 +59,21 @@ public class DiscountCustomer implements Serializable {
     public void setDiscountId(String discountId) {
         this.discountId = discountId;
     }
-    public String getCustomerId() {
-        return customerId;
+
+    public String getTravelAgencyId() {
+        return travelAgencyId;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public void setTravelAgencyId(String travelAgencyId) {
+        this.travelAgencyId = travelAgencyId;
     }
 
     @Override
     public String toString() {
-        return "DiscountCustomer{" +
+        return "DiscountTravelAgency{" +
             "id=" + id +
             ", discountId=" + discountId +
-            ", customerId=" + customerId +
+            ", travelAgencyId=" + travelAgencyId +
         "}";
     }
 }

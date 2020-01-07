@@ -46,4 +46,12 @@ public interface ITravelAgencyService extends IService<TravelAgency> {
      * @date 2019年10月29日14:58:15
      */
     List<TravelAgency> getTreeTravel();
+
+    /**
+     * 查询根节点
+     * 只查询id，name 这两个字段
+     * @return List<TravelAgency>
+     * @date 2020年1月7日17:15:36
+     */
+    List<TravelAgency> getSimpleLeafList();
 }
