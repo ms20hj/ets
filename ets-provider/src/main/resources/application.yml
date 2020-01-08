@@ -135,16 +135,16 @@ spring:
   #mysql参数配置
   datasource:
     driverClassName: com.p6spy.engine.spy.P6SpyDriver
-    url: jdbc:p6spy:mysql://127.0.0.1:3306/ets?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8
+    url: jdbc:p6spy:mysql://122.51.119.135:3306/ets?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8
     username: root
     password: 910212
   # mongo参数配置
   data:
     mongodb:
-      uri: mongodb://root:910212@127.0.0.1:27017/
+      uri: mongodb://root:910212@122.51.119.135:27017/
   # redis 缓存参数配置
   redis:
-    host: 127.0.0.1
+    host: 122.51.119.135
     port: 6379
     database: 1
 
@@ -156,7 +156,7 @@ spring:
   #mysql参数配置
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/ets?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://122.51.119.135:3306/ets?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8
     username: root
     password: 910212
   # mongo参数配置

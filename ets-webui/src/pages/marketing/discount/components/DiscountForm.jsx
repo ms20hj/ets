@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {Col, Form, Input, InputNumber, message, Modal, Row, Select, Switch, Transfer, Tree} from 'antd';
+import {Col, Form, Input, InputNumber, message, Modal, Row, Select, Switch, Transfer, DatePicker} from 'antd';
 import {connect} from 'dva';
-import {city} from '../../../../assets/data/city';
+import moment from 'moment';
 
+const { RangePicker } = DatePicker;
 const formItemLayout = {
   labelCol: {
     span: 4,
@@ -20,6 +21,9 @@ const formItemLayout = {
   touristList: discount.touristList,
   ticketList: discount.ticketList,
   travelAgencyList: discount.travelAgencyList,
+  touristIds: discount.touristIds,
+  ticketIds: discount.ticketIds,
+  travelAgencyIds: discount.travelAgencyIds,
 }))
 class DiscountForm extends Component {
   constructor(props) {
@@ -72,20 +76,29 @@ class DiscountForm extends Component {
     const { form } = this.props;
     form.validateFieldsAndScroll((err, fieldsValue) => {
       if (err) return;
-      const { tempDiscount, dispatch, changeEditVisible } = this.props;
-      const action = tempDiscount.id ? 'discount/updateCategory' : 'discount/saveCategory';
+      const { tempDiscount, dispatch, changeEditVisible, touristIds, ticketIds, travelAgencyIds } = this.props;
+      const action = tempDiscount.id ? 'discount/save' : 'discount/update';
       tempDiscount.id ? (fieldsValue.id = tempDiscount.id) : '';
+      fieldsValue.touristIds = touristIds;
+      fieldsValue.ticketIds = ticketIds;
+      fieldsValue.travelAgencyIds = travelAgencyIds;
+
+      const rangDate = form.getFieldValue('rangePicker');
+      fieldsValue.beginDate = rangDate[0].format('YYYY-MM-DD') + ' 00:00:00';
+      fieldsValue.endDate = rangDate[1].format('YYYY-MM-DD') + ' 23:59:59';
+      delete fieldsValue.rangePicker;
       dispatch({
         type: action,
         payload: {
           ...fieldsValue,
         },
       }).then(() => {
-        const { handleResult, dispatch } = this.props;
+        const { handleResult, dispatch, queryPage } = this.props;
         if (handleResult.status) {
+          queryPage();
           message.success('保存成功');
           dispatch({
-            type: 'discount/clearTypeData'
+            type: 'discount/clearData'
           });
           changeEditVisible('', false);
         } else {
@@ -135,6 +148,9 @@ class DiscountForm extends Component {
       touristList,
       ticketList,
       travelAgencyList,
+      touristIds,
+      ticketIds,
+      travelAgencyIds,
     } = this.props;
     const { getFieldDecorator } = form;
     return (
@@ -190,7 +206,7 @@ class DiscountForm extends Component {
                 <Col>
                   <Form.Item label="优惠方式">
                     {getFieldDecorator('discountWay', {
-                      initialValue: tempDiscount.discountWay,
+                      initialValue: tempDiscount.discountWay+'',
                       rules: [{ required: true, message: '请选择优惠方式' }],
                       validateTrigger: 'onBlur',
                     })(
@@ -210,7 +226,42 @@ class DiscountForm extends Component {
                       initialValue: tempDiscount.discountScale,
                       rules: [{ required: true, message: '请选择优惠比例' }],
                       validateTrigger: 'onBlur',
-                    })(<InputNumber min={1} max={999} placeholder="请选择优惠比例" />)}
+                    })(<InputNumber min={0.01} max={999} placeholder="请选择优惠比例" />)}
+                  </Form.Item>
+                </Col>
+              </Row>
+              <Row>
+                <Col span={24}>
+                  <Form.Item label="启用状态">
+                    {getFieldDecorator('status', {
+                      valuePropName: 'checked',
+                      initialValue: tempDiscount.status,
+                    })(<Switch checkedChildren="启用" unCheckedChildren="禁用" />)}
+                  </Form.Item>
+                </Col>
+              </Row>
+              <Row>
+                <Col span={24}>
+                  <Form.Item label="优惠日期">
+                    {getFieldDecorator('rangePicker', {
+                      initialValue: [
+                        moment(
+                          tempDiscount.beginDate === '' ? new Date() : tempDiscount.beginDate,
+                          'yyyy-MM-dd',
+                        ),
+                        moment(
+                          tempDiscount.endDate === '' ? new Date() : tempDiscount.endDate,
+                          'yyyy-MM-dd',
+                        ),
+                      ],
+                      rules: [{ type: 'array', required: true, message: '请选择优惠日期' }],
+                    })(
+                      <RangePicker
+                        onChange={v => {
+                          console.log('RangePicker', v);
+                        }}
+                      />,
+                    )}
                   </Form.Item>
                 </Col>
               </Row>
@@ -219,7 +270,7 @@ class DiscountForm extends Component {
               <Form.Item label="参与游客">
                 <Transfer
                   dataSource={touristList}
-                  targetKeys={tempDiscount.touristIds}
+                  targetKeys={touristIds}
                   showSearch
                   onChange={this.handleTouristSelectChange}
                   render={item => item.touristName}
@@ -239,7 +290,7 @@ class DiscountForm extends Component {
               <Form.Item label="参与门票">
                 <Transfer
                   dataSource={ticketList}
-                  targetKeys={tempDiscount.ticketIds}
+                  targetKeys={ticketIds}
                   showSearch
                   onChange={this.handleTicketSelectChange}
                   render={item => item.ticketName}
@@ -256,7 +307,7 @@ class DiscountForm extends Component {
               <Form.Item label="参与旅行社">
                 <Transfer
                   dataSource={travelAgencyList}
-                  targetKeys={tempDiscount.travelAgencyIds}
+                  targetKeys={travelAgencyIds}
                   showSearch
                   onChange={this.handleTravelAgencySelectChange}
                   render={item => item.name}

@@ -66,7 +66,7 @@ public class DiscountController extends BaseController {
     @ApiOperation("保存")
     @OperationLog(action = OperateLogConstant.ADD, moduleName = Discount.MODULE_NAME, menuName = Discount.MENU_NAME)
     public HandleResult save(@RequestBody Discount discount) {
-        discountService.save(discount);
+        discountService.saveOrUpdateEntity(discount);
         return success();
     }
 
@@ -74,7 +74,7 @@ public class DiscountController extends BaseController {
     @ApiOperation("更新")
     @OperationLog(action = OperateLogConstant.EDIT, moduleName = Discount.MODULE_NAME, menuName = Discount.MENU_NAME)
     public HandleResult update(@RequestBody Discount discount) {
-        discountService.updateById(discount);
+        discountService.saveOrUpdateEntity(discount);
         return success();
     }
 
@@ -97,6 +97,13 @@ public class DiscountController extends BaseController {
     @ApiOperation("根据ID查询")
     public HandleResult getById(String id){
         Discount discount = discountService.getById(id);
+        return success(discount);
+    }
+
+    @GetMapping("getForEdit")
+    @ApiOperation("根据ID查询编辑对象")
+    public HandleResult getForEdit(String id) {
+        Discount discount = discountService.getForEdit(id);
         return success(discount);
     }
 

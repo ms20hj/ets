@@ -1,4 +1,4 @@
-import { page, save, update, checkNameExist, remove, getById, getSelectList } from '@/services/discount';
+import { page, save, update, checkNameExist, remove, getForEdit, getSelectList } from '@/services/discount';
 
 const DiscountModel = {
   namespace: 'discount',
@@ -11,22 +11,27 @@ const DiscountModel = {
         total: 0,
       },
     },
-    handleResult: null,
+    handleResult: {
+      status: false,
+    },
     tempDiscount: {
       discName: '',
-      limitCount: 0,
+      limitCount: false,
       limitBegin: 1,
       limitEnd: 1,
       discountWay: '0',
       discountScale: 0.00,
-      touristIds: [],
-      ticketIds: [],
-      travelAgencyIds: [],
+      status: true,
+      beginDate: '',
+      endDate: '',
     },
     discountWayList: [],
     touristList: [],
     ticketList: [],
     travelAgencyList: [],
+    touristIds: [],
+    ticketIds: [],
+    travelAgencyIds: [],
   },
 
   effects: {
@@ -70,8 +75,8 @@ const DiscountModel = {
       });
     },
 
-    *getById({ payload }, { call, put }) {
-      const response = yield call(getById, payload);
+    *getForEdit({ payload }, { call, put }) {
+      const response = yield call(getForEdit, payload);
       yield put({
         type: 'putTempDiscount',
         payload: response,
@@ -117,15 +122,18 @@ const DiscountModel = {
         handleResult: null,
         tempDiscount: {
           discName: '',
-          limitCount: 0,
+          limitCount: false,
           limitBegin: 1,
           limitEnd: 1,
           discountWay: '0',
           discountScale: 0.00,
-          touristIds: [],
-          ticketIds: [],
-          travelAgencyIds: [],
+          status: true,
+          beginDate: '',
+          endDate: '',
         },
+        touristIds: [],
+        ticketIds: [],
+        travelAgencyIds: [],
       };
     },
 
@@ -135,6 +143,9 @@ const DiscountModel = {
         tempDiscount: {
           ...payload.data,
         },
+        touristIds: payload.data.touristIds,
+        ticketIds: payload.data.ticketIds,
+        travelAgencyIds: payload.data.travelAgencyIds,
         handleResult: {
           ...payload,
         },
@@ -159,27 +170,21 @@ const DiscountModel = {
     changeTouristSelected(state, {payload}) {
       return {
         ...state,
-        tempDiscount: {
-          touristIds: payload
-        }
+        touristIds: payload
       }
     },
 
     changeTicketSelected(state, {payload}) {
       return {
         ...state,
-        tempDiscount: {
-          ticketIds: payload
-        }
+        ticketIds: payload
       }
     },
 
     changeTravelAgencySelected(state, {payload}){
       return {
         ...state,
-        tempDiscount: {
-          travelAgencyIds: payload
-        }
+        travelAgencyIds: payload
       }
     },
   },

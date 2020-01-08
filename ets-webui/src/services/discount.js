@@ -59,8 +59,8 @@ export async function remove(param) {
   });
 }
 
-export async function getById(id) {
-  return request(`/server/api/discount/getById?id=${id}`);
+export async function getForEdit(id) {
+  return request(`/server/api/discount/getForEdit?id=${id}`);
 }
 export async function getSelectList() {
   return request('/server/api/discount/getSelectList');

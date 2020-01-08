@@ -161,7 +161,6 @@ export default class Discount extends Component {
   };
 
   remove = ids => {
-    console.log(ids);
     const { dispatch } = this.props;
     dispatch({
       type: 'discount/remove',
@@ -184,7 +183,7 @@ export default class Discount extends Component {
   handlePreEdit = id => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'discount/getById',
+      type: 'discount/getForEdit',
       payload: id,
     }).then(() => {
       const { handleResult, tempDiscount, } = this.props;
@@ -222,14 +221,24 @@ export default class Discount extends Component {
         key: 'discName',
       },
       {
-        title: '人数限制',
+        title: '是否限制人数',
         dataIndex: 'limitCount',
         key: 'limitCount',
+        render: limitCount => <span>{limitCount ? "限制" : "不限制"}</span>
       },
       {
         title: '打折方式',
         dataIndex: 'discountWay',
         key: 'discountWay',
+        render: discountWay => {
+          if (discountWay === 0) {
+            return "打折";
+          } else if (discountWay === 1) {
+            return "减免";
+          } else {
+            return "折后价";
+          }
+        }
       },
       {
         title: '优惠比例',

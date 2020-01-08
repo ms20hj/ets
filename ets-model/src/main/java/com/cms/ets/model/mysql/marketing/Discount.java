@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.cms.ets.model.mysql.BaseEntity;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -58,6 +59,23 @@ public class Discount extends BaseEntity {
     @TableField("discount_scale")
     private double discountScale;
 
+    /**
+     * 是否启用
+     */
+    @TableField("status")
+    private boolean status;
+
+    /**
+     * 开始日期
+     */
+    @TableField("begin_date")
+    private Date beginDate;
+
+    /**
+     * 结束日期
+     */
+    @TableField("end_date")
+    private Date endDate;
     /**
      * 关联游客集合
      */
@@ -185,6 +203,30 @@ public class Discount extends BaseEntity {
 
     public void setTravelAgencyIds(List<String> travelAgencyIds) {
         this.travelAgencyIds = travelAgencyIds;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public Date getBeginDate() {
+        return beginDate;
+    }
+
+    public void setBeginDate(Date beginDate) {
+        this.beginDate = beginDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     @Override

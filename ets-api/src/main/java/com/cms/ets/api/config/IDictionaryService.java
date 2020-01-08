@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface IDictionaryService extends IService<Dictionary> {
 
-    public final String CACHE_DICTIONARY = "dictionary";
+    public static final String CACHE_DICTIONARY = "dictionary";
 
     /**
      * 根据名称查询
