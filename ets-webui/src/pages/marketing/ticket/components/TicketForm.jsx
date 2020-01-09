@@ -54,9 +54,25 @@ const { RangePicker } = DatePicker;
 class TicketForm extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      category: {
+        id: '',
+        name: '',
+      }
+    }
   }
 
+  changeCategory = node => {
+    this.setState({
+      category: {
+        id: node.id,
+        name: node.categoryName,
+      }
+    });
+  };
+
   componentDidMount() {
+    this.props.onRef(this);
     const { dispatch } = this.props;
     dispatch({
       type: 'ticket/initTicketSelectParams',
@@ -168,6 +184,7 @@ class TicketForm extends Component {
       currentNode,
     } = this.props;
     const { getFieldDecorator } = form;
+    const {category} = this.state;
     return (
       <Modal
         destroyOnClose
@@ -217,11 +234,11 @@ class TicketForm extends Component {
                 {getFieldDecorator('ticketCategoryId', {
                   initialValue:
                     tempTicket.ticketCategoryId === ''
-                      ? currentNode.id
+                      ? category.id
                       : tempTicket.ticketCategoryId,
                 })(
                   <Select placeholder="请选择所属种类" disabled>
-                    <Select.Option value={currentNode.id}>{currentNode.title}</Select.Option>
+                    <Select.Option value={category.id}>{category.name}</Select.Option>
                   </Select>,
                 )}
               </Form.Item>

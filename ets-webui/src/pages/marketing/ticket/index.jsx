@@ -400,6 +400,7 @@ export default class Ticket extends Component {
       treeSelectKeys: [props.eventKey],
       currentNode: { categoryName: props.title, id: props.eventKey },
     });
+    this.child.changeCategory({categoryName: props.title, id: props.eventKey});
     setTimeout(() => {
       this.queryPage();
     }, 300);
@@ -419,6 +420,11 @@ export default class Ticket extends Component {
       });
     }
   };
+
+  onRef = (ref) => {
+    this.child = ref
+  };
+
 
   render() {
     const { pageData, loading, treeCategory } = this.props;
@@ -623,7 +629,7 @@ export default class Ticket extends Component {
           title={editTypeTitle}
           {...editTypeMethods}
         />
-        <TicketForm editVisible={editVisible} title={editTitle} {...editMethods} />
+        <TicketForm editVisible={editVisible} title={editTitle} {...editMethods} onRef={this.onRef} />
         <TicketScapeTable editTsVisible={editTsVisible} {...ticketScapeMethods} />
         <TicketUser saleAuthVisible={saleAuthVisible} {...saleAuthMethods} />
       </PageHeaderWrapper>
