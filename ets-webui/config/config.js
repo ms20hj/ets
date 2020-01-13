@@ -116,16 +116,16 @@ export default {
             {
               path: '/authority',
               icon: 'team',
-              name: 'authority',
+              name: '权限管理',
               routes: [
                 {
-                  name: 'user',
+                  name: '用户管理',
                   path: '/authority/user',
                   component: './authority/user',
                   exact: true,
                 },
                 {
-                  name: 'role',
+                  name: '角色管理',
                   path: '/authority/role',
                   component: './authority/role',
                   exact: true,
@@ -136,28 +136,28 @@ export default {
             {
               path: '/park',
               icon: 'slack',
-              name: 'park',
+              name: '园区管理',
               routes: [
                 {
-                  name: 'scenicspot',
+                  name: '景区管理',
                   path: '/park/scenicspot',
                   component: './park/scenicspot',
                   exact: true,
                 },
                 {
-                  name: 'scape',
+                  name: '景点管理',
                   path: '/park/scape',
                   component: './park/scape',
                   exact: true,
                 },
                 {
-                  name: 'salesite',
+                  name: '销售站点管理',
                   path: '/park/salesite',
                   component: './park/salesite',
                   exact: true,
                 },
                 {
-                  name: 'salewindow',
+                  name: '销售窗口管理',
                   path: '/park/salewindow',
                   component: './park/salewindow',
                   exact: true,
@@ -167,28 +167,28 @@ export default {
             {
               path: '/marketing',
               icon: 'bank',
-              name: 'marketing',
+              name: '营销管理',
               routes: [
                 {
-                  name: 'travelagency',
+                  name: '旅行社管理',
                   path: '/marketing/travelagency',
                   component: './marketing/travelagency',
                   exact: true,
                 },
                 {
-                  name: 'tourist',
+                  name: '游客管理',
                   path: '/marketing/tourist',
                   component: './marketing/tourist',
                   exact: true,
                 },
                 {
-                  name: 'ticket',
+                  name: '门票管理',
                   path: '/marketing/ticket',
                   component: './marketing/ticket',
                   exact: true,
                 },
                 {
-                  name: 'discount',
+                  name: '优惠管理',
                   path: '/marketing/discount',
                   component: './marketing/discount',
                   exact: true,

@@ -95,7 +95,7 @@ public class RoleController extends BaseController {
     @ApiOperation("查询系统里面可授权的用户和菜单")
     public HandleResult getUserAndMenu(){
         List<User> userList = userService.getSimpleUserList();
-        List<Menu> menuList = menuService.getByCatogory(Menu.CATEGORY_SECOND);
+        List<Menu> menuList = menuService.getSecondLevelMenu();
         return success(ImmutableMap.of("userList", userList, "menuList", menuList));
     }
 }

@@ -4,7 +4,7 @@
  * https://github.com/ant-design/ant-design-pro-layout
  */
 import ProLayout from '@ant-design/pro-layout';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'umi/link';
 import { connect } from 'dva';
 import { formatMessage } from 'umi-plugin-react/locale';
@@ -50,6 +50,18 @@ const footerRender = (_, defaultDom) => {
 
 const BasicLayout = props => {
   const { dispatch, children, settings } = props;
+  const [menuData, setMenuData] = useState([]);
+
+  useEffect(() => {
+    if (dispatch) {
+      dispatch({
+        type: 'global/fetchRoutes',
+      }).then(() => {
+        const { routes } = props;
+        setMenuData(routes || []);
+      });
+    }
+  }, []);
 
   const handleMenuCollapse = payload => {
     if (dispatch) {
@@ -90,7 +102,7 @@ const BasicLayout = props => {
         );
       }}
       footerRender={footerRender}
-      menuDataRender={menuDataRender}
+      menuDataRender={() => menuData}
       formatMessage={formatMessage}
       rightContentRender={rightProps => <RightContent {...rightProps} />}
       {...props}
@@ -104,4 +116,5 @@ const BasicLayout = props => {
 export default connect(({ global, settings }) => ({
   collapsed: global.collapsed,
   settings,
+  routes: global.routes,
 }))(BasicLayout);

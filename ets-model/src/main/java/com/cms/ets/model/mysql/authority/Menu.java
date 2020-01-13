@@ -1,8 +1,10 @@
 package com.cms.ets.model.mysql.authority;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.cms.ets.model.mysql.BaseEntity;
-import com.baomidou.mybatisplus.annotation.TableField;
+
+import java.util.List;
 
 /**
  * <p>
@@ -17,8 +19,8 @@ public class Menu extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
-    public static final String CATEGORY_FIRST = "一级";
-    public static final String CATEGORY_SECOND = "二级";
+    public static final String CATEGORY_WEB = "web";
+    public static final String CATEGORY_CLIENT = "client";
     /**
      * 菜单名称
      */
@@ -44,7 +46,7 @@ public class Menu extends BaseEntity {
     private Integer sort;
 
     /**
-     * 菜单类型
+     * 菜单类型 web：后端菜单，client：前端菜单
      */
     @TableField("category")
     private String category;
@@ -60,6 +62,9 @@ public class Menu extends BaseEntity {
      */
     @TableField("parent_id")
     private String parentId;
+
+    @TableField(exist = false)
+    private List<Menu> children;
 
     public String getMenuName() {
         return menuName;
@@ -109,6 +114,14 @@ public class Menu extends BaseEntity {
 
     public void setParentId(String parentId) {
         this.parentId = parentId;
+    }
+
+    public List<Menu> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Menu> children) {
+        this.children = children;
     }
 
     @Override

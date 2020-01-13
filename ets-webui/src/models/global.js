@@ -1,9 +1,11 @@
 import { queryNotices } from '@/services/user';
+import { getWebMenuTree } from '@/services/menu';
 const GlobalModel = {
   namespace: 'global',
   state: {
     collapsed: false,
     notices: [],
+    routes: [],
   },
   effects: {
     *fetchNotices(_, { call, put, select }) {
@@ -66,6 +68,14 @@ const GlobalModel = {
         },
       });
     },
+
+    *fetchRoutes({ _ }, { call, put }) {
+      const resp = yield call(getWebMenuTree);
+      yield put({
+        type: 'putMenuData',
+        payload: resp,
+      });
+    },
   },
   reducers: {
     changeLayoutCollapsed(
@@ -97,6 +107,13 @@ const GlobalModel = {
         collapsed: false,
         ...state,
         notices: state.notices.filter(item => item.type !== payload),
+      };
+    },
+
+    putMenuData(state, { payload }) {
+      return {
+        ...state,
+        routes: payload.data,
       };
     },
   },
