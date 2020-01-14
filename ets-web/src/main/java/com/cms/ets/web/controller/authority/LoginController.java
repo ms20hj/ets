@@ -91,19 +91,14 @@ public class LoginController extends BaseController {
         return error(CodeEnum.SYSTEM_ERROR);
     }
 
-//    @RequestMapping("unAuth")
-//    public void unAuth(HttpServletRequest request, HttpServletResponse response) {
-//        SecurityUtils.getSubject().logout();
-//        try {
-//            response.setContentType("application/json;charset=utf-8");
-//            ServletOutputStream out = response.getOutputStream();
-//            HandleResult result = HandleResult.error(CodeEnum.AUTHORIZE_UNAUTH);
-//            out.write(JSONUtil.toJsonStr(result).getBytes());
-//            out.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    /**
+     * 注销登出
+     */
+    @GetMapping("logout")
+    public HandleResult logout(){
+        SecurityUtils.getSubject().logout();
+        return success();
+    }
 
     @RequestMapping("unAuth")
     public HandleResult unAuth() {

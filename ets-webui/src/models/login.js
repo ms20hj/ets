@@ -1,6 +1,6 @@
 import { routerRedux } from 'dva/router';
 import { stringify } from 'querystring';
-import { userLogin, getFakeCaptcha, getPublicKey } from '@/services/login';
+import { userLogin, getFakeCaptcha, getPublicKey, logout } from '@/services/login';
 import { setLoginData } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
 const Model = {
@@ -55,7 +55,9 @@ const Model = {
       yield call(getFakeCaptcha, payload);
     },
 
-    *logout(_, { put }) {
+    *logout(_, { call, put }) {
+      yield call(logout);
+
       const { redirect } = getPageQuery(); // redirect
 
       if (window.location.pathname !== '/user/login' && !redirect) {

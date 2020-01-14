@@ -19,10 +19,6 @@ public class Route implements Serializable {
 
     private String icon;
 
-    private String component;
-
-    private boolean exact;
-
     private List<Route> children;
 
     public Route() {
@@ -71,22 +67,6 @@ public class Route implements Serializable {
 
     public void setIcon(String icon) {
         this.icon = icon;
-    }
-
-    public String getComponent() {
-        return component;
-    }
-
-    public void setComponent(String component) {
-        this.component = component;
-    }
-
-    public boolean isExact() {
-        return exact;
-    }
-
-    public void setExact(boolean exact) {
-        this.exact = exact;
     }
 
     public List<Route> getChildren() {

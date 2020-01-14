@@ -15,3 +15,7 @@ export async function userLogin(params) {
 export async function getPublicKey() {
   return request('/server/api/login/getRsaPublicKey');
 }
+
+export async function logout() {
+  return request('/server/api/login/logout');
+}
