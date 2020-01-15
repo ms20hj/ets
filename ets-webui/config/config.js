@@ -131,7 +131,6 @@ export default {
                 },
               ],
             },
-
             {
               path: '/park',
               icon: 'slack',
@@ -194,18 +193,33 @@ export default {
                 },
               ],
             },
+
+            // 异常路由
             {
-              component: './404',
+              path: '/exception',
+              icon: 'bank',
+              name: '异常',
+              routes: [
+                {
+                  name: '403',
+                  path: '/exception/403',
+                  component: './exception/403',
+                },
+                {
+                  name: '404',
+                  path: '/exception/404',
+                  component: './exception/404',
+                },
+                {
+                  name: '500',
+                  path: '/exception/500',
+                  component: './exception/500',
+                },
+              ],
             },
           ],
         },
-        {
-          component: './404',
-        },
       ],
-    },
-    {
-      component: './404',
     },
   ],
   // Theme for antd: https://ant.design/docs/react/customize-theme-cn

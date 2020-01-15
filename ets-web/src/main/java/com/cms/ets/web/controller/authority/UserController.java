@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cms.ets.api.authority.IUserService;
 import com.cms.ets.common.constant.OperateLogConstant;
+import com.cms.ets.common.enums.CodeEnum;
 import com.cms.ets.common.response.HandleResult;
 import com.cms.ets.model.mysql.authority.User;
 import com.cms.ets.web.annotation.OperationLog;
@@ -86,10 +87,14 @@ public class UserController extends BaseController {
     }
 
     @GetMapping("queryUser")
-    @ApiOperation("用户登录，数据写死，模拟而已")
+    @ApiOperation("当前登录用户")
     public HandleResult queryUser(){
-        Map<String, String> map = ImmutableMap.of("userid", "00000001", "avatar", "https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png",
-                "name", "admin");
+        User user = getCurrentUser();
+        if (user == null) {
+            return error(CodeEnum.AUTHORIZE_UNAUTH);
+        }
+        Map<String, String> map = ImmutableMap.of("userId", user.getId(), "avatar", "https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png",
+                "name", user.getRealName());
         return success(map);
     }
 }

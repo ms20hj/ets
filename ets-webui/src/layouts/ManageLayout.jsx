@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
-import { Link } from 'dva/router';
+import { Link, routerRedux } from 'dva/router';
 import RightContent from '@/components/GlobalHeader/RightContent';
 import logo from '../assets/logo.svg';
 import ProLayout from '@ant-design/pro-layout';
@@ -13,11 +13,6 @@ import ProLayout from '@ant-design/pro-layout';
 export default class ManageLayout extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      collapsed: false,
-      openKeys: [],
-      rootSubmenuKeys: [],
-    };
   }
 
   componentDidMount() {
@@ -25,14 +20,14 @@ export default class ManageLayout extends Component {
     dispatch({
       type: 'global/fetchRoutes',
     }).then(() => {
-      const { routes } = this.props;
+      const { routes, dispatch } = this.props;
       if (routes.length === 0) {
-        message.warning('暂无权限');
+        dispatch(
+          routerRedux.replace({
+            pathname: '/exception/403',
+          }),
+        );
       }
-      let subMenuKeys = routes.map(item => {
-        return item.id;
-      });
-      this.setState({ rootSubmenuKeys: subMenuKeys });
     });
   }
 
