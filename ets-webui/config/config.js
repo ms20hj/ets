@@ -76,6 +76,7 @@ export default {
     // defaultGitUrl: 'https://gitee.com/ant-design/pro-blocks',
     defaultGitUrl: 'https://github.com/ant-design/pro-blocks',
   },
+  history: 'hash', // 默认是 browser
   hash: true,
   targets: {
     ie: 11,

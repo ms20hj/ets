@@ -11,7 +11,7 @@
     <jmxConfigurator/>
 
     <!-- 定义日志文件 输出位置 -->
-    <springProperty name="LOG_PATH" source="logging.path" scope="context" defaultValue="../logs"/>
+    <springProperty name="LOG_PATH" source="logging.path" scope="context" defaultValue="./logs"/>
     <property name="log.home_dir" value="${LOG_PATH}"/>
     <!-- 日志最大的历史 30天 -->
     <property name="log.maxHistory" value="30"/>
@@ -163,14 +163,6 @@
         <appender-ref ref="ERROR"/>
         <appender-ref ref="CONSOLE"/>
     </logger>
-    <!--com.linewell.idaas.sso.api包下的类的日志输出-->
-    <logger name="com.linewell.ets.api" additivity="false" level="INFO" >
-        <appender-ref ref="INFO"/>
-        <appender-ref ref="ERROR_API" />
-        <appender-ref ref="CONSOLE"/>
-    </logger>
-
-
 
     <!-- root级别   DEBUG -->
     <root>
