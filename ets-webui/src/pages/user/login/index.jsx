@@ -1,7 +1,7 @@
-import { Alert } from 'antd';
-import { formatMessage, FormattedMessage } from 'umi-plugin-react/locale';
-import React, { Component } from 'react';
-import { connect } from 'dva';
+import {Alert} from 'antd';
+import {formatMessage, FormattedMessage} from 'umi-plugin-react/locale';
+import React, {Component} from 'react';
+import {connect} from 'dva';
 import LoginComponents from './components/Login';
 import styles from './style.less';
 

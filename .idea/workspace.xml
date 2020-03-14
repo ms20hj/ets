@@ -1,0 +1,1628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="50df3d53-145b-4d12-ab0f-5587fa829c15" name="Default Changelist" comment="菜单权限控制">
+      <change afterPath="$PROJECT_DIR$/ets-client/.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ets-client/.eslintignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ets-client/.eslintrc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ets-client/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ets-client/.prettierignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ets-client/.prettierrc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ets-client/.stylelintrc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ets-client/config/config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ets-client/config/defaultSettings.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ets-client/config/plugin.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ets-client/jest-puppeteer.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ets-client/jest.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ets-client/jsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ets-client/src/utils/rsa.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ets-client/mock/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/ets-client/.babelrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ets-core/src/main/resources/application-common.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ets-core/src/main/resources/application-common.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ets-provider/src/main/java/com/cms/ets/mybatis/generator/CodeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/ets-provider/src/main/java/com/cms/ets/mybatis/generator/CodeGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ets-provider/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ets-provider/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ets-web/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ets-web/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ets-webui/src/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/ets-webui/src/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ets-webui/src/models/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/ets-webui/src/models/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ets-webui/src/pages/user/login/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/ets-webui/src/pages/user/login/index.jsx" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <ignored path="$PROJECT_DIR$/ets-model/target/" />
+    <ignored path="$PROJECT_DIR$/ets-api/target/" />
+    <ignored path="$PROJECT_DIR$/ets-core/target/" />
+    <ignored path="$PROJECT_DIR$/ets-provider/target/" />
+    <ignored path="$PROJECT_DIR$/ets-web/target/" />
+    <ignored path="$PROJECT_DIR$/ets-common/target/" />
+    <ignored path="$PROJECT_DIR$/ets-log/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ets-client/src/pages/user/login/index.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="456">
+              <caret line="87" column="29" selection-start-line="87" selection-start-column="22" selection-end-line="87" selection-end-column="29" />
+              <folding>
+                <element signature="e#0#27#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ets-client/config/config.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2944">
+              <caret line="59" column="28" lean-forward="true" selection-start-line="59" selection-start-column="28" selection-end-line="59" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ets-client/config/proxy.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="175">
+              <caret line="7" column="16" lean-forward="true" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ets-client/mock/user.js">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ets-client/mock/notices.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="431">
+              <caret line="100" column="16" lean-forward="true" selection-start-line="100" selection-start-column="16" selection-end-line="100" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ets-client/mock/route.js">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ets-client/src/layouts/BasicLayout.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-823">
+              <caret line="103" column="11" selection-start-line="103" selection-start-column="2" selection-end-line="103" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ets-client/src/services/login.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="250">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ets-client/src/models/login.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="581">
+              <caret line="55" column="17" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#40#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ets-client/src/utils/rsa.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="3" column="9" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Enum" />
+        <option value="mybatisMapper" />
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="Less File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>第一百七十六</find>
+      <find>BasicLayout</find>
+      <find>formatMessage</find>
+      <find>rsaPublicKey</find>
+      <find>fetchCurrent</find>
+      <find>history</find>
+      <find>第两百七十</find>
+      <find>DocumentTitle</find>
+      <find>resolveComponent</find>
+      <find>exclude: /node_modules/</find>
+      <find>global.jsx</find>
+      <find>antd: false</find>
+      <find>Chromium</find>
+      <find>pup</find>
+      <find>REACT_APP_ENV</find>
+      <find>include</find>
+      <find>node_modules</find>
+      <find>index.js</find>
+      <find>cssLoaderWithoutModule</find>
+      <find>babel-loader</find>
+      <find>electr</find>
+      <find>target</find>
+      <find>publicPath</find>
+      <find>webpack</find>
+      <find>vendors.ca0d49a4.chunk.css</find>
+      <find>asset-manifest.json</find>
+      <find>layouts__SecurityLayout.1eb66171.async.js</find>
+      <find>vendors</find>
+      <find>useEffect</find>
+      <find>ven</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>tempTravelType</replace>
+      <replace>changeEditTypeVisible</replace>
+      <replace>TravelAgencyForm</replace>
+      <replace>tempTravelAgency</replace>
+      <replace>Tourist</replace>
+      <replace>TouristForm</replace>
+      <replace>tempTourist</replace>
+      <replace>tourist</replace>
+      <replace>changeEditVisible</replace>
+      <replace>TempTicket</replace>
+      <replace>TempTicketCategory</replace>
+      <replace>ticketService</replace>
+      <replace>ticketCategoryService</replace>
+      <replace>TreeCategory</replace>
+      <replace>treeCategory</replace>
+      <replace>tempTicketCategory</replace>
+      <replace>ticket</replace>
+      <replace>tempTicket</replace>
+      <replace>TICKET_DICTIONARY</replace>
+      <replace>DICTIONARY_CAHCE_PREFIX_KEY</replace>
+      <replace>122.51.119.135</replace>
+      <replace>record.id</replace>
+      <replace>int</replace>
+      <replace>Discount</replace>
+      <replace>tempDiscount</replace>
+      <replace>discount</replace>
+      <replace>key</replace>
+      <replace>title</replace>
+      <replace>127.0.0.1</replace>
+      <replace>MenuModel</replace>
+    </replaceStrings>
+    <dirStrings>
+      <dir>D:\workspace-other\ets\ets-client</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/ets-api/src/main/java/com/cms/ets/api/authority/IMenuService.java" />
+        <option value="$PROJECT_DIR$/ets-web/src/main/java/com/cms/ets/web/controller/authority/MenuController.java" />
+        <option value="$PROJECT_DIR$/ets-webui/src/models/global.js" />
+        <option value="$PROJECT_DIR$/ets-webui/src/components/wrappers/FetchRoutes.jsx" />
+        <option value="$PROJECT_DIR$/ets-webui/src/services/login.js" />
+        <option value="$PROJECT_DIR$/ets-model/src/main/java/com/cms/ets/model/conversion/Route.java" />
+        <option value="$PROJECT_DIR$/ets-webui/src/layouts/ManageLayout.less" />
+        <option value="$PROJECT_DIR$/ets-provider/src/main/java/com/cms/ets/provider/service/authority/MenuServiceImpl.java" />
+        <option value="$PROJECT_DIR$/ets-webui/src/layouts/BasicLayout.jsx" />
+        <option value="$PROJECT_DIR$/ets-webui/src/layouts/ExceptionLayout.jsx" />
+        <option value="$PROJECT_DIR$/ets-webui/src/models/login.js" />
+        <option value="$PROJECT_DIR$/ets-web/src/main/java/com/cms/ets/web/controller/authority/UserController.java" />
+        <option value="$PROJECT_DIR$/ets-webui/src/layouts/ManageLayout.jsx" />
+        <option value="$PROJECT_DIR$/ets-webui/src/pages/exception/403/index.jsx" />
+        <option value="$PROJECT_DIR$/ets-webui/src/pages/exception/404/index.jsx" />
+        <option value="$PROJECT_DIR$/ets-webui/src/pages/exception/500/index.jsx" />
+        <option value="$PROJECT_DIR$/ets-core/src/main/resources/logback-spring.xml" />
+        <option value="$PROJECT_DIR$/ets-webui/config/config.js" />
+        <option value="$PROJECT_DIR$/ets-webui/dist/index.html" />
+        <option value="$PROJECT_DIR$/ets-web/src/main/java/com/cms/ets/web/controller/authority/LoginController.java" />
+        <option value="G:/下载/罗浮.txt" />
+        <option value="$PROJECT_DIR$/ets-core/src/main/resources/application-common.yml" />
+        <option value="$PROJECT_DIR$/ets-client/src/layouts/UserLayout.less" />
+        <option value="$PROJECT_DIR$/ets-client/src/utils/index.less" />
+        <option value="$PROJECT_DIR$/ets-client/src/index.less" />
+        <option value="$PROJECT_DIR$/ets-client/src/utils/Utils.js" />
+        <option value="$PROJECT_DIR$/ets-client/src/index.js" />
+        <option value="$PROJECT_DIR$/ets-client/src/routes/login/index.jsx" />
+        <option value="$PROJECT_DIR$/ets-client/src/common/config.js" />
+        <option value="$PROJECT_DIR$/ets-client/src/routes/login/Login.js" />
+        <option value="$PROJECT_DIR$/ets-client/src/common/nav.js" />
+        <option value="$PROJECT_DIR$/ets-client/src/router.js" />
+        <option value="$PROJECT_DIR$/ets-client/src/layouts/UserLayout.js" />
+        <option value="$PROJECT_DIR$/ets-webui/src/manifest.json" />
+        <option value="$PROJECT_DIR$/ets-client/src/manifest.json" />
+        <option value="$PROJECT_DIR$/ets-client/src/pages/.umi/umi.js" />
+        <option value="$PROJECT_DIR$/ets-client/src/global.jsx" />
+        <option value="$PROJECT_DIR$/ets-client/.babelrc" />
+        <option value="$PROJECT_DIR$/ets-webui/src/pages/user/login/index.jsx" />
+        <option value="$PROJECT_DIR$/ets-client/main.js" />
+        <option value="$PROJECT_DIR$/ets-client/config/plugin.config.js" />
+        <option value="$PROJECT_DIR$/ets-client/dist/asset-manifest.json" />
+        <option value="$PROJECT_DIR$/ets-client/dist/index.html" />
+        <option value="$PROJECT_DIR$/ets-client/config/config.js" />
+        <option value="$PROJECT_DIR$/ets-client/config/defaultSettings.js" />
+        <option value="$PROJECT_DIR$/ets-client/package.json" />
+        <option value="$PROJECT_DIR$/ets-client/src/utils/rsa.js" />
+        <option value="$PROJECT_DIR$/ets-client/src/services/login.js" />
+        <option value="$PROJECT_DIR$/ets-client/src/models/login.js" />
+        <option value="$PROJECT_DIR$/ets-client/src/pages/user/login/index.jsx" />
+        <option value="$PROJECT_DIR$/ets-client/config/proxy.js" />
+      </list>
+    </option>
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="D:/apache-maven-3.6.ali" />
+        <option name="userSettingsFile" value="D:\apache-maven-3.6.ali\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+        <option name="jdkForImporter" value="1.8" />
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="ets" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="ets" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectConfigurationFiles">
+    <option name="files">
+      <list>
+        <option value="$PROJECT_DIR$/ets-model/ets-model.iml" />
+        <option value="$PROJECT_DIR$/ets-api/ets-api.iml" />
+        <option value="$PROJECT_DIR$/ets-core/ets-core.iml" />
+        <option value="$PROJECT_DIR$/.idea/uiDesigner.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="ets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ets" type="462c0819:PsiDirectoryNode" />
+              <item name="ets-client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ets" type="462c0819:PsiDirectoryNode" />
+              <item name="ets-client" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ets" type="462c0819:PsiDirectoryNode" />
+              <item name="ets-client" type="462c0819:PsiDirectoryNode" />
+              <item name="mock" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ets" type="462c0819:PsiDirectoryNode" />
+              <item name="ets-client" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ets" type="462c0819:PsiDirectoryNode" />
+              <item name="ets-client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ets" type="462c0819:PsiDirectoryNode" />
+              <item name="ets-client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ets" type="462c0819:PsiDirectoryNode" />
+              <item name="ets-client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ets" type="462c0819:PsiDirectoryNode" />
+              <item name="ets-client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ets" type="462c0819:PsiDirectoryNode" />
+              <item name="ets-client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+              <item name="login" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ets" type="462c0819:PsiDirectoryNode" />
+              <item name="ets-client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+              <item name="login" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ets" type="462c0819:PsiDirectoryNode" />
+              <item name="ets-client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ets" type="462c0819:PsiDirectoryNode" />
+              <item name="ets-client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JSX Harmony" />
+    <property name="editor.config.ad.shown" value="true" />
+    <property name="jdk.selected.JAVA_MODULE" value="11" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/ets-client/config" />
+    <property name="list.type.of.created.stylesheet" value="Less" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="ts.external.directory.path" value="D:\developTools\IntelliJ IDEA 2019.1.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\workspace-other\ets\ets-client\src" />
+      <recent name="D:\workspace-other\ets\ets-webui\public" />
+      <recent name="D:\workspace-other\ets\ets-webui\src\pages\authority" />
+      <recent name="D:\workspace-other\ets\ets-webui\src\pages\system\user\components" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.cms.ets" />
+      <recent name="com.cms.ets.api.authority" />
+      <recent name="com.cms.ets.provider" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.cms.ets.config" />
+      <recent name="com.cms.ets.mongo.config" />
+      <recent name="com.cms.ets.core.util" />
+      <recent name="com.cms.ets.web.shiro" />
+      <recent name="com.cms.ets.model.mysql.authority" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\workspace-other\ets\ets-client\config" />
+      <recent name="D:\workspace-other\ets\ets-client" />
+      <recent name="D:\workspace-other\ets\ets-webui\src\layouts" />
+      <recent name="D:\workspace-other\ets\ets-webui\src\services" />
+      <recent name="D:\workspace-other\ets\ets-webui\src\models\authority" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.EtsProvider">
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.EtsWeb" />
+        <item itemvalue="Spring Boot.EtsProvider" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="50df3d53-145b-4d12-ab0f-5587fa829c15" name="Default Changelist" comment="" />
+      <created>1563529478283</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1563529478283</updated>
+      <workItem from="1563529481521" duration="775000" />
+      <workItem from="1563760317793" duration="1230000" />
+      <workItem from="1563761567920" duration="14710000" />
+      <workItem from="1563845303982" duration="2331000" />
+      <workItem from="1564708747305" duration="2704000" />
+      <workItem from="1564968373600" duration="597000" />
+      <workItem from="1568009166576" duration="12400000" />
+      <workItem from="1568022769713" duration="7000" />
+      <workItem from="1568022791811" duration="415000" />
+      <workItem from="1568085056058" duration="1052000" />
+      <workItem from="1569201928052" duration="376000" />
+      <workItem from="1569374413336" duration="706000" />
+      <workItem from="1569375535446" duration="14991000" />
+      <workItem from="1570519712535" duration="5149000" />
+      <workItem from="1570687198788" duration="14538000" />
+      <workItem from="1570757037577" duration="1429000" />
+      <workItem from="1570773590127" duration="13005000" />
+      <workItem from="1570842509517" duration="1114000" />
+      <workItem from="1570863061875" duration="5242000" />
+      <workItem from="1570868940438" duration="4907000" />
+      <workItem from="1571119073394" duration="14181000" />
+      <workItem from="1571189004212" duration="22745000" />
+      <workItem from="1571379010068" duration="13410000" />
+      <workItem from="1571620348254" duration="18071000" />
+      <workItem from="1571707334318" duration="13574000" />
+      <workItem from="1571793315481" duration="23932000" />
+      <workItem from="1571897321175" duration="12416000" />
+      <workItem from="1571964996562" duration="4854000" />
+      <workItem from="1571972102166" duration="17981000" />
+      <workItem from="1572225902754" duration="1549000" />
+      <workItem from="1572315308513" duration="19169000" />
+      <workItem from="1572398481084" duration="349000" />
+      <workItem from="1572415307021" duration="14098000" />
+      <workItem from="1572484244018" duration="16860000" />
+      <workItem from="1572571739376" duration="444000" />
+      <workItem from="1572575243618" duration="85000" />
+      <workItem from="1572587431556" duration="2120000" />
+      <workItem from="1572830522576" duration="1047000" />
+      <workItem from="1572916648163" duration="3518000" />
+      <workItem from="1572922096652" duration="10143000" />
+      <workItem from="1572938757126" duration="8290000" />
+      <workItem from="1573003290965" duration="9249000" />
+      <workItem from="1573026035285" duration="6596000" />
+      <workItem from="1573112642690" duration="203000" />
+      <workItem from="1573113204415" duration="2209000" />
+      <workItem from="1573349865102" duration="4347000" />
+      <workItem from="1573781659779" duration="10997000" />
+      <workItem from="1573799612324" duration="11113000" />
+      <workItem from="1574064715439" duration="2463000" />
+      <workItem from="1574071240092" duration="266000" />
+      <workItem from="1574126697862" duration="2680000" />
+      <workItem from="1574299635694" duration="4071000" />
+      <workItem from="1574661537782" duration="723000" />
+      <workItem from="1574841599419" duration="5748000" />
+      <workItem from="1574903498349" duration="2595000" />
+      <workItem from="1575335977469" duration="14000" />
+      <workItem from="1575871536406" duration="8156000" />
+      <workItem from="1576030681004" duration="2245000" />
+      <workItem from="1576033278259" duration="9887000" />
+      <workItem from="1576113718488" duration="20678000" />
+      <workItem from="1576200853926" duration="68000" />
+      <workItem from="1576206706843" duration="4221000" />
+      <workItem from="1576231999293" duration="51000" />
+      <workItem from="1576459271301" duration="4263000" />
+      <workItem from="1576489042495" duration="1402000" />
+      <workItem from="1576548984185" duration="1078000" />
+      <workItem from="1576738916077" duration="8930000" />
+      <workItem from="1576756359706" duration="1348000" />
+      <workItem from="1577065456252" duration="3957000" />
+      <workItem from="1577093360971" duration="1917000" />
+      <workItem from="1577150852815" duration="567000" />
+      <workItem from="1577158598464" duration="2927000" />
+      <workItem from="1577167831532" duration="8775000" />
+      <workItem from="1577237283219" duration="9427000" />
+      <workItem from="1577254913588" duration="1222000" />
+      <workItem from="1577256321890" duration="1736000" />
+      <workItem from="1577258642240" duration="357000" />
+      <workItem from="1577259288662" duration="8990000" />
+      <workItem from="1577342199922" duration="5902000" />
+      <workItem from="1577351684691" duration="2042000" />
+      <workItem from="1577409782042" duration="1810000" />
+      <workItem from="1577411722373" duration="80000" />
+      <workItem from="1577411820400" duration="12572000" />
+      <workItem from="1577433244354" duration="3529000" />
+      <workItem from="1577668872329" duration="23000" />
+      <workItem from="1577669201311" duration="668000" />
+      <workItem from="1577755203539" duration="1446000" />
+      <workItem from="1577760470733" duration="12991000" />
+      <workItem from="1577928244632" duration="784000" />
+      <workItem from="1577931412267" duration="1548000" />
+      <workItem from="1577933945386" duration="13614000" />
+      <workItem from="1577954826499" duration="3683000" />
+      <workItem from="1578014354095" duration="8293000" />
+      <workItem from="1578041234715" duration="4594000" />
+      <workItem from="1578274790591" duration="9547000" />
+      <workItem from="1578291367180" duration="5458000" />
+      <workItem from="1578360153407" duration="26074000" />
+      <workItem from="1578445971231" duration="18946000" />
+      <workItem from="1578533232016" duration="2876000" />
+      <workItem from="1578619894459" duration="11347000" />
+      <workItem from="1578637869364" duration="11726000" />
+      <workItem from="1578791199995" duration="8899000" />
+      <workItem from="1578810849530" duration="21000" />
+      <workItem from="1578817358686" duration="5211000" />
+      <workItem from="1578878183107" duration="4342000" />
+      <workItem from="1578883315962" duration="17464000" />
+      <workItem from="1578965096756" duration="19222000" />
+      <workItem from="1578993014583" duration="305000" />
+      <workItem from="1579067930842" duration="9036000" />
+      <workItem from="1579137680459" duration="9301000" />
+      <workItem from="1579223442588" duration="11378000" />
+      <workItem from="1579397450404" duration="869000" />
+      <workItem from="1579422484972" duration="2476000" />
+      <workItem from="1579483111601" duration="1082000" />
+      <workItem from="1579585294301" duration="13802000" />
+      <workItem from="1581384354603" duration="58000" />
+      <workItem from="1581476655445" duration="1018000" />
+      <workItem from="1581911150430" duration="549000" />
+      <workItem from="1583375888308" duration="734000" />
+      <workItem from="1583720280485" duration="616000" />
+      <workItem from="1583737288877" duration="2270000" />
+      <workItem from="1583740312254" duration="312000" />
+      <workItem from="1583740642332" duration="6538000" />
+      <workItem from="1583889888698" duration="13061000" />
+      <workItem from="1583975924015" duration="23474000" />
+      <workItem from="1584061297676" duration="1482000" />
+      <workItem from="1584063481324" duration="4987000" />
+      <workItem from="1584081060931" duration="3893000" />
+      <workItem from="1584091409279" duration="1609000" />
+      <workItem from="1584147917501" duration="7835000" />
+    </task>
+    <task id="LOCAL-00021" summary="角色管理、用户授权、菜单授权">
+      <created>1571897462603</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1571897462603</updated>
+    </task>
+    <task id="LOCAL-00022" summary="修改打包web工程打包">
+      <created>1571908622401</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1571908622401</updated>
+    </task>
+    <task id="LOCAL-00023" summary="修改代码生成器">
+      <created>1571908824407</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1571908824407</updated>
+    </task>
+    <task id="LOCAL-00024" summary="景区管理模块基础代码提交">
+      <created>1571911377467</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1571911377467</updated>
+    </task>
+    <task id="LOCAL-00025" summary="景区管理功能">
+      <created>1571969676928</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1571969676929</updated>
+    </task>
+    <task id="LOCAL-00026" summary="景点功能模块">
+      <created>1571984403588</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1571984403588</updated>
+    </task>
+    <task id="LOCAL-00027" summary="销售站点功能模块">
+      <created>1571990107859</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1571990107859</updated>
+    </task>
+    <task id="LOCAL-00028" summary="销售窗口功能模块">
+      <created>1571994391457</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1571994391457</updated>
+    </task>
+    <task id="LOCAL-00029" summary="销售窗口功能模块">
+      <created>1571995516325</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1571995516325</updated>
+    </task>
+    <task id="LOCAL-00030" summary="美化代码">
+      <created>1571995628033</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1571995628033</updated>
+    </task>
+    <task id="LOCAL-00031" summary="旅行社管理-类别管理">
+      <created>1572343490135</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1572343490135</updated>
+    </task>
+    <task id="LOCAL-00032" summary="优化之前的模块，编辑页取消清理缓存&#10;旅行社管理模块">
+      <created>1572425477893</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1572425477893</updated>
+    </task>
+    <task id="LOCAL-00033" summary="游客管理模块">
+      <created>1572490741175</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1572490741176</updated>
+    </task>
+    <task id="LOCAL-00034" summary="优化前端编辑完更新当前页数据查询">
+      <created>1572506437005</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1572506437005</updated>
+    </task>
+    <task id="LOCAL-00035" summary="修改logoback输出路径">
+      <created>1572589837279</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1572589837279</updated>
+    </task>
+    <task id="LOCAL-00036" summary="集成shiro">
+      <created>1573033233652</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1573033233652</updated>
+    </task>
+    <task id="LOCAL-00037" summary="登录">
+      <created>1573786630710</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1573786630710</updated>
+    </task>
+    <task id="LOCAL-00038" summary="添加操作日志">
+      <created>1573805803363</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1573805803363</updated>
+    </task>
+    <task id="LOCAL-00039" summary="登录过期直接返回json数据">
+      <created>1574128770943</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1574128770943</updated>
+    </task>
+    <task id="LOCAL-00040" summary="shiro拦截">
+      <created>1574661569866</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1574661569866</updated>
+    </task>
+    <task id="LOCAL-00041" summary="shiro未登录拦截返回&#10;request.js response拦截器">
+      <created>1574848934060</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1574848934060</updated>
+    </task>
+    <task id="LOCAL-00042" summary="shiro未登录拦截返回&#10;request.js response拦截器">
+      <created>1575874048819</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1575874048819</updated>
+    </task>
+    <task id="LOCAL-00043" summary="票类管理基础页面">
+      <created>1576058116437</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1576058116437</updated>
+    </task>
+    <task id="LOCAL-00044" summary="字典&#10;票类管理">
+      <created>1576232031592</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1576232031592</updated>
+    </task>
+    <task id="LOCAL-00045" summary="字段票类&#10;redis缓存连接">
+      <created>1576757685042</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1576757685042</updated>
+    </task>
+    <task id="LOCAL-00046" summary="所属种类、介质">
+      <created>1577095154540</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1577095154540</updated>
+    </task>
+    <task id="LOCAL-00047" summary="优化shiro-redis">
+      <created>1577182154546</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1577182154546</updated>
+    </task>
+    <task id="LOCAL-00048" summary="添加门票">
+      <created>1577264687723</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1577264687724</updated>
+    </task>
+    <task id="LOCAL-00049" summary="门票可进景点">
+      <created>1577268240720</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1577268240720</updated>
+    </task>
+    <task id="LOCAL-00050" summary="门票景区修改为多选">
+      <created>1577348470841</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1577348470842</updated>
+    </task>
+    <task id="LOCAL-00051" summary="重新ticket里面的getById">
+      <created>1577354804957</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1577354804957</updated>
+    </task>
+    <task id="LOCAL-00052" summary="景点配置页面">
+      <created>1577438154065</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1577438154065</updated>
+    </task>
+    <task id="LOCAL-00053" summary="景点配置功能">
+      <created>1577783912852</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1577783912852</updated>
+    </task>
+    <task id="LOCAL-00054" summary="门票授权关联用户">
+      <created>1577951403948</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1577951403948</updated>
+    </task>
+    <task id="LOCAL-00055" summary="门票授权关联用户">
+      <created>1578015070738</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1578015070753</updated>
+    </task>
+    <task id="LOCAL-00056" summary="用户授权关联门票">
+      <created>1578042496653</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1578042496653</updated>
+    </task>
+    <task id="LOCAL-00057" summary="优惠配置基础代码生成">
+      <created>1578044914678</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1578044914678</updated>
+    </task>
+    <task id="LOCAL-00058" summary="优惠配置界面和数据填充">
+      <created>1578389487322</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1578389487324</updated>
+    </task>
+    <task id="LOCAL-00059" summary="修改数据库地址">
+      <created>1578389623605</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1578389623605</updated>
+    </task>
+    <task id="LOCAL-00060" summary="修改数据库地址">
+      <created>1578389679607</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1578389679607</updated>
+    </task>
+    <task id="LOCAL-00061" summary="优惠设置功能收尾">
+      <created>1578475826791</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1578475826792</updated>
+    </task>
+    <task id="LOCAL-00062" summary="还原配置文件">
+      <created>1578475954671</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1578475954671</updated>
+    </task>
+    <task id="LOCAL-00063" summary="修改新增门票信息门票类别没有传递">
+      <created>1578536142374</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1578536142374</updated>
+    </task>
+    <task id="LOCAL-00064" summary="通过service端获取菜单权限">
+      <created>1578895014219</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1578895014220</updated>
+    </task>
+    <task id="LOCAL-00065" summary="菜单权限控制">
+      <created>1578986841346</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1578986841347</updated>
+    </task>
+    <task id="LOCAL-00066" summary="菜单权限控制&#10;添加异常页面">
+      <created>1579077358690</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1579077358690</updated>
+    </task>
+    <task id="LOCAL-00067" summary="菜单权限路由">
+      <created>1581911231772</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1581911231773</updated>
+    </task>
+    <task id="LOCAL-00068" summary="client 客户端构建">
+      <created>1583891070876</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1583891070876</updated>
+    </task>
+    <task id="LOCAL-00069" summary="重新用antd-pro构建">
+      <created>1583994656871</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1583994656872</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="TestDictionary_saveDiscountWay - 2020.01.06 at 09h 47m 11s.xml">
+      <configuration name="TestDictionary.saveDiscountWay" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestDictionary_saveDiscountWay - 2020.01.06 at 09h 49m 37s.xml">
+      <configuration name="TestDictionary.saveDiscountWay" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MenuInit_saveIndexMenu - 2020.01.10 at 11h 28m 00s.xml">
+      <configuration name="MenuInit.saveIndexMenu" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MenuInit_init - 2020.01.10 at 11h 28m 17s.xml">
+      <configuration name="MenuInit.init" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MenuInit_saveAuthMenu - 2020.01.10 at 11h 40m 59s.xml">
+      <configuration name="MenuInit.saveAuthMenu" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MenuInit_saveAuthMenuChildren - 2020.01.10 at 11h 43m 31s.xml">
+      <configuration name="MenuInit.saveAuthMenuChildren" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MenuInit_saveViewMenu - 2020.01.10 at 11h 45m 04s.xml">
+      <configuration name="MenuInit.saveViewMenu" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MenuInit_saveViewMenuChildren - 2020.01.10 at 11h 47m 59s.xml">
+      <configuration name="MenuInit.saveViewMenuChildren" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MenuInit_saveMarkingMenu - 2020.01.10 at 11h 50m 22s.xml">
+      <configuration name="MenuInit.saveMarkingMenu" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MenuInit_saveMarkingMenuChildren - 2020.01.10 at 11h 51m 52s.xml">
+      <configuration name="MenuInit.saveMarkingMenuChildren" configurationId="JUnit" />
+    </history-entry>
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="813387000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2666309" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.20222223" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.19222222" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49892703" weight="0.23333333" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.26333332" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49892703" visible="true" weight="0.20666666" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50160944" side_tool="true" weight="0.23222223" />
+      <window_info anchor="bottom" id="Spring" order="12" />
+      <window_info anchor="bottom" id="Java Enterprise" order="13" />
+      <window_info anchor="bottom" id="Messages" order="14" weight="0.23111111" />
+      <window_info anchor="bottom" id="TypeScript" order="15" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" show_stripe_button="false" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="4" />
+      <window_info anchor="right" id="Maven" order="5" weight="0.18562232" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Database" order="8" show_stripe_button="false" />
+      <window_info anchor="right" id="Bean Validation" order="9" show_stripe_button="false" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20332618" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.26444444" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49892703" visible="true" weight="0.37111112" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.27444443" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49892703" weight="0.21444444" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50107294" side_tool="true" weight="0.26666668" />
+      <window_info anchor="bottom" id="Spring" order="12" />
+      <window_info anchor="bottom" id="Java Enterprise" order="13" />
+      <window_info anchor="bottom" id="Messages" order="14" weight="0.10555556" />
+      <window_info anchor="bottom" id="TypeScript" order="15" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" show_stripe_button="false" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="4" />
+      <window_info anchor="right" id="Maven" order="5" weight="0.18562232" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Database" order="8" show_stripe_button="false" />
+      <window_info anchor="right" id="Bean Validation" order="9" show_stripe_button="false" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/ets-client" />
+    </ignored-roots>
+    <MESSAGE value="票类管理基础页面" />
+    <MESSAGE value="字典&#10;票类管理" />
+    <MESSAGE value="字段票类&#10;redis缓存连接" />
+    <MESSAGE value="所属种类、介质" />
+    <MESSAGE value="优化shiro-redis" />
+    <MESSAGE value="添加门票" />
+    <MESSAGE value="门票可进景点" />
+    <MESSAGE value="门票景区修改为多选" />
+    <MESSAGE value="重新ticket里面的getById" />
+    <MESSAGE value="景点配置页面" />
+    <MESSAGE value="景点配置功能" />
+    <MESSAGE value="门票授权关联用户" />
+    <MESSAGE value="用户授权关联门票" />
+    <MESSAGE value="优惠配置基础代码生成" />
+    <MESSAGE value="优惠配置界面和数据填充" />
+    <MESSAGE value="修改数据库地址" />
+    <MESSAGE value="优惠设置功能收尾" />
+    <MESSAGE value="还原配置文件" />
+    <MESSAGE value="修改新增门票信息门票类别没有传递" />
+    <MESSAGE value="通过service端获取菜单权限" />
+    <MESSAGE value="菜单权限控制" />
+    <MESSAGE value="菜单权限控制&#10;添加异常页面" />
+    <MESSAGE value="菜单权限路由" />
+    <MESSAGE value="client 客户端构建" />
+    <MESSAGE value="重新用antd-pro构建" />
+    <option name="LAST_COMMIT_MESSAGE" value="重新用antd-pro构建" />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/ets-client/src/pages/.umi/umi.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-69">
+          <caret line="122" column="57" lean-forward="true" selection-start-line="122" selection-start-column="57" selection-end-line="122" selection-end-column="57" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/src/pages/.umi/umiExports.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/src/pages/.umi/dva.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/src/pages/.umi/polyfills.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-webui/src/pages/.umi/umi.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="20" column="19" lean-forward="true" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-webui/.eslintrc.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/config/themePluginConfig.js" />
+    <entry file="file://$PROJECT_DIR$/ets-webui/.editorconfig">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/src/pages/Admin.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-webui/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1675">
+          <caret line="67" column="30" selection-start-line="67" selection-start-column="30" selection-end-line="67" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-web/src/main/java/com/cms/ets/web/controller/marketing/TicketController.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-webui/node_modules/umi-plugin-react/ui/.fatherrc.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-webui/node_modules/@antv/data-set/.babelrc">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/src/global.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/node_modules/umi-plugin-react/ui/.fatherrc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="6" column="2" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-provider/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/src/manifest.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/.eslintrc.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/.eslintignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-webui/jest.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-webui/.stylelintrc.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/.babelrc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/.editorconfig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-webui/src/pages/user/login/components/Login/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3525">
+          <caret line="148" column="15" selection-start-line="148" selection-start-column="15" selection-end-line="148" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-webui/src/pages/user/login/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="18" column="20" selection-end-line="110" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-webui/src/models/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1377">
+          <caret line="80" column="4" selection-end-line="83" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="41" column="3" selection-start-line="41" selection-start-column="3" selection-end-line="41" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/dist/vendors.ca0d49a4.chunk.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-webui/config/defaultSettings.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-webui/config/plugin.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/jsconfig.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/dist/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="171" column="53" selection-start-line="171" selection-start-column="53" selection-end-line="171" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/dist/asset-manifest.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="1" column="20" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-webui/dist/asset-manifest.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-webui/dist/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/dist/vendors.c5eaf0f8.async.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-webui/config/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="19" column="21" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/config/plugin.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-558">
+          <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/config/defaultSettings.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/node_modules/react/cjs/react.development.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="1494" column="9" selection-start-line="1494" selection-start-column="9" selection-end-line="1494" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="76" column="30" selection-start-line="76" selection-start-column="30" selection-end-line="76" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/src/utils/rsa.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="3" column="9" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/src/models/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="581">
+          <caret line="55" column="17" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/src/pages/user/login/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="87" column="29" selection-start-line="87" selection-start-column="22" selection-end-line="87" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/config/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2944">
+          <caret line="59" column="28" lean-forward="true" selection-start-line="59" selection-start-column="28" selection-end-line="59" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/src/layouts/BasicLayout.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-823">
+          <caret line="103" column="11" selection-start-line="103" selection-start-column="2" selection-end-line="103" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/config/proxy.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="7" column="16" lean-forward="true" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/mock/user.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/mock/route.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/mock/notices.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="100" column="16" lean-forward="true" selection-start-line="100" selection-start-column="16" selection-end-line="100" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ets-client/src/services/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArquillianSettingsConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>ets</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.21251349" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: ch.qos.logback:logback-classic:1.2.3</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

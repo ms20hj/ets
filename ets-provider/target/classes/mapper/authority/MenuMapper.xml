@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.ets.provider.mapper.authority.MenuMapper">
+
+    <select id="getByUserIdAndCategory" parameterType="string" resultType="com.cms.ets.model.mysql.authority.Menu">
+        select distinct m.id, m.menu_name, m.icon, m.url, m.sort, m.parent_id
+        from t_role_user ru
+        inner join t_role_menu rm on ru.role_id = rm.role_id
+        inner join t_menu m on rm.menu_id = m.id
+        where ru.user_id = #{userId}
+        and m.category = #{category}
+        ORDER BY sort asc
+    </select>
+
+</mapper>
