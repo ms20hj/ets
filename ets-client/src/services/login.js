@@ -1,12 +1,17 @@
 import request from '@/utils/request';
-export async function fakeAccountLogin(params) {
-  return request('/api/login/account', {
+import { encrypt } from '@/utils/rsa';
+export async function userLogin(params) {
+  const pwd = encrypt(params.password);
+  return request('/server/api/login/userLogin', {
     method: 'POST',
-    data: params,
+    data: {
+      userName: params.userName,
+      password: pwd
+    },
   });
 }
 export async function getFakeCaptcha(mobile) {
-  return request(`/api/login/captcha?mobile=${mobile}`);
+  return request(`/server/api/login/captcha?mobile=${mobile}`);
 }
 
 export async function getPublicKey() {

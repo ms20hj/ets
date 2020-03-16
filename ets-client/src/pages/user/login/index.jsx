@@ -1,89 +1,79 @@
-import {Alert} from 'antd';
-import React, {useState, useEffect} from 'react';
+import {Alert, Button, Form, Input} from 'antd';
+import React, {Component} from 'react';
 import {connect} from 'dva';
-import LoginFrom from './components/Login';
 import styles from './style.less';
 
-const { Tab, UserName, Password, Submit } = LoginFrom;
+@connect(({ login, loading }) => ({
+  login,
+  loginResult: login.loginResult,
+}))
+@Form.create()
+export default class Login extends Component{
 
-const LoginMessage = ({ content }) => (
-  <Alert
-    style={{
-      marginBottom: 24,
-    }}
-    message={content}
-    type="error"
-    showIcon
-  />
-);
-
-const Login = props => {
-  const { userLogin = {}, submitting } = props;
-  const { status, type: loginType } = userLogin;
-  const [type, setType] = useState('account');
-  useEffect(() => {
-    const {dispatch} = props;
-    debugger;
+  componentDidMount() {
+    const {dispatch} = this.props;
     if (dispatch) {
       dispatch({
         type: 'login/getPublicKey',
       });
     }
-  }, []);
+  }
 
-  const handleSubmit = values => {
-    const { dispatch } = props;
-    dispatch({
-      type: 'login/login',
-      payload: { ...values, type },
+  handleSubmit = () => {
+    const {form} = this.props;
+    form.validateFields((err, values) => {
+      if (err) return;
+      const { dispatch } = this.props;
+      dispatch({
+        type: 'login/login',
+        payload: { ...values, },
+      });
     });
   };
 
-  return (
-    <div className={styles.main}>
-      <LoginFrom activeKey={type} onTabChange={setType} onSubmit={handleSubmit}>
-        <Tab key="account" tab="账户密码登录">
-          {status === 'error' && loginType === 'account' && !submitting && (
-            <LoginMessage content="账户或密码错误" />
-          )}
+  renderLoginMsg = msg => {
+    return (
+      <Alert
+        style={{
+          marginBottom: 24,
+        }}
+        message={msg}
+        type="error"
+        showIcon
+      />
+    );
+  };
 
-          <UserName
-            name="userName"
-            placeholder="用户名"
-            rules={[
-              {
-                required: true,
-                message: '请输入用户名!',
-              },
-            ]}
-          />
-          <Password
-            name="password"
-            placeholder="密码"
-            rules={[
-              {
-                required: true,
-                message: '请输入密码！',
-              },
-            ]}
-          />
-        </Tab>
-        <div>
-          <a
-            style={{
-              float: 'right',
-            }}
-          >
-            忘记密码
-          </a>
-        </div>
-        <Submit loading={submitting}>登录</Submit>
-      </LoginFrom>
-    </div>
-  );
+  render() {
+    const {loginResult} = this.props;
+    const {getFieldDecorator} = this.props.form;
+    return (
+      <div className={styles.main}>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Item>
+            {getFieldDecorator('userName', {
+              rules: [{ required: true, message: '请输入登录账号' }],
+            })(
+              <Input placeholder="登录账号"
+              />,
+            )}
+          </Form.Item>
+          <Form.Item>
+            {getFieldDecorator('password', {
+              rules: [{ required: true, message: '请输入登录密码' }],
+            })(
+              <Input type="password" placeholder="登录账号"
+              />,
+            )}
+          </Form.Item>
+          {!loginResult.status && this.renderLoginMsg(loginResult.message)}
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              登录
+            </Button>
+          </Form.Item>
+        </Form>
+      </div>
+    );
+  }
 };
-
-export default connect(({ login, loading }) => ({
-  userLogin: login,
-  submitting: loading.effects['login/login', 'login/getPublicKey'],
-}))(Login);

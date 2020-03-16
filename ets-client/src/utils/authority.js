@@ -31,3 +31,8 @@ export function setAuthority(authority) {
 
   reloadAuthorized();
 }
+
+export function setLoginData(data) {
+  localStorage.setItem('token', data.token);
+  localStorage.setItem('userId', data.userId);
+}
