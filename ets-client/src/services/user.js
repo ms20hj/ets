@@ -8,3 +8,7 @@ export async function queryCurrent() {
 export async function queryNotices() {
   return request('/server/api/notices');
 }
+
+export async function getUserMenu() {
+  return request('/server/api/menu/getClientMenuTree');
+}

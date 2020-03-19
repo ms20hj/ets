@@ -1,6 +1,4 @@
 package com.cms.ets.web.controller.marketing;
-
-
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -89,4 +87,13 @@ public class TravelAgencyController extends BaseController {
         List<TravelAgency> list = travelAgencyService.getTreeTravel();
         return success(list);
     }
+
+    @GetMapping("getTreeDataExceptRoot")
+    @ApiOperation("获取旅行社类别树形数据，不包含根节点")
+    public HandleResult getTreeDataExceptRoot() {
+        List<TravelAgency> list = travelAgencyService.getTreeDataExceptRoot();
+        return success(list);
+    }
+
+
 }

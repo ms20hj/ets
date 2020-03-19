@@ -53,4 +53,24 @@ const request = extend({
   // 默认错误处理
   credentials: 'include', // 默认请求是否带上cookie
 });
+
+//response 拦截器，对返回结果进行处理
+request.interceptors.response.use(async (response) => {
+  const data = await response.clone().json();
+  if (data.code === 10006) {
+    localStorage.removeItem("userId");
+    localStorage.removeItem("token");
+    window.sessionStorage.clear();
+    router.replace({
+      pathname: '/user/login'
+    });
+    return response;
+  } else if (data.code === 1) {
+    notification.error({
+      message: `请求失败`,
+    });
+  }
+  return response;
+});
+
 export default request;

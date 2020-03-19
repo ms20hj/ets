@@ -94,7 +94,7 @@ public class UserController extends BaseController {
             return error(CodeEnum.AUTHORIZE_UNAUTH);
         }
         Map<String, String> map = ImmutableMap.of("userId", user.getId(), "avatar", "https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png",
-                "name", user.getRealName());
+                "name", user.getRealName(), "userName", user.getUserName());
         return success(map);
     }
 }

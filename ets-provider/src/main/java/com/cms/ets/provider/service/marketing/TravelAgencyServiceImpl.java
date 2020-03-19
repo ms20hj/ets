@@ -63,9 +63,28 @@ public class TravelAgencyServiceImpl extends ServiceImpl<TravelAgencyMapper, Tra
     @Override
     public List<TravelAgency> getSimpleLeafList() {
         QueryWrapper<TravelAgency> wrapper = new QueryWrapper<>();
-        wrapper.select("id", "name");
+        wrapper.select("id", "name", "parent_id");
         wrapper.ne("parent_id", TravelAgency.ROOT_ID);
         wrapper.orderByAsc("sort_num");
         return list(wrapper);
+    }
+
+    @Override
+    public List<TravelAgency> getTreeDataExceptRoot() {
+        QueryWrapper<TravelAgency> wrapper = new QueryWrapper<>();
+        wrapper.select("id", "name", "parent_id");
+        wrapper.eq("parent_id", TravelAgency.ROOT_ID);
+        List<TravelAgency> list = list(wrapper);
+        list.stream().forEach(ta -> ta.setChildren(getSimpleByParentId(ta.getParentId())));
+        return list;
+    }
+
+    @Override
+    public List<TravelAgency> getSimpleByParentId(String parentId) {
+        QueryWrapper<TravelAgency> wrapper = new QueryWrapper<>();
+        wrapper.select("id", "name", "parent_id");
+        wrapper.eq("parent_id", parentId);
+        List<TravelAgency> list = list(wrapper);
+        return list;
     }
 }

@@ -54,4 +54,20 @@ public interface ITravelAgencyService extends IService<TravelAgency> {
      * @date 2020年1月7日17:15:36
      */
     List<TravelAgency> getSimpleLeafList();
+    /**
+     * 获取旅行社类别树形数据,不包含根节点
+     * 非全表字段查询，仅查询id,name,parentId
+     * @return List<TravelAgency>
+     * @date 2019年10月29日14:58:15
+     */
+    List<TravelAgency> getTreeDataExceptRoot();
+
+    /**
+     * 根据父级ID查询
+     * 非全表字段查询，仅查询id,name,parentId
+     * @param parentId 父id
+     * @return List<TravelAgency>
+     * @date 2020年3月19日14:10:32
+     */
+    List<TravelAgency> getSimpleByParentId(String parentId);
 }

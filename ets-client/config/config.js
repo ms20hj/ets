@@ -100,45 +100,19 @@ export default {
       routes: [
         {
           path: '/',
-          component: '../layouts/BasicLayout',
-          authority: ['admin', 'user'],
+          component: '../layouts/MainLayout',
+        },
+        {
+          path: '/sale',
+          icon: 'shop',
+          name: '销售',
           routes: [
             {
-              path: '/',
-              redirect: '/welcome',
-            },
-            {
-              path: '/welcome',
-              name: 'welcome',
-              icon: 'smile',
-              component: './Welcome',
-            },
-            {
-              path: '/admin',
-              name: 'admin',
-              icon: 'crown',
-              component: './Admin',
-              authority: ['admin'],
-              routes: [
-                {
-                  path: '/admin/sub-page',
-                  name: 'sub-page',
-                  icon: 'smile',
-                  component: './Welcome',
-                  authority: ['admin'],
-                },
-              ],
-            },
-            {
-              name: 'list.table-list',
-              icon: 'table',
-              path: '/list',
-              component: './ListTableList',
-            },
-            {
-              component: './404',
-            },
-          ],
+              path: '/sale/ticket',
+              name: '售票',
+              component: './sale/ticket'
+            }
+          ]
         },
         {
           component: './404',
