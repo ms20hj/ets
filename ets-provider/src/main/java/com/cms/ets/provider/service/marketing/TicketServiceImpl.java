@@ -121,4 +121,12 @@ public class TicketServiceImpl extends ServiceImpl<TicketMapper, Ticket> impleme
         wrapper.orderByAsc("sort_num");
         return list(wrapper);
     }
+
+    @Override
+    public List<Ticket> getByUserId(String userId) {
+        List<String> userIds = userTicketService.getTicketIdByUserId(userId);
+        QueryWrapper<Ticket> wrapper = new QueryWrapper<>();
+        wrapper.in("id", userIds);
+        return list(wrapper);
+    }
 }

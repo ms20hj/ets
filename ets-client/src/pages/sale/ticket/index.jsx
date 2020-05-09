@@ -12,6 +12,13 @@ const { Header, Footer, Content } = Layout;
 }))
 export default class SaleTicket extends Component{
 
+  componentWillMount() {
+    const {dispatch} = this.props;
+    dispatch({
+      type: 'sale/initBaseSaleData',
+    });
+  }
+
 
   render() {
     const {currentUser} = this.props;

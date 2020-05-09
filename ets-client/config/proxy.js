@@ -8,7 +8,7 @@
 export default {
   dev: {
     '/server/api/': {
-      target: 'http://192.168.4.85:54002',
+      target: 'http://localhost:54002',
       changeOrigin: true,
       pathRewrite: {
         '^/server/api/': '',
@@ -17,7 +17,7 @@ export default {
   },
   test: {
     '/server/api/': {
-      target: 'http://192.168.4.85:54002',
+      target: 'http://localhost:54002',
       changeOrigin: true,
       pathRewrite: {
         '^/server/api/': '',
@@ -26,7 +26,7 @@ export default {
   },
   pre: {
     '/server/api/': {
-      target: 'http://192.168.4.85:54002',
+      target: 'http://127.0.0.1:54002',
       changeOrigin: true,
       pathRewrite: {
         '^/server/api/': '',

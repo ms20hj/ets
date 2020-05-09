@@ -77,4 +77,12 @@ public interface ITicketService extends IService<Ticket> {
      * @date 2020年1月3日09:34:15
      */
     List<Ticket> getSimpleList();
+
+    /**
+     * 根据用户id查询可销售门票信息
+     * @param userId 用户id
+     * @return List<Ticket>
+     * @date 2020年4月9日10:53:59
+     */
+    List<Ticket> getByUserId(String userId);
 }

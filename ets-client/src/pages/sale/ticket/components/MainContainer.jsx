@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import { Col, Row} from 'antd';
 import TopPart from './TopPart'
-import MiddlePart from './MiddlePart'
+import MiddleSaleTable from './MiddleSaleTable'
 import styles from  './MainContainer.less';
+
 
 export default class MainContainer extends Component{
 
@@ -10,7 +11,7 @@ export default class MainContainer extends Component{
     return(
       <div className={styles.main}>
         <TopPart />
-        <MiddlePart />
+        <MiddleSaleTable />
       </div>
     );
   }

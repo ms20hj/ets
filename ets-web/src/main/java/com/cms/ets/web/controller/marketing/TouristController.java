@@ -81,4 +81,11 @@ public class TouristController extends BaseController {
         Tourist tourist = touristService.getById(id);
         return success(tourist);
     }
+
+    @GetMapping("list")
+    @ApiOperation("不分页列表查询")
+    public HandleResult list(){
+        List<Tourist> list = touristService.list();
+        return success(list);
+    }
 }
