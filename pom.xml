@@ -26,6 +26,7 @@
         <oauth.version>2.3.4.RELEASE</oauth.version>
         <oauth-auto.version>2.0.1.RELEASE</oauth-auto.version>
         <fastjson.version>1.2.58</fastjson.version>
+        <jackson.version>2.9.7</jackson.version>
         <commons.io.version>2.6</commons.io.version>
         <hutool.version>4.5.1</hutool.version>
         <dubbo.version>2.6.5</dubbo.version>
@@ -36,6 +37,7 @@
         <swagger2.version>2.9.2</swagger2.version>
         <druid.springboot.version>1.1.10</druid.springboot.version>
         <mybatisplus.springboot.version>3.2.0</mybatisplus.springboot.version>
+        <mybatisplus.version>3.2.0</mybatisplus.version>
         <mybatisplus.generator.version>3.2.0</mybatisplus.generator.version>
         <mysql.connector.version>5.1.45</mysql.connector.version>
         <p6spy.version>3.8.0</p6spy.version>
@@ -154,6 +156,18 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-generator</artifactId>
                 <version>${mybatisplus.generator.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-annotation</artifactId>
+                <version>${mybatisplus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
             </dependency>
 
             <dependency>

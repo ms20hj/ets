@@ -23,13 +23,13 @@ spring:
   #redis基础参数配置
   redis:
     timeout: 1800000
-    jedis:
+    lettuce:
       pool:
-        max-active: 256
-        max-idle: 64
-        min-idle: 16
+        max-active: 8
+        max-idle: 8
+        min-idle: 1
         max-wait: 5000ms
-    password: ets123
+
 #  main:
 #    allow-bean-definition-overriding: true
 management:
@@ -93,6 +93,7 @@ spring:
     port: 6379
     database: 1
     expire: 1800
+    password: ets123
 
 
 ---
@@ -103,5 +104,6 @@ spring:
   redis:
     host: 127.0.0.1
     port: 6379
-    database: 1
+    database: 0
     expire: 1800
+    password: 123456

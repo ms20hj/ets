@@ -41,13 +41,12 @@ spring:
   #redis基础参数配置
   redis:
     timeout: 1800000
-    jedis:
+    lettuce:
       pool:
-        max-active: 256
-        max-idle: 64
-        min-idle: 16
+        max-active: 8
+        max-idle: 8
+        min-idle: 1
         max-wait: 5000ms
-    password: ets123
 
 mybatis-plus:
   #Mapper 所对应的 XML 文件位置
@@ -105,7 +104,7 @@ dubbo:
   protocol:
     name: "dubbo"
     # 开启dubbo端口自动分配功能, 将从28800开始检索
-    port: "20890"
+    port: "-1"
     accesslog: "true"
     threadpool: "cached"
     threads: "500"
@@ -131,11 +130,11 @@ dubbo:
 ---
 #开发测试环境参数配置
 spring:
-  profiles: dev
+  profiles: prod
   #mysql参数配置
   datasource:
-    driverClassName: com.p6spy.engine.spy.P6SpyDriver
-    url: jdbc:p6spy:mysql://127.0.0.1:3306/ets?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/ets?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8
     username: root
     password: 910212
   # mongo参数配置
@@ -146,7 +145,8 @@ spring:
   redis:
     host: 127.0.0.1
     port: 6379
-    database: 1
+    database: 0
+    password: 123456
 
 
 ---
@@ -167,4 +167,5 @@ spring:
   redis:
     host: 127.0.0.1
     port: 6379
-    database: 1
+    database: 0
+    password: 123456
