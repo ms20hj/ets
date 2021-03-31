@@ -42,7 +42,7 @@
         <mysql.connector.version>5.1.45</mysql.connector.version>
         <p6spy.version>3.8.0</p6spy.version>
         <commons-lang.version>2.6</commons-lang.version>
-        <guava.version>27.0.1-jre</guava.version>
+        <guava.version>29.0-jre</guava.version>
         <mongodb-plus.version>1.0.0.RELEASE</mongodb-plus.version>
         <shiro.version>1.4.0</shiro.version>
         <shiro.redis.version>3.2.1</shiro.redis.version>
